@@ -1,0 +1,268 @@
+// ── APSR Regulations Section ────────────────────────────────────────────────
+// Figma node 676:6366 — section bg #22b9ff0f, card gradient white→#bce4ee,
+// full-pill buttons, 24px bold title, 18px meta rows, orange CTA pair
+
+.regulations-section {
+  padding: 30px 0 54px;
+  background: url('/assets/images/blur-background.svg');
+}
+
+.regulations-wrap {
+  width: min(1312px, calc(100% - 36px));
+  margin: 0 auto;
+}
+
+// ── Header row ───────────────────────────────────────────────────────────────
+.regulations-head {
+  min-height: 73px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.regulations-kicker {
+  margin: 0;
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--color-primary-blue);
+}
+
+.regulations-title {
+  margin: 0;
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 50px;
+  text-transform: uppercase;
+  color: var(--color-teal);
+}
+
+.regulations-more-btn {
+  flex-shrink: 0;
+  margin-top: 19px;
+  width: 98px;
+  height: 35px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--color-orange);
+  color: var(--color-modal-bg);
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: var(--color-orange-hover);
+  }
+}
+
+// ── Cards grid ───────────────────────────────────────────────────────────────
+.regulations-grid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.regulation-card {
+  border-radius: 16px;
+  padding: 18px 16px 21px 19px;
+  box-shadow: 0 4px 6px 0 rgba(0,0,0,0.1);
+  background: linear-gradient(
+    180deg,
+    var(--color-regulations-card-start) 0%,
+    var(--color-regulations-card-end) 300%
+  );
+  display: flex;
+  flex-direction: column;
+}
+
+// ── Card top: file icon + title ───────────────────────────────────────────────
+.regulation-card-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 67px;
+}
+
+.regulation-file-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.regulation-card-title {
+  margin: 0;
+  color: var(--color-dark-blue);
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+// ── Separator ─────────────────────────────────────────────────────────────────
+.regulation-separator {
+  margin-block: 12px 0;
+  block-size: 1px;
+  inline-size: 100%;
+  background: var(--color-otp-border);
+}
+
+// ── Meta rows ─────────────────────────────────────────────────────────────────
+.regulation-meta {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.regulation-meta-row {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+}
+
+.regulation-meta-label {
+  min-inline-size: 100px;
+  color: var(--color-dark-blue);
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.regulation-meta-value {
+  color: var(--color-light-green);
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+// ── Action buttons ────────────────────────────────────────────────────────────
+.regulation-actions {
+  margin-top: auto;
+  padding-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.regulation-details-btn,
+.regulation-download-btn {
+  height: 38px;
+  border-radius: 100px;
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.regulation-details-btn {
+  border: 1px solid var(--color-orange);
+  background: transparent;
+  color: var(--color-orange);
+
+  img {
+    width: 8px;
+    height: auto;
+    flex-shrink: 0;
+  }
+}
+
+.regulation-download-btn {
+  border: 0;
+  background: var(--color-orange);
+  color: var(--color-modal-bg);
+
+  img {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+}
+
+// ── Responsive ───────────────────────────────────────────────────────────────
+@media (max-width: 1200px) {
+  .regulations-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .regulations-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .regulations-more-btn {
+    margin-top: 0;
+  }
+
+  .regulations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .regulation-actions {
+    flex-direction: column;
+    align-items: stretch;
+
+    .regulation-details-btn,
+    .regulation-download-btn {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .regulations-section {
+    padding-block: 24px 40px;
+  }
+
+  .regulations-wrap {
+    width: calc(100% - 24px);
+  }
+
+  .regulations-kicker {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .regulations-title {
+    font-size: 34px;
+    line-height: 40px;
+  }
+
+  .regulation-card {
+    padding: 16px;
+  }
+
+  .regulation-card-top {
+    gap: 12px;
+  }
+
+  .regulation-card-title {
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+

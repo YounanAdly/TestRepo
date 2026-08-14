@@ -1,0 +1,34 @@
+<div class="filter-dropdown" [class.is-open]="isOpen" [class.is-disabled]="disabled()">
+  <button
+    type="button"
+    class="filter-dropdown__trigger"
+    [attr.aria-expanded]="isOpen"
+    [attr.aria-haspopup]="'listbox'"
+    [attr.aria-disabled]="disabled() ? 'true' : null"
+    [disabled]="disabled()"
+    (click)="toggle($event)">
+    <span
+      class="filter-dropdown__label"
+      [class.is-placeholder]="isPlaceholder()">
+      {{ currentLabelKey() | translate }}
+    </span>
+    <span class="filter-dropdown__chevron" aria-hidden="true"></span>
+  </button>
+
+  @if (isOpen && !disabled()) {
+    <ul
+      class="filter-dropdown__panel"
+      role="listbox">
+      @for (option of options(); track option) {
+        <li
+          class="filter-dropdown__option"
+          [class.is-selected]="option.labelKey === currentLabelKey()"
+          role="option"
+          [attr.aria-selected]="option.labelKey === currentLabelKey()"
+          (click)="select(option, $event)">
+          {{ option.labelKey | translate }}
+        </li>
+      }
+    </ul>
+  }
+</div>

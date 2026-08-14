@@ -1,0 +1,249 @@
+<main class="dashboard-page page-enter">
+  <section class="dashboard-breadcrumb">
+    <div class="dashboard-wrap">
+      <a [routerLink]="localizedHomeRoute">{{ 'dashboardPage.breadcrumb.home' | translate }}</a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+      <span>{{ 'dashboardPage.breadcrumb.current' | translate }}</span>
+    </div>
+  </section>
+
+  <section class="dashboard-hero">
+    <div class="dashboard-wrap">
+      <div class="dashboard-title-row">
+        <div>
+          <h1>{{ 'dashboardPage.hero.title' | translate }}</h1>
+          <h2>{{ 'dashboardPage.hero.subtitle' | translate }}</h2>
+        </div>
+      </div>
+
+      <p class="dashboard-description">{{ 'dashboardPage.hero.description' | translate }}</p>
+    </div>
+  </section>
+
+  <section class="dashboard-content">
+    <div class="dashboard-wrap dashboard-grid">
+      <div class="dashboard-left-column">
+        <article class="dashboard-summary-card">
+          <div class="dashboard-summary-copy">
+            <h3>{{ 'dashboardPage.summary.title' | translate }}</h3>
+            <p>{{ 'dashboardPage.summary.description' | translate }}</p>
+          </div>
+
+          <div class="dashboard-summary-visual">
+            <div class="dashboard-donut" aria-hidden="true">
+              <span class="dashboard-donut__label dashboard-donut__label--services">50%</span>
+              <span class="dashboard-donut__label dashboard-donut__label--complaints">25%</span>
+              <span class="dashboard-donut__label dashboard-donut__label--inquiries">25%</span>
+            </div>
+
+            <ul class="dashboard-summary-legend">
+              <li>
+                <span class="dot dot-services" aria-hidden="true"></span>
+                <span>{{ 'dashboardPage.summary.legend.services' | translate }}</span>
+              </li>
+              <li>
+                <span class="dot dot-complaints" aria-hidden="true"></span>
+                <span>{{ 'dashboardPage.summary.legend.complaints' | translate }}</span>
+              </li>
+              <li>
+                <span class="dot dot-inquiries" aria-hidden="true"></span>
+                <span>{{ 'dashboardPage.summary.legend.inquiries' | translate }}</span>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <section class="dashboard-table-section">
+          <h3>{{ 'dashboardPage.duePayments.title' | translate }}</h3>
+
+          <div class="dashboard-filters" role="group" [attr.aria-label]="'dashboardPage.filters.ariaLabel' | translate">
+            <app-filter-dropdown
+              [options]="monthOptions"
+              [selectedValue]="selectedMonthKey"
+              (selectionChange)="onMonthChange($event)">
+            </app-filter-dropdown>
+
+            <app-filter-dropdown
+              [options]="yearOptions"
+              [selectedValue]="selectedYearKey"
+              (selectionChange)="onYearChange($event)">
+            </app-filter-dropdown>
+          </div>
+
+          <div class="dashboard-table-shell">
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>{{ 'dashboardPage.duePayments.table.refNo' | translate }}</th>
+                  <th>{{ 'dashboardPage.duePayments.table.date' | translate }}</th>
+                  <th>{{ 'dashboardPage.duePayments.table.billNo' | translate }}</th>
+                  <th>{{ 'dashboardPage.duePayments.table.amount' | translate }}</th>
+                  <th>{{ 'dashboardPage.duePayments.table.method' | translate }}</th>
+                  <th>{{ 'dashboardPage.duePayments.table.status' | translate }}</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of duePayments; track trackById($index, row)) {
+                  <tr>
+                    <td class="ref-col">
+                      <button type="button" class="ref-link" (click)="onViewRef(row.refNo)">{{ row.refNo }}</button>
+                    </td>
+                    <td>{{ row.date }}</td>
+                    <td>{{ row.billNo }}</td>
+                    <td>{{ row.amount }}</td>
+                    <td>{{ row.method }}</td>
+                    <td>
+                      <span
+                        class="status-chip"
+                        [class.is-approved]="row.status === 'approved'"
+                        [class.is-pending]="row.status === 'pending'">
+                        <img
+                          [src]="row.status === 'approved' ? 'assets/images/inquiry-status-approved.svg' : 'assets/images/inquiry-status-pending.svg'"
+                          alt=""
+                          aria-hidden="true" />
+                        {{ ('dashboardPage.status.' + row.status) | translate }}
+                      </span>
+                    </td>
+                    <td>
+                      @if (row.hasDownload) {
+                        <button type="button" class="download-btn" [attr.aria-label]="'dashboardPage.actions.download' | translate">
+                          <img src="assets/images/dashboard-download.svg" alt="" aria-hidden="true" />
+                        </button>
+                      }
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="dashboard-table-section">
+          <h3>{{ 'dashboardPage.myRequests.title' | translate }}</h3>
+
+          <div class="dashboard-filters" role="group" [attr.aria-label]="'dashboardPage.filters.ariaLabel' | translate">
+            <app-filter-dropdown
+              [options]="monthOptions"
+              [selectedValue]="selectedMonthKey"
+              (selectionChange)="onMonthChange($event)">
+            </app-filter-dropdown>
+
+            <app-filter-dropdown
+              [options]="yearOptions"
+              [selectedValue]="selectedYearKey"
+              (selectionChange)="onYearChange($event)">
+            </app-filter-dropdown>
+          </div>
+
+          <div class="dashboard-table-shell">
+            <div class="dashboard-tabs" role="tablist" [attr.aria-label]="'dashboardPage.myRequests.tabsAriaLabel' | translate">
+              <button type="button" role="tab" [attr.aria-selected]="activeTab === 'services'" [class.is-active]="activeTab === 'services'" (click)="onSelectTab('services')">
+                {{ 'dashboardPage.myRequests.tabs.services' | translate }}
+              </button>
+              <button type="button" role="tab" [attr.aria-selected]="activeTab === 'complaints'" [class.is-active]="activeTab === 'complaints'" (click)="onSelectTab('complaints')">
+                {{ 'dashboardPage.myRequests.tabs.complaints' | translate }}
+              </button>
+              <button type="button" role="tab" [attr.aria-selected]="activeTab === 'inquiries'" [class.is-active]="activeTab === 'inquiries'" (click)="onSelectTab('inquiries')">
+                {{ 'dashboardPage.myRequests.tabs.inquiries' | translate }}
+              </button>
+              <button type="button" role="tab" [attr.aria-selected]="activeTab === 'payments'" [class.is-active]="activeTab === 'payments'" (click)="onSelectTab('payments')">
+                {{ 'dashboardPage.myRequests.tabs.payments' | translate }}
+              </button>
+            </div>
+
+            <table class="dashboard-table dashboard-table--requests">
+              <thead>
+                <tr>
+                  <th>{{ 'dashboardPage.myRequests.table.requestNo' | translate }}</th>
+                  <th>{{ 'dashboardPage.myRequests.table.requestName' | translate }}</th>
+                  <th>{{ 'dashboardPage.myRequests.table.startDate' | translate }}</th>
+                  <th>{{ 'dashboardPage.myRequests.table.endDate' | translate }}</th>
+                  <th>{{ 'dashboardPage.myRequests.table.status' | translate }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of myRequests; track trackById($index, row)) {
+                  <tr>
+                    <td class="ref-col">
+                      <button type="button" class="ref-link" (click)="onViewRef(row.requestNo, row.requestNameKey)">{{ row.requestNo }}</button>
+                    </td>
+                    <td>{{ row.requestNameKey | translate }}</td>
+                    <td>{{ row.startDate }}</td>
+                    <td>{{ row.endDate }}</td>
+                    <td>
+                      <span
+                        class="status-chip"
+                        [class.is-approved]="row.status === 'approved'"
+                        [class.is-pending]="row.status === 'pending'"
+                        [class.is-rejected]="row.status === 'rejected'">
+                        <img
+                        [src]="
+                          row.status === 'approved'
+                            ? 'assets/images/inquiry-status-approved.svg'
+                            : row.status === 'pending'
+                              ? 'assets/images/inquiry-status-pending.svg'
+                              : 'assets/images/dashboard-status-rejected-circle.svg'
+                        "
+                          alt=""
+                          aria-hidden="true" />
+                        {{ ('dashboardPage.status.' + row.status) | translate }}
+                      </span>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <aside class="dashboard-right-column">
+        <section class="dashboard-quick-actions">
+          <h3>{{ 'dashboardPage.quickActions.title' | translate }}</h3>
+
+          @for (item of quickActions; track trackById($index, item)) {
+            <article class="quick-item">
+              <div class="quick-item-content">
+                <span class="quick-item-icon" [class.is-rejected]="item.status === 'rejected'" [class.is-pending]="item.status === 'pending'" [class.is-approved]="item.status === 'approved'">
+                  <img [src]="item.iconSrc" alt="" aria-hidden="true" />
+                </span>
+                <div>
+                  <header>
+                    <span>{{ 'dashboardPage.quickActions.today' | translate }}</span>
+                    <span>{{ item.time }}</span>
+                  </header>
+                  <h4 [class.is-rejected]="item.status === 'rejected'" [class.is-pending]="item.status === 'pending'" [class.is-approved]="item.status === 'approved'">
+                    {{ item.titleKey | translate }}
+                  </h4>
+                  <p>{{ item.descriptionKey | translate }}</p>
+                </div>
+              </div>
+            </article>
+          }
+        </section>
+
+        <section class="dashboard-recent-services">
+          <h3>{{ 'dashboardPage.recentSubmittedServices.title' | translate }}</h3>
+
+          @for (item of recentSubmissions; track trackById($index, item)) {
+            <button
+              type="button"
+              class="recent-service-item"
+              [class.recent-service-item--inquiry]="item.route === 'inquiry'"
+              [class.recent-service-item--service]="item.route === 'services'"
+              [class.recent-service-item--complaint]="item.route === 'complaint-request'"
+              (click)="onOpenSubmission(item)"
+              [attr.aria-label]="item.titleKey | translate">
+              <div>
+                <h4>{{ item.titleKey | translate }}</h4>
+                <p>{{ item.descriptionKey | translate }}</p>
+              </div>
+              <img src="assets/images/dashboard-recent-arrow.svg" alt="" aria-hidden="true" />
+            </button>
+          }
+        </section>
+      </aside>
+    </div>
+  </section>
+</main>

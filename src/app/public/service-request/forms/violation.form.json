@@ -1,0 +1,250 @@
+{
+  "customerInformation": [],
+  "violationCustomerInfo": [
+    {
+      "fieldGroupClassName": "request-grid",
+      "fieldGroup": [
+        {
+          "key": "violationNo",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": false,
+            "dimmed": true,
+            "label": "serviceRequestPage.form.violation.info.violationNo.label",
+            "placeholder": "serviceRequestPage.form.violation.info.violationNo.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "contact",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": false,
+            "label": "serviceRequestPage.form.violation.customer.contact.label",
+            "placeholder": "serviceRequestPage.form.violation.customer.contact.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "customerAccount",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.violation.customer.customerAccount.label",
+            "placeholder": "serviceRequestPage.form.violation.customer.customerAccount.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "plot",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": false,
+            "label": "serviceRequestPage.form.violation.customer.plot.label",
+            "placeholder": "serviceRequestPage.form.violation.customer.plot.placeholder",
+            "options": []
+          }
+        }
+      ]
+    }
+  ],
+  "violationDetailFields": [
+    {
+      "fieldGroupClassName": "request-grid",
+      "fieldGroup": [
+        {
+          "key": "violationType",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.violation.details.violationType.label",
+            "placeholder": "serviceRequestPage.form.violation.details.violationType.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "violationDate",
+          "type": "custom-calendar",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.violation.info.violationDate.label",
+            "placeholder": "serviceRequestPage.form.violation.info.violationDate.placeholder"
+          }
+        },
+        {
+          "key": "functionalLocation",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.violation.info.functionalLocation.label",
+            "placeholder": "serviceRequestPage.form.violation.info.functionalLocation.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "violationVia",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.violation.info.violationVia.label",
+            "placeholder": "serviceRequestPage.form.violation.info.violationVia.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "violationDetails",
+          "type": "custom-textarea",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.violation.details.violationDetails.label",
+            "placeholder": "serviceRequestPage.form.violation.details.violationDetails.placeholder",
+            "rows": 4
+          }
+        }
+      ]
+    }
+  ],
+  "technicalReportFields": [
+    {
+      "fieldGroupClassName": "request-grid",
+      "fieldGroup": [
+        {
+          "key": "proceduresFollowed",
+          "type": "custom-textarea",
+          "className": "request-col request-col--span2",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.violation.technical.proceduresFollowed.label",
+            "placeholder": "serviceRequestPage.form.violation.technical.proceduresFollowed.placeholder",
+            "rows": 5
+          }
+        }
+      ]
+    }
+  ],
+  "violationDocumentFiles": [
+    {
+      "fieldGroupClassName": "request-file-grid",
+      "fieldGroup": [
+        {
+          "key": "documents",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.violation.documents.documents.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "multiple": true,
+            "maxFileSize": 5000000
+          }
+        }
+      ]
+    }
+  ],
+  "administrativePenalties": [
+    {
+      "fieldGroupClassName": "request-grid",
+      "fieldGroup": [
+        {
+          "key": "violationAmount",
+          "type": "custom-input",
+          "className": "request-col",
+          "validators": { "validation": ["numbersOnly"] },
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.violation.penalties.violationAmount.label",
+            "placeholder": "serviceRequestPage.form.violation.penalties.violationAmount.placeholder",
+            "type": "number",
+            "inputmode": "decimal",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "disconnectionReconnectionFees",
+          "type": "custom-input",
+          "className": "request-col",
+          "validators": { "validation": ["numbersOnly"] },
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.violation.penalties.disconnectionReconnectionFees.label",
+            "placeholder": "serviceRequestPage.form.violation.penalties.disconnectionReconnectionFees.placeholder",
+            "type": "number",
+            "inputmode": "decimal",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "meterRepairReplacementCost",
+          "type": "custom-input",
+          "className": "request-col",
+          "validators": { "validation": ["numbersOnly"] },
+          "props": {
+            "translate": true,
+            "required": false,
+            "label": "serviceRequestPage.form.violation.penalties.meterRepairReplacementCost.label",
+            "placeholder": "serviceRequestPage.form.violation.penalties.meterRepairReplacementCost.placeholder",
+            "type": "number",
+            "inputmode": "decimal",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "estimatedWaterLoss",
+          "type": "custom-input",
+          "className": "request-col",
+          "validators": { "validation": ["numbersOnly"] },
+          "props": {
+            "translate": true,
+            "required": false,
+            "label": "serviceRequestPage.form.violation.penalties.estimatedWaterLoss.label",
+            "placeholder": "serviceRequestPage.form.violation.penalties.estimatedWaterLoss.placeholder",
+            "type": "number",
+            "inputmode": "decimal",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "totalViolationFees",
+          "type": "custom-input",
+          "className": "request-col request-col--span2",
+          "props": {
+            "translate": true,
+            "required": false,
+            "dimmed": true,
+            "label": "serviceRequestPage.form.violation.penalties.totalViolationFees.label",
+            "placeholder": "serviceRequestPage.form.violation.penalties.totalViolationFees.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        }
+      ]
+    }
+  ]
+}

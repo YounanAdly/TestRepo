@@ -1,0 +1,225 @@
+<main id="main-content" class="account-summary-page page-enter">
+  <section class="acct-breadcrumb" aria-label="{{ 'accountSummary.breadcrumb.current' | translate }}">
+    <div class="acct-wrap">
+      <a class="acct-breadcrumb__link" [routerLink]="localizedProfileRoute()">
+        {{ 'accountSummary.breadcrumb.profile' | translate }}
+      </a>
+      <img
+        src="assets/images/regulation-arrow.svg"
+        alt=""
+        aria-hidden="true"
+        class="acct-breadcrumb__sep" />
+      <span class="acct-breadcrumb__current">
+        {{ 'accountSummary.breadcrumb.current' | translate }}
+      </span>
+    </div>
+  </section>
+
+  <section class="acct-hero" aria-labelledby="acct-hero-title">
+    <div class="acct-wrap acct-hero__wrap">
+      <h1 id="acct-hero-title" class="acct-hero__title">
+        {{ 'accountSummary.hero.title' | translate }}
+      </h1>
+      <p class="acct-hero__subtitle">
+        {{ 'accountSummary.hero.subtitle' | translate }}
+      </p>
+    </div>
+  </section>
+
+  <section class="acct-stats" aria-label="{{ 'accountSummary.stat.groupLabel' | translate }}">
+    <div class="acct-wrap acct-stats__grid">
+      @for (card of statCards(); track card.kind) {
+        <article class="stat-card stat-card--{{ card.kind }}">
+          <span class="stat-card__icon" aria-hidden="true">
+            <img
+              [src]="card.iconSrc"
+              alt=""
+              width="40"
+              height="40"
+              loading="lazy"
+              decoding="async" />
+          </span>
+          <div class="stat-card__body">
+            <span class="stat-card__label">{{ card.labelKey | translate }}</span>
+            <span class="stat-card__value">
+              <span class="stat-card__value-main">{{ card.value }}</span>
+              @if (card.suffix) {
+                <sup class="stat-card__value-suffix">{{ card.suffix }}</sup>
+              }
+            </span>
+            @if (card.metaKey) {
+              <span class="stat-card__meta">{{ card.metaKey | translate }}</span>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  @defer (on idle) {
+  <section class="acct-body">
+    <div class="acct-wrap acct-body__grid">
+
+      <div class="acct-body__col acct-body__col--left">
+        <article class="acct-panel" aria-labelledby="acct-info-title">
+          <header class="acct-panel__header">
+            <h2 id="acct-info-title" class="acct-panel__title">
+              {{ 'accountSummary.info.title' | translate }}
+            </h2>
+          </header>
+          <dl class="acct-panel__rows">
+            @for (row of accountInfoRows(); track row.labelKey; let last = $last) {
+              <div class="acct-panel__row" [class.is-last]="last">
+                <dt class="acct-panel__label">{{ row.labelKey | translate }}</dt>
+                <dd
+                  class="acct-panel__value"
+                  [class.acct-panel__value--status]="row.isStatus"
+                  [class.acct-panel__value--active]="row.statusVariant === 'active'">
+                  {{ row.value }}
+                </dd>
+              </div>
+            }
+          </dl>
+        </article>
+
+        <article class="acct-panel" aria-labelledby="acct-meter-title">
+          <header class="acct-panel__header">
+            <h2 id="acct-meter-title" class="acct-panel__title">
+              {{ 'accountSummary.meter.title' | translate }}
+            </h2>
+          </header>
+          <dl class="acct-panel__rows">
+            @for (row of linkedMeterRows(); track row.labelKey; let last = $last) {
+              <div class="acct-panel__row" [class.is-last]="last">
+                <dt class="acct-panel__label">{{ row.labelKey | translate }}</dt>
+                <dd class="acct-panel__value">{{ row.value }}</dd>
+              </div>
+            }
+          </dl>
+        </article>
+      </div>
+
+      <div class="acct-body__col acct-body__col--right">
+        <article class="acct-panel acct-chart-card" aria-labelledby="acct-chart-title">
+          <header class="acct-panel__header acct-chart-card__header">
+            <h2 id="acct-chart-title" class="acct-panel__title">
+              {{ 'accountSummary.chart.title' | translate }}
+            </h2>
+            <span class="acct-chart-card__filter" aria-hidden="true">
+              <span class="acct-chart-card__filter-label">
+                {{ 'accountSummary.chart.thisMonth' | translate }}
+              </span>
+              <img
+                src="assets/images/account-summary-chart-dropdown.svg"
+                alt=""
+                aria-hidden="true"
+                class="acct-chart-card__filter-icon" />
+            </span>
+          </header>
+
+          <div class="acct-chart-card__hero">
+            <span class="acct-chart-card__hero-value">
+              <span class="acct-chart-card__hero-number">{{ values().chartHeadlineValue }}</span>
+              <sup class="acct-chart-card__hero-unit">{{ values().chartHeadlineUnit }}</sup>
+            </span>
+            <span class="acct-chart-card__hero-meta">
+              {{ 'accountSummary.chart.thisMonth' | translate }}
+            </span>
+          </div>
+
+          <div class="acct-chart">
+            <ul class="acct-chart__y-axis" aria-hidden="true">
+              @for (tick of chartYAxis; track tick) {
+                <li class="acct-chart__y-tick">{{ tick }}</li>
+              }
+            </ul>
+            <div class="acct-chart__canvas">
+              <svg
+                class="acct-chart__svg"
+                [attr.viewBox]="'0 0 ' + chartWidth + ' ' + chartHeight"
+                [attr.width]="chartWidth"
+                [attr.height]="chartHeight"
+                preserveAspectRatio="none"
+                role="img"
+                [attr.aria-label]="'accountSummary.chart.ariaLabel' | translate">
+                <defs>
+                  <linearGradient
+                    id="acctChartFill"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    [attr.y2]="chartHeight"
+                    gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="var(--color-account-summary-chart-fill-start)" />
+                    <stop offset="100%" stop-color="var(--color-account-summary-chart-fill-end)" />
+                  </linearGradient>
+                </defs>
+                <path
+                  class="acct-chart__area"
+                  [attr.d]="chartArea()"
+                  fill="url(#acctChartFill)" />
+                <path
+                  class="acct-chart__line"
+                  [attr.d]="chartPath()"
+                  fill="none"
+                  stroke="var(--color-account-summary-chart-line)"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+                @for (dot of chartDots(); track $index) {
+                  <circle
+                    class="acct-chart__dot"
+                    [attr.cx]="dot.x"
+                    [attr.cy]="dot.y"
+                    r="3"
+                    fill="var(--color-account-summary-chart-line)" />
+                }
+              </svg>
+              <ul class="acct-chart__x-axis" aria-hidden="true">
+                @for (point of chartPoints; track point.labelKey) {
+                  <li class="acct-chart__x-tick">{{ point.labelKey | translate }}</li>
+                }
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="acct-panel" aria-labelledby="acct-quick-title">
+          <header class="acct-panel__header">
+            <h2 id="acct-quick-title" class="acct-panel__title">
+              {{ 'accountSummary.quick.title' | translate }}
+            </h2>
+            <p class="acct-panel__subtitle">
+              {{ 'accountSummary.quick.subtitle' | translate }}
+            </p>
+          </header>
+
+          <div class="quick-grid">
+            @for (action of quickActions; track action.kind) {
+              <button
+                type="button"
+                class="quick-card quick-card--{{ action.kind }}"
+                (click)="onQuickAction(action)">
+                <span class="quick-card__icon" aria-hidden="true">
+                  <img
+                    [src]="action.iconSrc"
+                    alt=""
+                    width="36"
+                    height="36"
+                    loading="lazy"
+                    decoding="async" />
+                </span>
+                <span class="quick-card__body">
+                  <span class="quick-card__title">{{ action.titleKey | translate }}</span>
+                  <span class="quick-card__subtitle">{{ action.subtitleKey | translate }}</span>
+                </span>
+              </button>
+            }
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+  }
+</main>

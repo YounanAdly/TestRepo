@@ -1,0 +1,115 @@
+{
+  "existingPlotType234Fields": [
+    {
+      "fieldGroupClassName": "request-grid",
+      "fieldGroup": [
+        {
+          "key": "existingPlot",
+          "type": "custom-dropdown",
+          "className": "request-col request-col--span2",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.plot.existingPlot.label",
+            "placeholder": "serviceRequestPage.form.plot.existingPlot.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "relatedWaterServiceRequest",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.plot.relatedWaterServiceRequest.label",
+            "placeholder": "serviceRequestPage.form.plot.relatedWaterServiceRequest.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "functionalLocation",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.plot.functionalLocation.label",
+            "placeholder": "serviceRequestPage.form.plot.functionalLocation.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "customerAccount",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.plot.customerAccount.label",
+            "placeholder": "serviceRequestPage.form.plot.customerAccount.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "customerContact",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.plot.customerContact.label",
+            "placeholder": "serviceRequestPage.form.plot.customerContact.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        }
+      ]
+    }
+  ],
+  "requiredDocuments": [
+    {
+      "fieldGroupClassName": "request-file-grid",
+      "fieldGroup": [
+        {
+          "key": "propertyCertificate",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.documents.propertyCertificate.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        },
+        {
+          "key": "commercialRegistration",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.documents.commercialRegistration.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        },
+        {
+          "key": "additionalAttachments",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.documents.additionalAttachments.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000,
+            "multiple": true
+          }
+        }
+      ]
+    }
+  ]
+}

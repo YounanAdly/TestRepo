@@ -1,0 +1,2156 @@
+{
+  "HELLO": "Hello world!",
+  "WELCOME": "Welcome to our application",
+  "GOODBYE": "Goodbye",
+  "numbersOnly": "Numbers only allowed",
+  "errors": {
+    "networkTitle": "Connection Error",
+    "networkDetail": "Please check your internet connection and try again.",
+    "serverTitle": "Server Error",
+    "serverDetail": "Something went wrong on our end. Please try again shortly.",
+    "loadFailedTitle": "Could not load data",
+    "loadFailedDetail": "Please try again or refresh the page.",
+    "timeoutTitle": "Request took too long",
+    "timeoutDetail": "The server is taking longer than expected. Please try again.",
+    "unauthorizedTitle": "Session expired",
+    "unauthorizedDetail": "Please sign in again to continue.",
+    "forbiddenTitle": "Access denied",
+    "forbiddenDetail": "You don't have permission to perform this action.",
+    "notFoundTitle": "Not found",
+    "notFoundDetail": "We couldn't find what you were looking for.",
+    "validationTitle": "Please review your entries",
+    "validationDetail": "Some fields need your attention before we can continue.",
+    "conflictTitle": "Update conflict",
+    "conflictDetail": "This item was updated elsewhere. Please reload and try again.",
+    "rateLimitTitle": "Too many requests",
+    "rateLimitDetail": "You're going a bit too fast. Please wait a moment and try again.",
+    "geolocationUnavailableTitle": "Location not available",
+    "geolocationUnavailableDetail": "Your device doesn't support location services."
+  },
+  "common": {
+    "retry": "Retry",
+    "submit": "Submit",
+    "submitting": "Submitting…",
+    "cancel": "Cancel",
+    "close": "Close",
+    "notAvailable": "N/A"
+  },
+  "validation": {
+    "required": "This field is required",
+    "numbersOnly": "Numbers only allowed",
+    "emailPattern": "Please enter a valid email address",
+    "fullNamePattern": "Please enter a valid full name",
+    "mobileNumberLength": "Mobile number must be 8 digits"
+  },
+  "auth": {
+    "loginRequired": {
+      "title": "Login required",
+      "message": "You need to log in to continue. Would you like to log in now?",
+      "login": "Log in",
+      "cancel": "Cancel",
+      "closeAria": "Close login prompt"
+    }
+  },
+  "home": {
+    "seo": {
+      "title": "Home Page | My Portal",
+      "description": "Welcome to the home page of our portal.",
+      "keywords": "home, portal, welcome",
+      "image": "https://myportal.com/assets/seo/home-banner.jpg",
+      "url": "https://myportal.com/home",
+      "author": "MyPortal Team",
+      "type": "website"
+    },
+    "hero": {
+      "logoAlt": "Marafiq",
+      "navLabel": "Home main navigation",
+      "actionsLabel": "Home header actions",
+      "nav": {
+        "home": "Home",
+        "aboutUs": "About Us",
+        "services": "Services",
+        "complaints": "Complaints",
+        "inquiry": "Inquiry",
+        "mediaCenter": "Media Center",
+        "faq": "FAQ's",
+        "dashboard": "My Dashboard"
+      },
+      "actions": {
+        "phone": "Contact phone",
+        "notifications": "Notifications",
+        "language": "Language",
+        "currentLanguage": "Current language",
+        "profile": "My profile",
+        "logout": "Logout",
+        "login": "Login"
+      },
+      "title": {
+        "engineering": "Engineering",
+        "foundation": "the Foundations of",
+        "sustainable": "Sustainable",
+        "growth": "Growth"
+      }
+    },
+    "about": {
+      "kicker": "about us",
+      "title": "WHO WE ARE ?",
+      "viewMore": "View More",
+      "cards": {
+        "powering": {
+          "title": "POWERING WHAT MATTERS MOST",
+          "body": "At Marafiq, we are more than a utility provider, we are a partner in progress, committed to enabling growth, resilience, and sustainable value for Oman and beyond. We serve a diverse base of strategic clients, ensuring uninterrupted access to electricity, water, steam, and industrial gases, while supporting their focus on innovation and core business priorities."
+        },
+        "redefining": {
+          "title": "REDEFINING",
+          "body": "Our mission goes beyond operations. We are working to redefine what a modern utility provider can be adaptive, purpose-driven..."
+        },
+        "efficiency": {
+          "title": "EFFICIENCY",
+          "body": "Since our founding in 2013, Marafiq has become a key contributor to national development by delivering integrated utility ..."
+        }
+      }
+    },
+    "services": {
+      "kicker": "services",
+      "title": "Powering Your Needs",
+      "description": "Explore our range of utility services designed to ensure reliable, efficient, and compliant solutions for every need.",
+      "viewMore": "View More",
+      "applyNow": "Apply Now",
+      "nav": {
+        "prev": "Previous services",
+        "next": "Next services"
+      },
+      "cards": {
+        "connection": {
+          "title": "Water Service Connection Request",
+          "description": "Request a new water connection for residential, commercial, or industrial properties.",
+          "imageAlt": "Water service connection"
+        },
+        "tanker": {
+          "title": "Tanker Filling License Request",
+          "description": "Apply for a license to operate and fill water tankers at approved facilities.",
+          "imageAlt": "Tanker filling"
+        },
+        "meter": {
+          "title": "Additional Water Meter",
+          "description": "Request additional utility meters based on increased demand or site requirements.",
+          "imageAlt": "Additional meter"
+        },
+        "disconnection": {
+          "title": "Permanent Water Disconnection",
+          "description": "Apply for permanent utility disconnection for completed developments with stable long-term planning.",
+          "imageAlt": "Permanent disconnection"
+        }
+      }
+    },
+    "mediaCenter": {
+      "kicker": "media center",
+      "title": "news that matters",
+      "viewMore": "View More",
+      "watch": {
+        "title": "WATCH & DISCOVER",
+        "subtitle": "Our Latest Videos in one place",
+        "description": "Discover a wide collection of videos that showcase our latest updates, featured products, and special moments from our brand. In this section, you can watch engaging content that highlights our work, our vision, and everything happening behind the scenes."
+      },
+      "cards": {
+        "newsOne": {
+          "imageAlt": "Engineers checking industrial systems",
+          "openPreview": "Open media preview from first news card"
+        },
+        "newsTwo": {
+          "imageAlt": "Team member reviewing operations",
+          "openPreview": "Open media preview from second news card"
+        },
+        "newsThree": {
+          "imageAlt": "Control room team collaborating",
+          "openPreview": "Open media preview from third news card"
+        }
+      },
+      "video": {
+        "openPreview": "Open full-screen video preview",
+        "coverAlt": "Media center featured video",
+        "previewDialog": "Video preview dialog",
+        "closePreview": "Close video preview"
+      }
+    },
+    "faq": {
+      "kicker": "faq's",
+      "title": "frequently asked questions",
+      "description": "Find quick answers to the most common questions about our services, billing, and processes all in one place.",
+      "viewMore": "View More",
+      "items": {
+        "applyConnection": {
+          "question": "How can I apply for a new utility service connection with Marafiq?",
+          "answer": "You can apply through the online portal by submitting a service connection request along with the required documents."
+        },
+        "requestDuration": {
+          "question": "How long does it usually take to process a service request?",
+          "answer": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+        },
+        "submitComplaint": {
+          "question": "What is the correct way to submit a complaint through the Marafiq website?",
+          "answer": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+        },
+        "serviceDisruption": {
+          "question": "What should I do if I experience a water supply issue or service disruption?",
+          "answer": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+        }
+      }
+    },
+    "regulations": {
+      "kicker": "APSR Regulations",
+      "title": "Transparent. Reliable. Regulated.",
+      "viewMore": "View More",
+      "fileTypeAlt": "Policy document file type",
+      "labels": {
+        "category": "Category",
+        "published": "Published"
+      },
+      "actions": {
+        "viewDetails": "View Details",
+        "downloadPdf": "Download PDF"
+      },
+      "cards": {
+        "waterServicePolicy": {
+          "title": "Water Service Policy",
+          "category": "Policy",
+          "published": "May 2020"
+        },
+        "customerCharter": {
+          "title": "Customer Charter",
+          "category": "Guideline",
+          "published": "May 2020"
+        },
+        "meterInstallationGuidelines": {
+          "title": "Meter Installation Guidelines",
+          "category": "Regulation",
+          "published": "May 2020"
+        }
+      }
+    },
+    "serviceAbout": {
+      "title": "About the Service",
+      "applyNow": "Apply Now",
+      "meta": {
+        "estimatedTime": {
+          "label": "Estimated Time:",
+          "value": "15 min"
+        },
+        "fees": {
+          "label": "Fees:",
+          "value": "If Applicable"
+        },
+        "eligibility": {
+          "label": "Eligibility:",
+          "value": "Eligibility"
+        }
+      },
+      "documents": {
+        "title": "Required Documents:",
+        "items": {
+          "ownershipDeed": "Copy of Property Ownership Deed",
+          "civilIdOrCr": "Copy of Civil ID / Commercial Registration (CR)",
+          "landSurveySketch": "Copy of Land Survey Sketch",
+          "serviceConnectionForm": "Service Connection Application Form (Duqm Municipality)",
+          "buildingCompletionCertificate": "Building Completion Certificate (Duqm Municipality)",
+          "buildingPermit": "Building Permit",
+          "usufructAgreement": "Usufruct Agreement and Building Completion Certificate (if the land is within SEZAD - Duqm)"
+        }
+      }
+    },
+    "supportInquiry": {
+      "title": "Have a Question? We\u2019re Here to Help",
+      "description": "Submit your inquiries easily and get quick, reliable responses from Marafiq. Whether it\u2019s about services, billing, or general information, we\u2019re committed to assisting you promptly.",
+      "cta": "Send Inquiry"
+    },
+    "complaints": {
+      "kicker": "complaints",
+      "title": "Report Now",
+      "description": "Submit your complaint quickly and easily, each issue is tracked automatically until it\u2019s resolved. We\u2019re committed to handling your concerns promptly.",
+      "submit": "Submit Complaint",
+      "viewMore": "View More",
+      "cards": {
+        "waterLeakage": {
+          "title": "Water Leakage",
+          "description": "Report any leaks for quick repair.",
+          "imageAlt": "Water leakage"
+        },
+        "waterQuality": {
+          "title": "Water Quality",
+          "description": "Submit concerns about water taste, color, or smell.",
+          "imageAlt": "Water quality"
+        },
+        "meterIssues": {
+          "title": "Meter Issues",
+          "description": "Report faulty or inaccurate meters.",
+          "imageAlt": "Meter issues"
+        },
+        "general": {
+          "title": "General Complaints",
+          "description": "Any other issues related to services.",
+          "imageAlt": "General complaint"
+        }
+      }
+    },
+    "page": {
+      "title": "Home Page",
+      "subtitle": "Empty starter page with language, theme, and font-size controls.",
+      "languageLabel": "Language",
+      "themeLabel": "Theme",
+      "themeLight": "Light",
+      "themeDark": "Dark",
+      "themeGreen": "Green",
+      "fontSizeLabel": "Font Size",
+      "emptyLine1": "Page content intentionally left empty.",
+      "emptyLine2": "Header and footer are rendered by the main app shell."
+    }
+  },
+  "header": {
+    "aria": {
+      "nav": "Main navigation",
+      "actions": "Header actions"
+    },
+    "nav": {
+      "aboutUs": "About Us",
+      "services": "Services",
+      "complaints": "Complaints",
+      "inquiry": "Inquiry",
+      "mediaCenter": "Media Center",
+      "faq": "FAQ's",
+      "dashboard": "My Dashboard"
+    },
+    "actions": {
+      "phone": "Contact phone",
+      "notifications": "Notifications",
+      "language": "Language",
+      "login": "Login",
+      "profile": "User profile",
+      "logout": "Logout",
+      "openMenu": "Open navigation menu",
+      "closeMenu": "Close navigation menu",
+      "switchAccounts": "SWITCH ACCOUNTS",
+      "personalAccount": "Personal Account",
+      "companyAccount": "Company Account",
+      "addAccount": "Add Account",
+      "myProfile": "My Profile"
+    }
+  },
+  "faqPage": {
+    "seo": {
+      "title": "FAQ | Marafiq",
+      "description": "Frequently asked questions and quick clarifications about Marafiq services.",
+      "keywords": "faq, marafiq, service questions, clarifications",
+      "url": "https://myportal.com/faq",
+      "author": "Marafiq Team"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "current": "FAQ's"
+    },
+    "title": "QUESTION & CLARIFICATIONS",
+    "subtitle": "All You Need To Know",
+    "description": "Clear and simple answers to help you navigate our services with confidence.",
+    "items": {
+      "customerServiceHours": {
+        "question": "What are the operating hours for customer service assistance?",
+        "answer": "Customer support is available from Sunday to Thursday during official business hours. Emergency service channels remain available when needed."
+      },
+      "trackRequestStatus": {
+        "question": "Is there a way to track the status of my service request online?",
+        "answer": "Yes. After submitting your request, you can sign in to your account dashboard and track the status and updates in real time."
+      }
+    },
+    "pagination": {
+      "ariaLabel": "FAQ pages",
+      "prev": "Previous FAQ page",
+      "next": "Next FAQ page"
+    },
+    "inquiry": {
+      "title": "Still have a question ?",
+      "description": "Can’t find the answer to your question ? Send us an email and we’ll get back to you as soon as possible!",
+      "cta": "Go To Inquiry"
+    }
+  },
+  "login": {
+    "content": {
+      "heroTitleLine1": "Easy Requests,",
+      "heroTitleLine2": "Fast Processing",
+      "heroSubtitle": "Submit service requests, track their progress, and receive updates seamlessly without the need for in-person visits.",
+      "welcomeTitle": "Welcome To Marafiq,",
+      "welcomeSubtitle": "Log in to access your services, track requests, and stay connected.",
+      "formTitle": "Sign in to your account"
+    },
+    "fields": {
+      "mobileNumber": "Mobile Number"
+    },
+    "actions": {
+      "login": "Log In",
+      "or": "or",
+      "createAccount": "Create New Account"
+    },
+    "errors": {
+      "notRegisteredTitle": "Number not recognized",
+      "notRegisteredDetail": "This mobile number is not registered. Please create an account first."
+    },
+    "otp": {
+      "messagePrefix": "Please enter the verification code sent to your",
+      "mobileNumberLabel": "mobile number",
+      "verify": "Verify",
+      "close": "Close verification popup",
+      "digitLabel": "OTP digit",
+      "timer": "Code expires in",
+      "resend": "Resend code",
+      "expired": "Code expired — please request a new one.",
+      "errors": {
+        "wrongCode": "The code you entered is incorrect. Please try again.",
+        "expired": "This code has expired. Please tap Resend to receive a new one.",
+        "locked": "Too many incorrect attempts. Please restart the login flow.",
+        "resendLimitTitle": "Resend limit reached",
+        "resendLimitDetail": "You've requested too many codes. Please start the flow again."
+      }
+    },
+    "loading": {
+      "greeting": "Welcome back!",
+      "message": "Setting up your dashboard…"
+    }
+  },
+  "selectAccount": {
+    "title": "Welcome Back,",
+    "subtitle": "Please select the account you would like to access",
+    "description": "Access your projects, reports, requests and account information",
+    "ariaGroup": "Available accounts",
+    "types": {
+      "personal": "Personal Account",
+      "company": "Company Account"
+    },
+    "empty": {
+      "title": "No accounts available",
+      "detail": "There are no accounts linked to this number yet. Please contact support if you believe this is a mistake."
+    },
+    "errors": {
+      "profileFailedTitle": "Could not load account",
+      "profileFailedDetail": "We couldn't load your profile for this account. Please try again."
+    }
+  },
+  "inquiry": {
+    "placeholder": "Contact us page is under construction."
+  },
+  "inquiryPage": {
+    "seo": {
+      "title": "Inquiry | Marafiq",
+      "description": "Send your inquiry and track your submitted inquiries from one place.",
+      "keywords": "inquiry, support, requests, marafiq",
+      "url": "https://myportal.com/inquiry",
+      "author": "Marafiq Team"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "current": "Inquiry"
+    },
+    "actions": {
+      "backToHome": "Back to home",
+      "submitInquiry": "Submit Inquiry"
+    },
+    "success": {
+      "title": "Inquiry Submitted: {{ ref }}",
+      "description": "Your inquiry has been successfully submitted.",
+      "done": "Done",
+      "close": "Close inquiry submitted popup"
+    },
+    "hero": {
+      "title": "YOUR QUESTION, ANSWERED",
+       "subtitle": "We're Here to Help",
+       "description": "We're here to help, send us your inquiry and stay updated every step of the way."
+    },
+    "composer": {
+      "placeholder": "What do you want to ask ?",
+      "attach": "Attach File"
+    },
+    "errors": {
+      "submitFailedTitle": "Submission Failed",
+      "submitFailedDetail": "We couldn't submit your inquiry. Please try again."
+    },
+    "inquiries": {
+      "title": "MY INQUIRIES",
+      "empty": "You have no inquiries yet.",
+      "noResponse": "Awaiting response. Our team has not replied yet.",
+      "ref": "Ref: #{{number}}",
+      "status": {
+        "approved": "Approved",
+        "pending": "Pending"
+      },
+      "items": {
+        "i1": {
+          "date": "Jan 05 2026",
+          "title": "I submitted a service request, how can I track its status?",
+          "description": "You can track your request status directly from your dashboard under the \"My Inquiries\" section."
+        },
+        "i2": {
+          "date": "Jan 05 2026",
+          "title": "I submitted a service request, how can I track its status?",
+          "description": "Awaiting response. Our team has not replied yet."
+        },
+        "i3": {
+          "date": "Jan 05 2026",
+          "title": "How long does it usually take to receive a response?",
+          "description": "Most inquiries are answered within a few working days, depending on the request type."
+        },
+        "i4": {
+          "date": "Jan 05 2026",
+          "title": "Can I update my inquiry after submitting it?",
+          "description": "Yes, you can update or add details to your inquiry before it is marked as completed."
+        }
+      }
+    },
+    "filters": {
+      "ariaLabel": "Inquiry filters",
+      "monthLabel": "Filter by month",
+      "yearLabel": "Filter by year",
+      "months": {
+        "january": "January"
+      },
+      "years": {
+        "y2026": "2026"
+      }
+    },
+    "pagination": {
+      "ariaLabel": "Inquiry pages",
+      "prev": "Previous inquiry page",
+      "next": "Next inquiry page"
+    },
+    "detail": {
+      "close": "Close inquiry detail"
+    }
+  },
+  "dashboardPage": {
+    "seo": {
+      "title": "My Dashboard | Marafiq",
+      "description": "Track requests, due payments, and recent submissions from one dashboard.",
+      "keywords": "dashboard, payments, requests, marafiq",
+      "url": "https://myportal.com/dashboard",
+      "author": "Marafiq Team"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "current": "My Dashboard"
+    },
+    "actions": {
+      "backToHome": "Back to home",
+      "download": "Download"
+    },
+    "hero": {
+      "title": "MY DASHBOARD",
+      "subtitle": "All In One View",
+      "description": "Everything you need to track, manage, and grow all in one simple and intuitive space."
+    },
+    "summary": {
+      "title": "YOUR REQUESTS SUMMARY",
+      "description": "A quick overview of all requests submitted by the user, including complaints, inquiries, and service requests, displayed in a clear visual breakdown.",
+      "legend": {
+        "services": "10 Services",
+        "complaints": "5 Complaints",
+        "inquiries": "5 Inquiries"
+      }
+    },
+    "filters": {
+      "ariaLabel": "Dashboard filters",
+      "monthLabel": "Filter by month",
+      "yearLabel": "Filter by year",
+      "months": {
+        "january": "January"
+      },
+      "years": {
+        "y2026": "2026"
+      }
+    },
+    "status": {
+      "approved": "Approved",
+      "pending": "Pending",
+      "rejected": "Rejected"
+    },
+    "duePayments": {
+      "title": "DUE PAYMENTS",
+      "table": {
+        "refNo": "Ref. No.",
+        "date": "Date",
+        "billNo": "Bill No.",
+        "amount": "Amount",
+        "method": "Method",
+        "status": "Status"
+      }
+    },
+    "myRequests": {
+      "title": "MY REQUESTS",
+      "tabsAriaLabel": "My request categories",
+      "tabs": {
+        "services": "My Services",
+        "complaints": "My Complaints",
+        "inquiries": "My Inquiries",
+        "payments": "My Payments"
+      },
+      "table": {
+        "requestNo": "Request Nb.",
+        "requestName": "Request Name",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "status": "Status"
+      },
+      "rows": {
+        "r1": {
+          "requestName": "NOC Request"
+        },
+        "r2": {
+          "requestName": "Water Service Connection"
+        },
+        "r3": {
+          "requestName": "Data Update Request"
+        },
+        "r4": {
+          "requestName": "Data Update Request"
+        }
+      }
+    },
+    "quickActions": {
+      "title": "QUICK ACTIONS",
+      "today": "TODAY",
+      "items": {
+        "i1": {
+          "title": "Disconnection Warning",
+          "description": "Your service may be temporarily suspended due to pending payment."
+        },
+        "i2": {
+          "title": "Reminder",
+          "description": "Friendly reminder about your upcoming due date or scheduled service."
+        },
+        "i3": {
+          "title": "Payment Success",
+          "description": "Your recent payment has been successfully processed. Thank you!"
+        }
+      }
+    },
+    "recentSubmittedServices": {
+      "title": "RECENT SUBMITTED SERVICES",
+      "items": {
+        "i1": {
+          "title": "Inquiry",
+          "description": "A recently submitted inquiry waiting for a response."
+        },
+        "i2": {
+          "title": "Water Service Connection",
+          "description": "A recently submitted service request being processed."
+        },
+        "i3": {
+          "title": "Complaints",
+          "description": "A recently submitted complaint that is currently under review."
+        }
+      }
+    }
+  },
+  "filterDropdown": {
+    "placeholder": {
+      "month": "Month",
+      "year": "Year"
+    },
+    "months": {
+      "january":   "January",
+      "february":  "February",
+      "march":     "March",
+      "april":     "April",
+      "may":       "May",
+      "june":      "June",
+      "july":      "July",
+      "august":    "August",
+      "september": "September",
+      "october":   "October",
+      "november":  "November",
+      "december":  "December"
+    },
+    "years": {
+      "y2024": "2024",
+      "y2025": "2025",
+      "y2026": "2026",
+      "y2027": "2027"
+    }
+  },
+  "requestDetailsPage": {
+    "seo": {
+      "title": "Request Details | Marafiq",
+      "description": "Review request details, applicant data, connection information, and uploaded documents.",
+      "keywords": "request details, dashboard, marafiq, service request",
+      "url": "https://myportal.com/request-details",
+      "author": "Marafiq Team"
+    },
+    "actions": {
+      "backToDashboard": "Back to dashboard"
+    },
+    "hero": {
+      "subtitle": "Service Details"
+    },
+    "complaint": {
+      "hero": {
+        "subtitle": "Complaint Details"
+      },
+      "fallbackTitle": "Complaint"
+    },
+    "summary": {
+      "serviceTitle": "Water Service Connection",
+      "startDateValue": "03/02/2027",
+      "endDateValue": "03/02/2027",
+      "datesAriaLabel": "Request dates"
+    },
+    "values": {
+      "applicant": {
+        "customerName": "Josiane Homsi",
+        "email": "josiane3@gmail.com",
+        "civilId": "Civil ID No.",
+        "permanentAddress": "Permanent Address",
+        "crNumber": "CR No.",
+        "wilaya": "Al-Wilaya",
+        "mobileNumber": "+968 9111 1111"
+      },
+      "connection": {
+        "connectionType": "Connection Type",
+        "numberOfFloors": "No. of Floors",
+        "premisesType": "Premises Type",
+        "numberOfMeters": "No. of Meters",
+        "expectedDailyConsumption": "Expected Daily Consumption",
+        "totalBuildingArea": "Total Building Area",
+        "tankCapacity": "Tank Capacity"
+      },
+      "land": {
+        "region": "Region",
+        "serialSketchNumber": "Serial Sketch Number",
+        "landNumber": "Land Number",
+        "landArea": "Land Area"
+      }
+    },
+    "documents": {
+      "files": {
+        "ownershipDeed": "Property Ownership Deed.pdf",
+        "civilIdOrCr": "Civil ID.pdf",
+        "landSurveySketch": "Land Survey Sketch.pdf",
+        "serviceConnectionForm": "Connection Application Form.pdf",
+        "buildingPermit": "Building Permit.pdf",
+        "usufructAgreement": "Usufruct Agreement and Building Completion Certificate.pdf"
+      }
+    }
+  },
+  "createAccount": {
+    "seo": {
+      "title": "Create Account | Marafiq",
+      "description": "Create your Marafiq account to access services and track requests.",
+      "keywords": "create account, marafiq, register",
+      "url": "https://myportal.com/create-account",
+      "author": "Marafiq Team",
+      "type": "website"
+    },
+    "hero": {
+      "title": "Easy Requests, Fast Processing",
+      "description": "Submit service requests, track their progress, and receive updates seamlessly without the need for in-person visits."
+    },
+    "form": {
+      "title": "Create New Account",
+      "rememberMe": "Remember me",
+      "alreadyHaveAccount": "Already have an account?",
+      "submit": "Create New Account"
+    },
+    "accountType": {
+      "ariaLabel": "Account type",
+      "personal": "Personal",
+      "organization": "Organization"
+    },
+    "sections": {
+      "selectAccountType": "Select Account Type",
+      "applicantDetails": "Applicant Details",
+      "companyDetails": "Company Details"
+    },
+    "fields": {
+      "fullName": "Name",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "civilId": "Civil ID Number (7 digits)",
+      "emailAddress": "Email Address",
+      "governorate": "Select Governorate",
+      "wilaya": "Select Wilayah",
+      "address": "Address (Optional)",
+      "phone": "Phone Number (8 digits)",
+      "mobileNumber": "Mobile Number",
+      "companyName": "Company Name",
+      "crNumber": "CR Number (7 digits)",
+      "companyPhone": "Company Phone (8 digits)",
+      "companyAddress": "Company Address (Optional)"
+    },
+    "otp": {
+      "title": "Verify Mobile Number"
+    },
+    "errors": {
+      "invalidPhoneTitle": "Invalid details",
+      "invalidPhoneDetail": "Please double-check the phone number and Civil ID, then try again.",
+      "duplicateTitle": "Account already exists",
+      "duplicateDetail": "An account with this phone or Civil ID is already registered. Try logging in instead.",
+      "otpLockedTitle": "Verification locked",
+      "otpLockedDetail": "Too many incorrect attempts. Please restart the registration flow."
+    },
+    "success": {
+      "title": "Profile created successfully",
+      "description": "You have successfully set up your profile. You can now view or update it at any time.",
+      "done": "Done",
+      "close": "Close success popup"
+    },
+    "loading": {
+      "greeting": "Account created!",
+      "message": "Setting up your dashboard\u2026"
+    }
+  },
+  "footer": {
+    "brand": {
+      "logoAlt": "Marafiq"
+    },
+    "menu": {
+      "title": "OUR MENU",
+      "aboutUs": "About Us",
+      "services": "Services",
+      "complaints": "Complaints",
+      "inquiry": "Inquiry",
+      "mediaCenter": "Media Center",
+      "faq": "FAQ's"
+    },
+    "contact": {
+      "title": "Contact Information",
+      "phone": "+968 22143933",
+      "email": "records@marafiq.om",
+      "address": "P.O Box 80, Postal Code 121 Muscat office (HQ), Muscat Grand Mall"
+    },
+    "social": {
+      "facebook": "Marafiq on Facebook",
+      "x": "Marafiq on X",
+      "linkedin": "Marafiq on LinkedIn"
+    },
+    "legal": {
+      "privacy": "Privacy & Policy",
+      "terms": "Terms of Use",
+      "accessibility": "Accessibility"
+    },
+    "bottom": {
+      "copyright": "\u00a9 Copyright {{year}} Marafiq, All right reserved.",
+      "legalNav": "Footer legal links"
+    }
+  },
+  "primeng": {
+    "dayNamesHijri": [
+      "Mon",
+      "Tues",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "dayNames": [
+      "Sun",
+      "Mon",
+      "Tues",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "dayNamesShort": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "dayNamesMin": [
+      "Su",
+      "Mo",
+      "Tu",
+      "We",
+      "Th",
+      "Fr",
+      "Sa"
+    ],
+    "monthNames": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "monthNamesShort": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "monthsHijri": [
+      "Muharram",
+      "Safar",
+      "Rabi al-Awwal",
+      "Rabi al-Thani",
+      "Jumada al-Awwal",
+      "Jumada al-Thani",
+      "Rajab",
+      "Shaban",
+      "Ramadan",
+      "Shawwal",
+      "Dhu al-Qadah",
+      "Dhu al-Hijjah"
+    ],
+    "today": "Select Current Time",
+    "clear": "Clear"
+  },
+  "servicesPage": {
+    "seo": {
+      "title": "Services | Marafiq",
+      "description": "Explore Marafiq utility services including water connections, tanker licenses, meter requests, and more.",
+      "keywords": "services, marafiq, water connection, tanker, meter",
+      "url": "https://myportal.com/services",
+      "author": "Marafiq Team"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "current": "Services"
+    },
+    "title": "Powering Your Needs",
+    "subtitle": "All Services",
+    "search": {
+      "placeholder": "Search...",
+      "label": "Search services",
+      "noResults": "No services found matching your search."
+    }
+  },
+  "serviceDetailsPage": {
+    "seo": {
+      "titleSuffix": "Service Details | Marafiq",
+      "description": "Read service details, requirements, and process for Marafiq utility requests.",
+      "keywords": "service details, marafiq, utility request",
+      "url": "https://myportal.com/service-details",
+      "author": "Marafiq Team"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "services": "Services"
+    },
+    "actions": {
+      "backToServices": "Back to services"
+    },
+    "summary": "Review the service information and complete your application with the required documents.",
+    "intro": {
+      "ariaLabel": "Service introduction",
+      "points": {
+        "primary": "Use this service to apply for a new water connection for your property. Submit your details and documents online and follow your request status until the connection is completed.",
+        "secondary": "This service is used to request a new water connection for a property to enable water supply according to approved technical and safety standards.",
+        "tertiary": "Submit your details and documents online and follow your request status until the connection is completed."
+      }
+    },
+    "process": {
+      "title": "Service Process",
+      "description": "Our step by step service process ensures quality, and reliability. Follow our simple steps to get the service you need quickly and efficiently.",
+      "steps": {
+        "submission": "Submission of the application",
+        "review": "Request Review",
+        "execution": "Execution of the Request",
+        "results": "Service Results"
+      }
+    }
+  },
+  "serviceRequestPage": {
+    "seo": {
+      "titleSuffix": "Service Request | Marafiq",
+      "description": "Complete your service request form and upload required documents.",
+      "keywords": "service request, application form, marafiq",
+      "url": "https://myportal.com/service-request",
+      "author": "Marafiq Team"
+    },
+    "title": "Service Request",
+    "description": "Complete the form and click Submit. Fields marked with asterisks (*) are required.",
+
+    "success": {
+      "reference": "REF NO: {{ref}}",
+      "description": "Your request has been successfully submitted.",
+      "done": "Done",
+      "close": "Close request submitted popup"
+    },
+
+    "form": {
+      "applicant": {
+        "customerName": {
+          "label": "Customer Name",
+          "placeholder": "Customer Name"
+        },
+        "civilId": {
+          "label": "Civil ID No.",
+          "placeholder": "Civil ID No."
+        },
+        "crNumber": {
+          "label": "CR No.",
+          "placeholder": "CR No."
+        },
+        "mobileNumber": {
+          "label": "Mobile Number",
+          "placeholder": "+968 9111 1111"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "example@email.com"
+        },
+        "permanentAddress": {
+          "label": "Permanent Address",
+          "placeholder": "Permanent Address"
+        },
+        "wilaya": {
+          "label": "Al-Wilaya",
+          "placeholder": "Al-Wilaya"
+        }
+      },
+      "connection": {
+        "connectionType": {
+          "label": "Connection Type",
+          "placeholder": "Connection Type"
+        },
+        "premisesType": {
+          "label": "Premises Type",
+          "placeholder": "Premises Type"
+        },
+        "expectedDailyConsumption": {
+          "label": "Expected Daily Consumption",
+          "placeholder": "Expected Daily Consumption"
+        },
+        "tankCapacity": {
+          "label": "Tank Capacity",
+          "placeholder": "Tank Capacity"
+        },
+        "numberOfFloors": {
+          "label": "No. of Floors",
+          "placeholder": "No. of Floors"
+        },
+        "numberOfMeters": {
+          "label": "No. of Meters",
+          "placeholder": "No. of Meters"
+        },
+        "totalBuildingArea": {
+          "label": "Total Building Area",
+          "placeholder": "Total Building Area"
+        }
+      },
+      "land": {
+        "region": {
+          "label": "Region",
+          "placeholder": "Region"
+        },
+        "serialSketchNumber": {
+          "label": "Serial Sketch Number",
+          "placeholder": "Serial Sketch Number"
+        },
+        "landNumber": {
+          "label": "Land Number",
+          "placeholder": "Land Number"
+        },
+        "landArea": {
+          "label": "Land Area",
+          "placeholder": "Land Area"
+        }
+      },
+      "documents": {
+        "chooseFile": "Choose File",
+        "maxAttachmentSize": "Maximum attachment size",
+        "noFileSelected": "No File Selected",
+        "ownershipDeed": {
+          "label": "Copy of Property Ownership Deed"
+        },
+        "civilIdOrCr": {
+          "label": "Copy of Civil ID / Commercial Registration (CR)"
+        },
+        "landSurveySketch": {
+          "label": "Copy of Land Survey Sketch"
+        },
+        "propertyCertificate": {
+          "label": "Property Certificate (Al-Milkia)"
+        },
+        "commercialRegistration": {
+          "label": "Commercial Registration"
+        },
+        "areaDrawingSketch": {
+          "label": "Area Drawing Sketch (Krooki)"
+        },
+        "municipalityDeliveryRequest": {
+          "label": "Municipality Delivery Request"
+        },
+        "constructionCompletionCertificate": {
+          "label": "Construction Completion Certificate"
+        },
+        "constructionPermit": {
+          "label": "Construction Permit"
+        },
+        "additionalAttachments": {
+          "label": "Additional Attachments"
+        }
+      },
+      "plot": {
+        "option": { "label": "Plot Option" },
+        "existing": "Select Existing Plot",
+        "new": "Create New Plot",
+        "existingPlot": {
+          "label": "Existing Plot",
+          "placeholder": "Select a plot..."
+        },
+        "plotNumber": {
+          "label": "Plot Number",
+          "placeholder": "Plot Number"
+        },
+        "serialSketchNumber": {
+          "label": "Serial Sketch Number",
+          "placeholder": "Serial Sketch Number"
+        },
+        "regionVillage": {
+          "label": "Region / Village",
+          "placeholder": "Region / Village"
+        },
+        "landArea": {
+          "label": "Land Area",
+          "placeholder": "Land Area"
+        },
+        "landNumber": {
+          "label": "Land Number",
+          "placeholder": "Land Number"
+        },
+        "premisesType": {
+          "label": "Premises Type",
+          "placeholder": "Premises Type"
+        },
+        "latitude": {
+          "label": "Latitude",
+          "placeholder": "Latitude"
+        },
+        "longitude": {
+          "label": "Longitude",
+          "placeholder": "Longitude"
+        },
+        "functionalLocation": {
+          "label": "Functional Location",
+          "placeholder": "Functional Location"
+        },
+        "noOfFloors": {
+          "label": "No. of Floors",
+          "placeholder": "No. of Floors"
+        },
+        "totalBuildingArea": {
+          "label": "Total Building Area",
+          "placeholder": "Total Building Area"
+        },
+        "relatedWaterServiceRequest": {
+          "label": "Related Water Service Request",
+          "placeholder": "Related Water Service Request"
+        },
+        "customerAccount": {
+          "label": "Customer Account",
+          "placeholder": "Customer Account"
+        },
+        "customerContact": {
+          "label": "Customer Contact",
+          "placeholder": "Customer Contact"
+        }
+      },
+      "connection": {
+        "type": { "label": "Connection Type" },
+        "permanent": "Permanent",
+        "replacement": "Replacement",
+        "temporary": "Temporary"
+      },
+      "tanker": {
+        "tankerType": {
+          "label": "Tanker Type",
+          "placeholder": "Select Tanker Type"
+        },
+        "tankCapacity": {
+          "label": "Tank Capacity (m\u00b3)",
+          "placeholder": "0.00"
+        },
+        "vehicle": {
+          "modelYear": {
+            "label": "Model Year",
+            "placeholder": "Select year"
+          },
+          "vehicleModel": {
+            "label": "Vehicle Model",
+            "placeholder": "Enter vehicle model"
+          },
+          "vehicleMake": {
+            "label": "Vehicle Make",
+            "placeholder": "Enter vehicle make"
+          },
+          "plateNumber": {
+            "label": "Plate Number",
+            "placeholder": "Enter plate number"
+          }
+        },
+        "documents": {
+          "mulkiyaFile": {
+            "label": "Vehicle Registration (Mulkiya)"
+          },
+          "commercialRegistrationFile": {
+            "label": "Commercial Registration (CR)"
+          },
+          "nationalIdFile": {
+            "label": "National ID / Identity Card"
+          }
+        }
+      },
+      "operator": {
+        "name": {
+          "label": "Name",
+          "placeholder": "Operator Name"
+        },
+        "tradeLicenseNumber": {
+          "label": "Trade License Number",
+          "placeholder": "Trade License Number"
+        },
+        "phone": {
+          "label": "Phone",
+          "placeholder": "+968 9111 1111"
+        },
+        "address": {
+          "label": "Operator Address",
+          "placeholder": "Enter operator address..."
+        }
+      },
+      "vat": {
+        "vatin": {
+          "label": "VATIN",
+          "placeholder": "Enter VATIN"
+        },
+        "premisesType": {
+          "label": "Premises Type",
+          "placeholder": "Select Premises Type"
+        },
+        "taxCertificateExpiryDate": {
+          "label": "Tax Certificate Expiry Date",
+          "placeholder": "Select date"
+        },
+        "licenseExpiryDate": {
+          "label": "License Expiry Date",
+          "placeholder": "Select date"
+        },
+        "documents": {
+          "licenseRecordSEZ": {
+            "label": "License Record Issued by the Special Economic Zone"
+          },
+          "validTaxCertificate": {
+            "label": "Valid Tax Certificate"
+          },
+          "taxExemptionCertificateSEZ": {
+            "label": "Tax Exemption Certificate"
+          },
+          "validCommercialRegistration": {
+            "label": "Valid Commercial Registration"
+          }
+        }
+      },
+      "noc": {
+        "applicant": {
+          "applicantName": {
+            "label": "Applicant Name",
+            "placeholder": "Select Applicant"
+          },
+          "companyName": {
+            "label": "Company Name",
+            "placeholder": "Select Company"
+          },
+          "gsm": {
+            "label": "GSM",
+            "placeholder": "9111 1111"
+          },
+          "emailAddress": {
+            "label": "Email Address",
+            "placeholder": "example@email.com"
+          }
+        },
+        "project": {
+          "projectName": {
+            "label": "Project Name",
+            "placeholder": "Project Name"
+          },
+          "projectType": {
+            "label": "Project Type",
+            "placeholder": "Select Project Type"
+          },
+          "projectLocation": {
+            "label": "Project Location",
+            "placeholder": "Project Location"
+          },
+          "siteCondition": {
+            "label": "Site Condition",
+            "placeholder": "Select Site Condition"
+          },
+          "functionalLocation": {
+            "label": "Functional Location",
+            "placeholder": "Select Functional Location"
+          }
+        },
+        "documents": {
+          "nocLetterToMarafiq": {
+            "label": "NOC Letter to Marafiq"
+          },
+          "drawingKrooki": {
+            "label": "Drawing / Krooki"
+          }
+        }
+      },
+      "violation": {
+        "info": {
+          "violationNo": {
+            "label": "Violation No.",
+            "placeholder": "Auto generated"
+          },
+          "violationDate": {
+            "label": "Violation Date",
+            "placeholder": "Select Date"
+          },
+          "functionalLocation": {
+            "label": "Functional Location",
+            "placeholder": "Search Functional Location"
+          },
+          "violationVia": {
+            "label": "Violation Via",
+            "placeholder": "Select"
+          },
+          "violationLocation": {
+            "label": "Violation Location",
+            "placeholder": "Enter Violation Location"
+          }
+        },
+        "customer": {
+          "contact": {
+            "label": "Contact",
+            "placeholder": "Search Contact"
+          },
+          "customerAccount": {
+            "label": "Customer Account",
+            "placeholder": "Search Customer Account"
+          },
+          "plot": {
+            "label": "Plot",
+            "placeholder": "Select Plot"
+          }
+        },
+        "details": {
+          "violationType": {
+            "label": "Violation Type",
+            "placeholder": "Select Violation Type"
+          },
+          "violationDetails": {
+            "label": "Violation Details",
+            "placeholder": "Describe the violation"
+          },
+          "statementOfViolationDiscovery": {
+            "label": "Statement of Violation Discovery",
+            "placeholder": "Describe how the violation was discovered"
+          },
+          "inspectorName": {
+            "label": "Inspector Name",
+            "placeholder": "Enter Inspector Name"
+          },
+          "dateTime": {
+            "label": "Date & Time",
+            "placeholder": "Select Date & Time"
+          }
+        },
+        "technical": {
+          "proceduresFollowed": {
+            "label": "Procedures Followed",
+            "placeholder": "Describe the procedures followed"
+          }
+        },
+        "documents": {
+          "documents": {
+            "label": "Supported Docs"
+          },
+          "employeeName": {
+            "label": "Employee Name",
+            "placeholder": "Enter Employee Name"
+          }
+        },
+        "penalties": {
+          "violationAmount": {
+            "label": "Violation Amount (OMR)",
+            "placeholder": "0.000"
+          },
+          "disconnectionReconnectionFees": {
+            "label": "Disconnection and Reconnection Fees (OMR)",
+            "placeholder": "0.000"
+          },
+          "meterRepairReplacementCost": {
+            "label": "Meter Repair/Replacement Cost (OMR)",
+            "placeholder": "0.000"
+          },
+          "estimatedWaterLoss": {
+            "label": "Estimated Water Loss (OMR)",
+            "placeholder": "0.000"
+          },
+          "totalViolationFees": {
+            "label": "Total Violation Fees (OMR)",
+            "placeholder": "Calculated automatically"
+          }
+        }
+      }
+    },
+    "sections": {
+      "sectionLabel": "Section",
+      "applicantInfo": "Customer Information",
+      "plotSelection": "Plot Selection",
+      "connectionDetails": "Connection Details",
+      "requiredDocuments": "Required Documents"
+    },
+    "cards": {
+      "customerDetails": "Customer Details",
+      "applicantDetails": "Applicant Details",
+      "plotSelection": "Plot Selection",
+      "connectionDetails": "Connection Details",
+      "requiredDocument": "Required Document",
+      "tankerDetails": "Tanker Details",
+      "vehicleInformation": "Vehicle Information",
+      "tankerInformation": "Tanker Information",
+      "operatorDetails": "Operator Details",
+      "projectDetails": "Project Details",
+      "vatDetails": "Registration / Tax Details",
+      "violationInformation": "Violation Information",
+      "violationCustomerInfo": "Customer Information",
+      "violationDetails": "Violation Details",
+      "technicalReport": "Technical Affairs Department Report",
+      "violationDocuments": "Documents",
+      "administrativePenalties": "Administrative Penalties"
+    },
+    "services": {
+      "meterRelocation":    { "title": "Meter Relocation" },
+      "dataUpdate":         { "title": "Data Update Request" },
+      "noc":                { "title": "NOC Request" },
+      "vat":                { "title": "VAT Exemption Request" },
+      "violation":          { "title": "Report of Violation" },
+      "fireHydrant":        { "title": "Fire Hydrant Relocation Request" },
+      "inquiry":            { "title": "Inquiry" },
+      "waterLeakage":       { "title": "Water Leakage Complaints" },
+      "waterQuality":       { "title": "Water Quality Complaints" },
+      "generalComplaints":  { "title": "General Complaints" },
+      "commercial":         { "title": "Commercial Service Requests" }
+    },
+    "declaration": {
+      "confirm": "I confirm that the information provided is correct."
+    },
+    "options": {
+      "wilaya": {
+        "muscat":   "Muscat",
+        "seeb":     "Seeb",
+        "bausher":  "Bausher",
+        "muttrah":  "Muttrah",
+        "qurayyat": "Qurayyat"
+      },
+      "premisesType": {
+        "residential":  "Residential",
+        "commercial":   "Commercial",
+        "industrial":   "Industrial",
+        "agricultural": "Agricultural"
+      }
+    },
+    "actions": {
+      "toggle": "Toggle section",
+      "group":  "Form actions",
+      "cancel": "Cancel",
+      "submit": "Submit"
+    }
+  },
+  "complaintsPage": {
+    "title": "Complaints",
+    "subtitle": "Get to know us more",
+    "selectType": "Select complaint type to submit your request:",
+    "myInquiries": "My Complaints",
+    "seo": {
+      "title": "Complaints | Marafiq",
+      "description": "Submit and track your complaints with Marafiq."
+    },
+    "actions": {
+      "back": "Go back"
+    },
+    "cards": {
+      "waterLeakage": {
+        "title": "Water Leakage Complaints"
+      },
+      "waterQuality": {
+        "title": "Water Quality Complaints"
+      },
+      "general": {
+        "title": "General Complaints"
+      }
+    },
+    "status": {
+      "approved": "Approved",
+      "pending": "Pending"
+    },
+    "caseRef": "Case #{{number}}",
+    "viewDetailsAriaLabel": "View details of case {{number}}",
+    "empty": {
+      "title": "No complaints yet",
+      "detail": "You haven't submitted any complaints. New requests will appear here.",
+      "filteredTitle": "No complaints for this period",
+      "filteredDetail": "Try a different month or year to see more results."
+    },
+    "pagination": "Complaints pagination",
+    "paginationPrev": "Previous page",
+    "paginationNext": "Next page",
+    "items": {
+      "i1": {
+        "date": "Jan 05, 2026",
+        "title": "Water leakage near main road",
+        "desc": "There is a continuous water leakage on the main road near our house.",
+        "ref": "Case #234567890"
+      },
+      "i2": {
+        "date": "Jan 05, 2026",
+        "title": "Pipe leakage in neighborhood",
+        "desc": "Water pipe has been leaking for more than 5 hours.",
+        "ref": "Case #234567890"
+      },
+      "i3": {
+        "date": "Jan 05, 2026",
+        "title": "Bad water smell in tap",
+        "desc": "There is an unusual smell in tap water since yesterday evening.",
+        "ref": "Case #234567890"
+      },
+      "i4": {
+        "date": "Jan 05, 2026",
+        "title": "Incorrect meter reading",
+        "desc": "My meter reading seems higher than the actual usage.",
+        "ref": "Case #234567890"
+      }
+    }
+  },
+  "complaintRequestPage": {
+    "seo": {
+      "titleSuffix": "Complaints | Marafiq",
+      "description": "Submit your complaint details and required attachment to the Marafiq team.",
+      "keywords": "complaints, water leakage, meter issue, marafiq",
+      "url": "https://myportal.com/complaint-request",
+      "author": "Marafiq Team"
+    },
+    "description": "Complete the form and click \"Submit\". Fields marked with asterisks (*) are required.",
+    "sections": {
+      "applicantInfo": "Applicant Information"
+    },
+    "cards": {
+      "customerRequestDetails": "Customer Request Details",
+      "complaintDetails": "Complaint Details",
+      "requiredDocument": "Required Document"
+    },
+    "actions": {
+      "backToHome": "Back to home",
+      "cancel": "Cancel",
+      "submit": "Submit"
+    },
+    "success": {
+      "title": "Complaint Submitted",
+      "description": "Your complaint has been successfully submitted.",
+      "done": "Done",
+      "close": "Close complaint submitted popup"
+    },
+    "errors": {
+      "submitFailedTitle": "Submission failed",
+      "submitFailedDetail": "We couldn’t submit your complaint. Please try again."
+    },
+    "form": {
+      "applicant": {
+        "customerName": {
+          "label": "Customer Name",
+          "placeholder": "Customer Name"
+        },
+        "accountNumber": {
+          "label": "Account No.",
+          "placeholder": "Account No."
+        },
+        "mobileNumber": {
+          "label": "Mobile Number",
+          "placeholder": "+968 9111 1111"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "example@email.com"
+        },
+        "permanentAddress": {
+          "label": "Permanent Address",
+          "placeholder": "Permanent Address"
+        }
+      },
+      "complaint": {
+        "complaintType": {
+          "label": "Complaint Type",
+          "placeholder": "Complaint Type"
+        },
+        "subCategory": {
+          "label": "Case Type",
+          "placeholder": "Select case type"
+        },
+        "meterIssue": {
+          "label": "Meter Issue Type",
+          "placeholder": "Select meter issue type"
+        },
+        "waterBilling": {
+          "label": "Water Bill Type",
+          "placeholder": "Select water bill type"
+        },
+        "complaintDetails": {
+          "label": "Complaint Details",
+          "placeholder": "Describe your complaint in detail",
+          "helper": "Please provide as much detail as possible."
+        },
+        "anotherReason": {
+          "label": "Another Reason",
+          "placeholder": "Please specify the reason",
+          "helper": "Required when \"Other Reasons\" is selected."
+        }
+      },
+      "documents": {
+        "chooseFile": "Choose File",
+        "maxAttachmentSize": "Maximum attachment size",
+        "noFileSelected": "No File Selected",
+        "attachment": {
+          "label": "Attachments"
+        }
+      }
+    },
+    "complaintOptions": {
+      "primary": {
+        "waterLeakage": "Water Leakage Complaints",
+        "waterQuality": "Water Quality Complaints",
+        "general": "General Complaints"
+      },
+      "subCategories": {
+        "waterLeakage": "Water Leakage",
+        "waterShortage": "Water Shortage",
+        "waterFlowPressure": "Water Flow Pressure",
+        "watercolorChange": "Watercolor Change",
+        "odor": "Odor",
+        "turbidity": "Turbidity",
+        "salinity": "Salinity",
+        "taste": "Taste",
+        "waterPollution": "Water Pollution",
+        "waterBillingPayments": "Water Billing & Payments",
+        "meterIssues": "Meter Issues",
+        "otherReasons": "Other Reasons"
+      },
+      "meterIssueTypes": {
+        "meterFaulty": "Meter Faulty",
+        "meterStolen": "Stolen or Missing Meter",
+        "meterTampering": "Meter Tampering"
+      }
+    }
+  },
+  "notificationsPage": {
+    "seo": {
+      "title": "My Notifications | Marafiq",
+      "description": "View your latest notifications, updates, and activity alerts in one place.",
+      "keywords": "notifications, updates, alerts, marafiq",
+      "url": "https://myportal.com/notifications",
+      "author": "Marafiq Team"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "current": "My Notifications"
+    },
+    "actions": {
+      "backToHome": "Back to home"
+    },
+    "hero": {
+      "title": "NOTIFICATIONS Centers",
+      "subtitle": "Stay Updated",
+      "description": "Stay up to date with all your latest notifications, important updates, and activity alerts. Everything you need to know appears here."
+    },
+    "section": {
+      "title": "Notifications"
+    },
+    "filters": {
+      "ariaLabel": "Notification date filters",
+      "monthLabel": "Filter by month",
+      "yearLabel": "Filter by year",
+      "months": {
+        "january": "January"
+      },
+      "years": {
+        "y2026": "2026"
+      }
+    },
+    "list": {
+      "invoice": {
+        "title": "Invoice Issued",
+        "description": "Your new invoice has been generated and is ready to view.",
+        "time": "2 hours ago"
+      },
+      "reminder": {
+        "title": "Reminder",
+        "description": "Friendly reminder about your upcoming due date or scheduled service.",
+        "time": "yesterday"
+      },
+      "serviceCompleted": {
+        "title": "Service Completed",
+        "description": "The requested service has been completed successfully.",
+        "time": "Feb 25, 2026"
+      },
+      "disconnectionWarning": {
+        "title": "Disconnection Warning",
+        "description": "Your service may be temporarily suspended due to pending payment.",
+        "time": "Mar 1, 2026"
+      },
+      "paymentSuccess": {
+        "title": "Payment Success",
+        "description": "Your recent payment has been successfully processed. Thank you!",
+        "time": "Feb 28, 2026"
+      }
+    },
+    "pagination": {
+      "ariaLabel": "Notifications pagination",
+      "prev": "Previous page",
+      "next": "Next page"
+    }
+  },
+  "mediaCenterPage": {
+    "seo": {
+      "title": "Media Center | Marafiq",
+      "description": "Stay updated with the latest news, stories, videos and highlights from Marafiq."
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "current": "Media Center",
+      "ariaLabel": "Breadcrumb navigation"
+    },
+    "hero": {
+      "title": "Media Center",
+      "subtitle": "Stay Updated",
+      "description": "Stay updated with the latest news, stories, videos and highlights from Marafiq.",
+      "backAria": "Go back",
+      "readMore": "Read more",
+      "minRead": "min read"
+    },
+    "detail": {
+      "breadcrumb": {
+        "mediaCenter": "Media Center"
+      },
+      "backAria": "Go back to Media Center",
+      "shareAria": "Share article"
+    },
+    "tabs": {
+      "all": "All",
+      "news": "News",
+      "videos": "Videos",
+      "announcements": "Announcements",
+      "gallery": "Gallery"
+    },
+    "filters": {
+      "ariaLabel": "Filter by category"
+    },
+    "results": {
+      "showing": "Showing 1 - 9 of 36 results"
+    },
+    "controls": {
+      "allCategories": "All Categories",
+      "latest": "Latest",
+      "oldest": "Oldest",
+      "sortAria": "Sort order",
+      "categoriesAria": "Filter by category",
+      "viewToggleAria": "Toggle view mode",
+      "gridView": "Grid view",
+      "listView": "List view"
+    },
+    "categories": {
+      "news": "News",
+      "gallery": "Gallery",
+      "announcement": "Announcement",
+      "videos": "Videos"
+    },
+    "items": {
+      "item1": {
+        "title": "Marafiq completes maintenance of key water pipeline in muscat",
+        "intro": "Marafiq successfully completed the scheduled maintenance of a major water pipeline in Muscat, ensuring uninterrupted and enhancing network reliability.",
+        "para1": "The maintenance work, which was carried out over the weekend, is part of Marafiq's ongoing commitment to delivering reliable and high-quality services to the communities we serve.",
+        "para2": "Our teams worked around the clock to complete the tasks safely and efficiently, minimizing any impact on customers.",
+        "quoteText": "This maintenance is part of our proactive approach to infrastructure management, ensuring the long-term sustainability and resilience of our water network.",
+        "quoteAuthor": "Eng. Ahmed Al Balushi",
+        "quoteRole": "CEO Marafiq",
+        "outro": "Marafiq continues to invest in the development and maintenance of critical infrastructure to support Oman's growth and the well-being of its people.",
+        "readTime": "3"
+      },
+      "item2": {
+        "title": "Marafiq Successfully Concludes Duqm Economic Forum 2025",
+        "intro": "Marafiq proudly participated in and successfully concluded the Duqm Economic Forum 2025, reaffirming its commitment to Oman's economic development agenda.",
+        "para1": "The forum brought together key stakeholders from the public and private sectors to explore investment opportunities and infrastructure development strategies across the Duqm Special Economic Zone.",
+        "para2": "Marafiq's delegation presented the company's strategic roadmap and ongoing projects, highlighting the vital role of reliable utilities in attracting and sustaining investment.",
+        "quoteText": "Our participation in this forum reflects our strategic vision to be a catalyst for economic growth and a reliable partner for development initiatives across Oman.",
+        "quoteAuthor": "Eng. Salem Al Rashdi",
+        "quoteRole": "Director of Strategy, Marafiq",
+        "outro": "The forum concluded with a series of strategic agreements that will pave the way for expanded utility services in the region.",
+        "readTime": "4"
+      },
+      "item3": {
+        "title": "Marafiq Supports National Forum on Child Development and Inclusion",
+        "intro": "As part of its corporate social responsibility initiatives, Marafiq extended its support to the National Forum on Child Development and Inclusion.",
+        "para1": "The forum focused on policies and practices that promote the holistic development of children, with particular attention to those with special needs.",
+        "para2": "Marafiq's involvement underscores its commitment to building a more equitable and inclusive society in Oman, supporting community wellbeing beyond its core utility services.",
+        "quoteText": "Marafiq believes that investing in future generations is one of the most important contributions a company can make to society.",
+        "quoteAuthor": "Ms. Huda Al Balushi",
+        "quoteRole": "Head of CSR, Marafiq",
+        "outro": "Through sponsorship and active participation, Marafiq demonstrated its alignment with Oman Vision 2040, which places human capital and inclusive growth at the heart of national progress.",
+        "readTime": "3"
+      },
+      "item4": { "title": "Marafiq Successfully Concludes Duqm Economic Forum 2025", "intro": "Marafiq proudly participated in the Duqm Economic Forum 2025.", "para1": "The forum brought together key stakeholders from public and private sectors.", "para2": "Marafiq's delegation presented the company's strategic roadmap and ongoing projects.", "quoteText": "Our participation reflects our strategic vision to be a catalyst for economic growth.", "quoteAuthor": "Eng. Salem Al Rashdi", "quoteRole": "Director of Strategy, Marafiq", "outro": "The forum concluded with strategic agreements that will expand utility services.", "readTime": "4" },
+      "item5": { "title": "Marafiq Partners with IEEE at Key Forum to Accelerate Oman's Development", "intro": "Marafiq has partnered with IEEE to drive innovation and accelerate Oman's development.", "para1": "The partnership focuses on applying cutting-edge engineering standards to the utility sector.", "para2": "Both organisations will collaborate on capacity building, knowledge exchange, and joint research initiatives.", "quoteText": "This partnership will open new horizons for technological advancement in the utility sector.", "quoteAuthor": "Eng. Ahmed Al Balushi", "quoteRole": "CEO Marafiq", "outro": "The collaboration aims to enhance service delivery and contribute to Oman's digital transformation goals.", "readTime": "3" },
+      "item6": { "title": "Marafiq Supports National Forum on Child Development and Inclusion", "intro": "Marafiq extended its support to the National Forum on Child Development and Inclusion.", "para1": "The forum focused on policies promoting holistic development of children with special needs.", "para2": "Marafiq's involvement reflects its wider commitment to inclusive community development.", "quoteText": "Investing in future generations is one of the most important contributions a company can make.", "quoteAuthor": "Ms. Huda Al Balushi", "quoteRole": "Head of CSR, Marafiq", "outro": "Marafiq demonstrated its alignment with Oman Vision 2040's human capital goals.", "readTime": "3" },
+      "item7": { "title": "Marafiq Partners with IEEE at Key Forum to Accelerate Oman's Development", "intro": "Marafiq has partnered with IEEE to drive innovation and accelerate Oman's development.", "para1": "The partnership focuses on applying cutting-edge engineering standards to the utility sector.", "para2": "Both organisations will collaborate on capacity building and joint research initiatives.", "quoteText": "This partnership will open new horizons for technological advancement in the utility sector.", "quoteAuthor": "Eng. Ahmed Al Balushi", "quoteRole": "CEO Marafiq", "outro": "The collaboration aims to enhance service delivery and contribute to Oman's digital transformation.", "readTime": "3" },
+      "item8": { "title": "Marafiq Supports National Forum on Child Development and Inclusion", "intro": "Marafiq extended its support to the National Forum on Child Development and Inclusion.", "para1": "The forum focused on policies promoting holistic development of children.", "para2": "Marafiq's involvement reflects its wider commitment to inclusive community development.", "quoteText": "Investing in future generations is one of the most important contributions a company can make.", "quoteAuthor": "Ms. Huda Al Balushi", "quoteRole": "Head of CSR, Marafiq", "outro": "Marafiq demonstrated its alignment with Oman Vision 2040's human capital goals.", "readTime": "3" },
+      "item9": { "title": "Marafiq Successfully Concludes Duqm Economic Forum 2025", "intro": "Marafiq proudly participated in the Duqm Economic Forum 2025.", "para1": "The forum brought together key stakeholders from public and private sectors.", "para2": "Marafiq's delegation presented the company's strategic roadmap and ongoing projects.", "quoteText": "Our participation reflects our strategic vision to be a catalyst for economic growth.", "quoteAuthor": "Eng. Salem Al Rashdi", "quoteRole": "Director of Strategy, Marafiq", "outro": "The forum concluded with strategic agreements that will expand utility services.", "readTime": "4" }
+    },
+    "pagination": {
+      "ariaLabel": "Page navigation",
+      "prev": "Previous page",
+      "next": "Next page"
+    }
+  },
+  "aboutUsPage": {
+    "seo": {
+      "title": "About Us | Marafiq"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "current": "About Us"
+    },
+    "hero": {
+      "title": "About Us",
+      "subtitle": "Get to know us more",
+      "description": "Marafiq's is Oman's leading provider of essential utilities and municipal services, committed to powering communities and enhancing quality of life.",
+      "backAria": "Go back"
+    },
+    "tabs": {
+      "ariaLabel": "About Us sections",
+      "overview": "Overview",
+      "mission": "Our Mission",
+      "vision": "Our Vision",
+      "values": "Our Values"
+    },
+    "overview": {
+      "whoTitle": "Who We ARE",
+      "whoPara1": "Marafiq (Muscat Electricity Distribution Company SAOG) was established in 2004 and is listed on the Muscat Stock Exchange. We are responsible for the generation, desalination, transmission, distribution and supply of electricity and water, and the collection and treatment of wastewater in the Governorates of Muscat and Al Batinah.",
+      "whoPara2": "We are dedicated to delivering reliable and sustainable services through continuous innovation, operational excellence and a customer-centric approach.",
+      "imageAlt": "Marafiq power plant facility",
+      "tagline": "POWERING COMMUNITIES.\nENHANCING LIVES.",
+      "taglineSub": "Delivering essential services today, building a sustainable tomorrow."
+    },
+    "stats": {
+      "card1": { "value": "1M+",  "label": "Customer Served", "desc": "Across Muscat & Al Batinah" },
+      "card2": { "value": "100%", "label": "Customer Served", "desc": "Across Muscat & Al Batinah" },
+      "card3": { "value": "200M+","label": "Customer Served", "desc": "Across Muscat & Al Batinah" },
+      "card4": { "value": "Sustainability Focused", "label": "", "desc": "Investing in a better future for Oman" }
+    },
+    "mission": {
+      "title": "Our Mission",
+      "body": "To provide reliable, sustainable, and innovative utility services to our customers and communities in Muscat and Al Batinah, ensuring the highest standards of quality and safety."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "body": "To be the leading integrated utilities company in the region, recognised for excellence, innovation, and commitment to sustainable development."
+    },
+    "values": {
+      "title": "Our Values",
+      "body": "Integrity, excellence, sustainability, innovation, and customer focus are the cornerstones of everything we do at Marafiq."
+    }
+  },
+  "notFound": {
+    "seo": {
+      "title": "Page Not Found — Marafiq",
+      "description": "The page you are looking for does not exist."
+    },
+    "title": "Page Not Found",
+    "subtitle": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+    "actions": {
+      "goHome": "Back to Home"
+    }
+  },
+  "myProfile": {
+    "seo": {
+      "title": "My Profile | Marafiq",
+      "description": "View and manage your profile information.",
+      "keywords": "profile, account, marafiq",
+      "url": "https://myportal.com/my-profile",
+      "author": "Marafiq Team"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "current": "My Profile"
+    },
+    "hero": {
+      "title": "My Profile",
+      "subtitle": "Manage your Account",
+      "avatarAlt": "Profile avatar"
+    },
+    "myAccounts": "My ACCOUNTS",
+    "addAccount": "Add Account",
+    "accountNumber": "Account Nb.",
+    "accountAvatarAlt": "{{name}} avatar",
+    "accountType": {
+      "personal": "Personal Account",
+      "company": "Company Account",
+      "primary": "Primary Account",
+      "internal": "Internal Account"
+    },
+    "myAccountTitle": "My Account",
+    "selectYourAccount": "Select your account",
+    "overview": {
+      "title": "Account Overview",
+      "description": "View and manage your account details.",
+      "rows": {
+        "accountType": "Account Type",
+        "email": "Email",
+        "phone": "Phone Number",
+        "civilId": "Civil ID",
+        "crNo": "CR Number",
+        "address": "Address"
+      }
+    },
+    "quickAction": {
+      "title": "Quick Action",
+      "subtitle": "Fast Access",
+      "pay": {
+        "title": "Pay Bills",
+        "subtitle": "Make a payment"
+      },
+      "history": {
+        "title": "View Bills",
+        "subtitle": "View post bills"
+      },
+      "notifications": {
+        "title": "Notifications",
+        "subtitle": "Manage alerts"
+      },
+      "dashboard": {
+        "title": "My Dashboard",
+        "subtitle": "View dashboard"
+      }
+    },
+    "errors": {
+      "profileFailedTitle": "Could not load profile",
+      "profileFailedDetail": "We couldn't load your selected profile. Please try again."
+    },
+    "editProfile": "Edit Profile",
+    "selectAccount": "Select {{name}} account",
+    "selectedBadge": "Selected account",
+    "addAccountModal": {
+      "title": "Create New Account",
+      "submit": "Create New Account",
+      "closeAria": "Close add account dialog",
+      "successTitle": "Account created",
+      "successDetail": "The new account was created successfully.",
+      "failedTitle": "Could not create account",
+      "failedDetail": "We couldn't create the account. Please review the details and try again."
+    },
+    "billAccount": {
+      "title": "Bill Account Number",
+      "description": "View and manage your billing accounts.",
+      "table": {
+        "accountNumber": "Bills Account Nb.",
+        "outstanding": "Total Outstanding",
+        "status": "Status"
+      },
+      "status": {
+        "active": "Active",
+        "pending": "Pending",
+        "inactive": "Inactive"
+      },
+      "actions": {
+        "view": "View account"
+      }
+    }
+  },
+  "accountSummary": {
+    "seo": {
+      "title": "Account Summary | Marafiq",
+      "description": "View your bill account details, consumption history, and quick actions.",
+      "keywords": "account summary, bill account, marafiq",
+      "url": "https://myportal.com/account-summary",
+      "author": "Marafiq Team"
+    },
+    "breadcrumb": {
+      "profile": "My Profile",
+      "current": "Account Summary"
+    },
+    "hero": {
+      "title": "Account Summary",
+      "subtitle": "Account Details and Usage"
+    },
+    "stat": {
+      "groupLabel": "Account overview",
+      "accountNumber": "Account Number",
+      "currentConsumption": "Current Consumption",
+      "thisMonth": "This month",
+      "billingCycle": "Billing Cycle",
+      "everyMonth": "of every month",
+      "accountType": "Account Type",
+      "residential": "Residential"
+    },
+    "info": {
+      "title": "Account Information",
+      "customerName": "Customer Name",
+      "meterNumber": "Meter Number",
+      "zoneArea": "Zone/Area",
+      "address": "Address",
+      "accountStatus": "Account Status",
+      "billingCycle": "Billing Cycle",
+      "billingCycleValue": "25th of Every Month",
+      "status": {
+        "active": "Active",
+        "pending": "Pending",
+        "inactive": "Inactive"
+      }
+    },
+    "meter": {
+      "title": "Linked Meter",
+      "meterNumber": "Meter Number",
+      "meterType": "Meter Type",
+      "waterMeter": "Water Meter",
+      "installationDate": "Installation Date",
+      "lastReading": "Last Reading"
+    },
+    "values": {
+      "customerName": "Ahmed Ali",
+      "meterNumber": "MT-765432",
+      "zoneArea": "DUQM",
+      "address": "Building 123, Street 45. DUQM",
+      "billingCycleValue": "25th of Every Month",
+      "linkedMeterNumber": "MT-123457",
+      "installationDate": "10 Jan 2022",
+      "lastReading": "25 May 2025 · 125.50 m³",
+      "chartHeadlineValue": "25.25",
+      "chartHeadlineUnit": "m³",
+      "statConsumptionValue": "25.25",
+      "statConsumptionUnit": "m³",
+      "statBillingValue": "25th"
+    },
+    "chart": {
+      "title": "Consumption Overview",
+      "thisMonth": "This Month",
+      "ariaLabel": "Monthly consumption trend chart",
+      "months": {
+        "dec2024": "Dec 2024",
+        "jan2025": "Jan 2025",
+        "feb2025": "Feb 2025",
+        "mar2025": "Mar 2025",
+        "apr2025": "Apr 2025",
+        "may2025": "May 2025"
+      }
+    },
+    "quick": {
+      "title": "Quick Action",
+      "subtitle": "Fast Access",
+      "view": {
+        "title": "View Bills",
+        "subtitle": "View post bills"
+      },
+      "dashboard": {
+        "title": "My Dashboard",
+        "subtitle": "View dashboard"
+      }
+    }
+  },
+  "viewBills": {
+    "seo": {
+      "title": "Bill List | Marafiq",
+      "description": "View and manage all your billing statements — search, filter and pay pending or overdue bills.",
+      "keywords": "bill list, view bills, pay bills, marafiq",
+      "url": "https://myportal.com/view-bills",
+      "author": "Marafiq Team"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "dashboard": "My Dashboard",
+      "current": "Bill List"
+    },
+    "hero": {
+      "title": "Bill List",
+      "subtitle": "Manage Your Bills",
+      "description": "View and manage all your billing statements."
+    },
+    "actions": {
+      "back": "Back to profile",
+      "payNow": "Pay Now",
+      "download": "Download",
+      "downloadAria": "Download bill {{number}}",
+      "viewDetails": "View bill details",
+      "selectRow": "Select bill",
+      "selectRowAria": "Select bill {{number}}"
+    },
+    "stats": {
+      "groupLabel": "Bill statistics",
+      "total": "Total Bills",
+      "paid": "Paid",
+      "pending": "Pending",
+      "overdue": "Overdue"
+    },
+    "tabs": {
+      "groupLabel": "Bills tabs",
+      "paid": "Paid Bills ({{count}})",
+      "pending": "Pending Bills ({{count}})"
+    },
+    "filters": {
+      "title": "What are you looking for?",
+      "groupLabel": "Bill filters",
+      "accountLabel": "Select Account*",
+      "accountPlaceholder": "Select BillingAccount",
+      "searchLabel": "What are you looking for?",
+      "searchPlaceholder": "Search By Bill Number...",
+      "statusPlaceholder": "Status",
+      "reset": "Reset filters"
+    },
+    "status": {
+      "pending": "Pending",
+      "paid": "Paid",
+      "overdue": "Overdue"
+    },
+    "table": {
+      "billsNumber": "Bills Nb.",
+      "billDate": "Bill Date",
+      "dueDate": "Due Date",
+      "billAccountNumber": "Bill Acc. Nb.",
+      "amount": "Amount(OMR)",
+      "status": "Status",
+      "action": "Action"
+    },
+    "selection": {
+      "ariaLabel": "Selected bills summary",
+      "count": "{{count}} Bills selected",
+      "totalLabel": "Total Amount (OMR)",
+      "payBill": "Pay Bill",
+      "clearAria": "Clear selection"
+    },
+    "pagination": {
+      "ariaLabel": "Bill list pagination",
+      "prev": "Previous page",
+      "next": "Next page",
+      "showing": "Showing {{from}} to {{to}} of {{total}} entries"
+    },
+    "empty": {
+      "title": "No bills match the current filters."
+    }
+  }
+}

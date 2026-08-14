@@ -1,0 +1,76 @@
+<div class="profile-dropdown-wrap">
+  <button
+    type="button"
+    class="profile-trigger"
+    (click)="toggle($event)"
+    [attr.aria-label]="triggerAriaLabelKey() | translate"
+    [attr.aria-expanded]="isOpen()"
+    aria-haspopup="menu">
+    <span class="profile-trigger__avatar">
+      <img [src]="avatarSrc()" alt="" aria-hidden="true" />
+    </span>
+    <span class="profile-trigger__arrow" aria-hidden="true"></span>
+  </button>
+
+  @if (isOpen()) {
+    <div class="profile-dropdown" role="menu">
+      @if (accounts().length > 0) {
+        <div class="switch-accounts-panel">
+          <div class="switch-accounts-header">
+            {{ 'header.actions.switchAccounts' | translate }}
+          </div>
+
+          <div class="accounts-list">
+            @for (account of accounts(); track account.id) {
+              <button
+                type="button"
+                class="account-card"
+                [class.active]="resolvedActiveId() === account.id"
+                (click)="selectAccount(account, $event)">
+                <div class="account-card__avatar" [class.account-card__avatar--image]="account.avatarSrc" [class.account-card__avatar--initials]="!account.avatarSrc">
+                  @if (account.avatarSrc) {
+                    <img [src]="account.avatarSrc" alt="" aria-hidden="true" />
+                  } @else {
+                    <span>{{ account.avatarInitials }}</span>
+                  }
+                </div>
+                <div class="account-card__info">
+                  <span class="account-card__name">{{ account.name }}</span>
+                  <span class="account-card__type">{{ account.typeLabelKey | translate }}</span>
+                </div>
+                @if (resolvedActiveId() === account.id) {
+                  <span class="account-card__check">
+                    <img src="assets/images/dropdown-check.svg" alt="" aria-hidden="true" />
+                  </span>
+                }
+              </button>
+            }
+          </div>
+
+          <button type="button" class="add-account-btn" (click)="onAddAccount()">
+            <span class="add-account-btn__icon">
+              <img src="assets/images/dropdown-plus.svg" alt="" aria-hidden="true" />
+            </span>
+            <span class="add-account-btn__text">{{ 'header.actions.addAccount' | translate }}</span>
+          </button>
+        </div>
+      }
+
+      <div class="menu-actions">
+        <button type="button" class="menu-action-item" (click)="onProfile()" role="menuitem">
+          <span class="menu-action-item__icon menu-action-item__icon--profile">
+            <img src="assets/images/dropdown-user-profile.svg" alt="" aria-hidden="true" />
+          </span>
+          <span class="menu-action-item__text">{{ 'header.actions.myProfile' | translate }}</span>
+        </button>
+
+        <button type="button" class="menu-action-item" (click)="onLogout()" role="menuitem">
+          <span class="menu-action-item__icon menu-action-item__icon--logout">
+            <img src="assets/images/dropdown-logout.svg" alt="" aria-hidden="true" />
+          </span>
+          <span class="menu-action-item__text">{{ 'header.actions.logout' | translate }}</span>
+        </button>
+      </div>
+    </div>
+  }
+</div>

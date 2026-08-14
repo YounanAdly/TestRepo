@@ -1,0 +1,42 @@
+<div class="skeleton-wrap" role="status" aria-busy="true" [attr.aria-label]="'Loading content'">
+  @for (i of items(); track i) {
+    <!-- text variant — stacked paragraph lines -->
+    @if (variant() === 'text') {
+      <div class="skeleton-text-block">
+        <div class="skeleton-line skeleton-line--full"></div>
+        <div class="skeleton-line skeleton-line--md"></div>
+        <div class="skeleton-line skeleton-line--sm"></div>
+      </div>
+    }
+    <!-- card variant — image placeholder + body lines -->
+    @if (variant() === 'card') {
+      <div class="skeleton-card">
+        <div class="skeleton-card__image"></div>
+        <div class="skeleton-card__body">
+          <div class="skeleton-line skeleton-line--md"></div>
+          <div class="skeleton-line skeleton-line--full"></div>
+          <div class="skeleton-line skeleton-line--sm"></div>
+        </div>
+      </div>
+    }
+    <!-- avatar variant — circle + two lines (notifications, list items) -->
+    @if (variant() === 'avatar') {
+      <div class="skeleton-avatar-row">
+        <div class="skeleton-avatar"></div>
+        <div class="skeleton-avatar-text">
+          <div class="skeleton-line skeleton-line--md"></div>
+          <div class="skeleton-line skeleton-line--sm"></div>
+        </div>
+      </div>
+    }
+    <!-- table-row variant — horizontal cells -->
+    @if (variant() === 'table-row') {
+      <div class="skeleton-table-row">
+        <div class="skeleton-cell skeleton-cell--sm"></div>
+        <div class="skeleton-cell skeleton-cell--lg"></div>
+        <div class="skeleton-cell skeleton-cell--md"></div>
+        <div class="skeleton-cell skeleton-cell--sm"></div>
+      </div>
+    }
+  }
+</div>

@@ -1,0 +1,18 @@
+<article class="service-card">
+  <div class="service-card__media">
+    <img [src]="imageSrc()" [attr.alt]="imageAlt() || (imageAltKey() | translate)" />
+  </div>
+
+  <div class="service-card__content">
+    <img class="service-card__blur" src="assets/images/blur.svg" alt="" aria-hidden="true" />
+    <h3>{{ title() || (titleKey() | translate) }}</h3>
+    <p>{{ description() || (descriptionKey() | translate) }}</p>
+
+    <button type="button" class="card-cta" (click)="onApply()" [attr.aria-label]="actionLabelKey() | translate">
+      <span class="card-cta__label">{{ actionLabelKey() | translate }}</span>
+      <span class="card-cta__icon" aria-hidden="true">
+        <img src="assets/images/arrow-right.svg" width="14" height="14" alt="" aria-hidden="true" />
+      </span>
+    </button>
+  </div>
+</article>

@@ -1,0 +1,128 @@
+:host {
+  display: block;
+  width: var(--service-card-width, 268px);
+}
+
+.service-card {
+  position: relative;
+  width: 100%;
+  height: 364px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.service-card__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.service-card__content {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 2;
+  min-height: 213px;
+  padding: 19px 9px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .service-card__blur {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  h3 {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 10px;
+    font-family: 'AvantGarde Bk BT', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21px;
+    color: var(--color-modal-bg);
+    min-height: 62px;
+  }
+
+  p {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 10px;
+    min-height: 67px;
+    font-family: 'Poppins', 'AvantGarde Bk BT', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    color: var(--color-modal-bg);
+  }
+
+  // Figma: Apply Now CTA — w=226 h=35 radius=20, orange, Poppins 16/500
+  // Text at x=59 within 226px + right-pointing arrow at x=147
+  .card-cta {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 226px;
+    height: 35px;
+    border-radius: 20px;
+    border: 0;
+    background: var(--color-orange);
+    padding: 0 12px;
+    cursor: pointer;
+    margin: 6px auto 0;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: var(--color-orange-hover);
+    }
+  }
+
+  .card-cta__label {
+    font-family: 'Poppins', 'AvantGarde Bk BT', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 30px;
+    color: var(--color-modal-bg);
+    white-space: nowrap;
+  }
+
+  .card-cta__icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    img {
+      display: block;
+    }
+  }
+
+}
+
+:host-context([dir='rtl']) .card-cta__icon img {
+  transform: scaleX(-1);
+}
+
+@media (max-width: 992px) {
+  :host,
+  .service-card {
+    width: 100%;
+  }
+}

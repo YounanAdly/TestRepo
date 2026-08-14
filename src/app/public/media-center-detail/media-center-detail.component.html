@@ -1,0 +1,115 @@
+<main class="page-enter mcd-page">
+
+  <!-- ── Breadcrumb ─────────────────────────────────────────────────
+  4 levels: Home > Media Center > [Category] > [Article title bold]
+  ─────────────────────────────────────────────────────────────────── -->
+  @if (item) {
+    <section class="mcd-breadcrumb">
+      <div class="mcd-wrap">
+        <a [routerLink]="['/', currentLang, 'home']">
+          {{ 'mediaCenterPage.breadcrumb.home' | translate }}
+        </a>
+        <img class="mcd-breadcrumb__sep" src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+        <a [routerLink]="['/', currentLang, 'media-center']">
+          {{ 'mediaCenterPage.detail.breadcrumb.mediaCenter' | translate }}
+        </a>
+        <img class="mcd-breadcrumb__sep" src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+        <a [routerLink]="['/', currentLang, 'media-center']" class="mcd-breadcrumb__category">
+          {{ 'mediaCenterPage.categories.' + item.category | translate }}
+        </a>
+        <img class="mcd-breadcrumb__sep" src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+        <span class="mcd-breadcrumb__current">{{ item.titleKey | translate }}</span>
+      </div>
+    </section>
+  }
+
+  @if (item) {
+    <!-- ── Title row ───────────────────────────────────────────────
+    Back arrow (orange, 38×38) + H1 title (teal, 32px Demi)
+    ────────────────────────────────────────────────────────────────  -->
+    <section class="mcd-header">
+      <div class="mcd-wrap">
+        <div class="mcd-title-row">
+          <button type="button" class="mcd-back-btn" (click)="goBack()"
+            [attr.aria-label]="'mediaCenterPage.detail.backAria' | translate">
+            <img src="assets/images/media-back-arrow.svg" alt="" aria-hidden="true" />
+          </button>
+          <h1 class="mcd-title">{{ item.titleKey | translate }}</h1>
+        </div>
+      </div>
+    </section>
+    <!-- ── Hero image + badge + meta ──────────────────────────────
+    Image frame: 1312×366, radius 16
+    Badge: top-left, teal bg, radius 9, padding 14/26, 18px white text
+    Meta: calendar icon + date | divider (1px) | clock + X min read
+    All meta text: 16px Book #083a81
+    ─────────────────────────────────────────────────────────────── -->
+    <section class="mcd-hero-section">
+      <div class="mcd-wrap">
+        <div class="mcd-image-frame">
+          <img class="mcd-image-frame__img" [src]="item.imageSrc"
+            [alt]="item.titleKey | translate" loading="eager" />
+          <span class="mcd-badge mcd-badge--{{ item.category }}">
+            {{ 'mediaCenterPage.categories.' + item.category | translate }}
+          </span>
+        </div>
+        <div class="mcd-meta">
+          <span class="mcd-meta__item">
+            <!-- Calendar icon — color driven by .mcd-meta__item via currentColor -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+              xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M3 10H21" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="8" y1="3" x2="8" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="16" y1="3" x2="16" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>{{ item.date }}</span>
+          </span>
+          <span class="mcd-meta__divider" aria-hidden="true"></span>
+          <span class="mcd-meta__item">
+            <!-- Clock icon — color driven by .mcd-meta__item via currentColor -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+              xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="14" r="9" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M12 10V14L15 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>{{ readTimeKey | translate }} {{ 'mediaCenterPage.hero.minRead' | translate }}</span>
+          </span>
+        </div>
+      </div>
+    </section>
+    <!-- ── Article body ──────────────────────────────────────────
+    Lead:  18px Demi 700 #4a4a4a
+    Para:  16px Book 400 #4a4a4a lh 22px
+    Quote: border 1px #00788b radius 16 padding 16/14
+    Quote icon (24×24 navy fills) + text + author + role
+    Author: 18px Demi 700 #083a81 (bullet via CSS)
+    Role:   18px Book 400 #608bc7
+    ─────────────────────────────────────────────────────────────── -->
+    <section class="mcd-body">
+      <div class="mcd-wrap">
+        <!-- Lead paragraph — bold intro -->
+        <p class="mcd-body__lead">{{ introKey | translate }}</p>
+        <!-- Two regular paragraphs before quote -->
+        <p class="mcd-body__para">{{ para1Key | translate }}</p>
+        <p class="mcd-body__para">{{ para2Key | translate }}</p>
+        <!-- Quote block -->
+        <blockquote class="mcd-quote">
+          <div class="mcd-quote__icon-wrap" aria-hidden="true">
+            <img src="assets/images/media-quote-icon.svg" width="24" height="24" alt="" aria-hidden="true" />
+          </div>
+          <div class="mcd-quote__content">
+            <p class="mcd-quote__text">{{ quoteTextKey | translate }}</p>
+            <footer class="mcd-quote__footer">
+              <cite class="mcd-quote__author">{{ quoteAuthorKey | translate }}</cite>
+              <span class="mcd-quote__role">{{ quoteRoleKey | translate }}</span>
+            </footer>
+          </div>
+        </blockquote>
+        <!-- Final paragraph after quote -->
+        <p class="mcd-body__para">{{ outroKey | translate }}</p>
+      </div>
+    </section>
+  }
+
+</main>

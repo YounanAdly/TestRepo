@@ -1,0 +1,597 @@
+<main class="service-request page-enter" id="main-content">
+
+  <!-- Breadcrumb -->
+  <section class="service-request__breadcrumb" aria-label="breadcrumb">
+    <div class="service-request__wrap">
+      <a [routerLink]="['/', currentLang, 'home']">{{ 'servicesPage.breadcrumb.home' | translate }}</a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+      <a [routerLink]="['/', currentLang, 'services']">{{ 'servicesPage.breadcrumb.current' | translate }}</a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+      <span>{{ selectedServiceDisplayTitle() }}</span>
+    </div>
+  </section>
+
+  <!-- Hero -->
+  <section class="service-request__hero">
+    <div class="service-request__wrap">
+      <div class="service-request__title-row">
+        <a
+          class="service-request__back"
+          [routerLink]="['/', currentLang, 'service-details']"
+          [queryParams]="{ service: selectedServiceParam(), serviceName: selectedServiceName() }"
+          [attr.aria-label]="'serviceDetailsPage.actions.backToServices' | translate">
+          <img src="assets/images/back.svg" alt="" aria-hidden="true" />
+        </a>
+        <div>
+          <h1>{{ selectedServiceDisplayTitle() }}</h1>
+          <p>{{ 'serviceRequestPage.description' | translate }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <!-- Form content                                                    -->
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <section class="service-request__content">
+    <div class="service-request__wrap">
+
+      <!-- ── Section 1: Customer / Applicant Details ─────────────── -->
+
+      <article
+        class="service-request__card"
+        [class.service-request__card--collapsed]="!sectionOpen.customer">
+        <header class="service-request__card-head">
+          <h3>{{ firstSectionTitleKey() | translate }}</h3>
+          <button
+            type="button"
+            class="service-request__toggle"
+            [attr.aria-label]="'serviceRequestPage.actions.toggle' | translate"
+            [attr.aria-expanded]="sectionOpen.customer"
+            (click)="toggleSection('customer')">
+            <span [class.is-collapsed]="!sectionOpen.customer"></span>
+          </button>
+        </header>
+        @if (sectionOpen.customer) {
+          <div class="service-request__card-body">
+            <formly-form
+              [form]="form"
+              [fields]="selectedServiceFormVariant() === Variant.Violation ? requestFields().violationCustomerInfo : requestFields().customerInformation"
+              [model]="model">
+            </formly-form>
+          </div>
+        }
+      </article>
+
+      <!-- ── Variant-specific sections ──────────────────────────── -->
+      @switch (selectedServiceFormVariant()) {
+
+        @case (Variant.Water) {
+
+          <!-- Plot Selection (with "create new plot" toggle) -->
+          <article
+            class="service-request__card"
+            [class.service-request__card--collapsed]="!sectionOpen.plot">
+            <header class="service-request__card-head">
+              <h3>{{ 'serviceRequestPage.cards.plotSelection' | translate }}</h3>
+              <button
+                type="button"
+                class="service-request__toggle"
+                [attr.aria-label]="'serviceRequestPage.actions.toggle' | translate"
+                [attr.aria-expanded]="sectionOpen.plot"
+                (click)="toggleSection('plot')">
+                <span [class.is-collapsed]="!sectionOpen.plot"></span>
+              </button>
+            </header>
+            @if (sectionOpen.plot) {
+              <div class="service-request__card-body">
+                <fieldset class="request-radio-group">
+                  <legend class="request-radio-group__legend">
+                    {{ 'serviceRequestPage.form.plot.option.label' | translate }}
+                    <span class="request-required" aria-hidden="true">*</span>
+                  </legend>
+                  <label class="request-radio-option" [class.is-active]="plotOption() === 'existing'">
+                    <input
+                      type="radio"
+                      name="plotOption"
+                      value="existing"
+                      [checked]="plotOption() === 'existing'"
+                      (change)="selectPlotOption('existing')" />
+                    {{ 'serviceRequestPage.form.plot.existing' | translate }}
+                  </label>
+                  <label class="request-radio-option" [class.is-active]="plotOption() === 'new'">
+                    <input
+                      type="radio"
+                      name="plotOption"
+                      value="new"
+                      [checked]="plotOption() === 'new'"
+                      (change)="selectPlotOption('new')" />
+                    {{ 'serviceRequestPage.form.plot.new' | translate }}
+                  </label>
+                </fieldset>
+
+                @if (plotOption() === 'existing') {
+                  <formly-form
+                    [form]="form"
+                    [fields]="requestFields().existingPlotType1Fields"
+                    [model]="model">
+                  </formly-form>
+                } @else {
+                  <formly-form
+                    [form]="form"
+                    [fields]="requestFields().newPlotFields"
+                    [model]="model">
+                  </formly-form>
+                }
+              </div>
+            }
+          </article>
+
+          <!-- Connection Details -->
+          <article
+            class="service-request__card"
+            [class.service-request__card--collapsed]="!sectionOpen.connection">
+            <header class="service-request__card-head">
+              <h3>{{ 'serviceRequestPage.cards.connectionDetails' | translate }}</h3>
+              <button
+                type="button"
+                class="service-request__toggle"
+                [attr.aria-label]="'serviceRequestPage.actions.toggle' | translate"
+                [attr.aria-expanded]="sectionOpen.connection"
+                (click)="toggleSection('connection')">
+                <span [class.is-collapsed]="!sectionOpen.connection"></span>
+              </button>
+            </header>
+            @if (sectionOpen.connection) {
+              <div class="service-request__card-body">
+                <fieldset class="request-radio-group">
+                  <legend class="request-radio-group__legend">
+                    {{ 'serviceRequestPage.form.connection.type.label' | translate }}
+                    <span class="request-required" aria-hidden="true">*</span>
+                  </legend>
+                  @for (ct of connectionTypes; track ct.value) {
+                    <label
+                      class="request-radio-option"
+                      [class.is-active]="connectionType() === ct.value">
+                      <input
+                        type="radio"
+                        name="connectionType"
+                        [value]="ct.value"
+                        [checked]="connectionType() === ct.value"
+                        (change)="selectConnectionType(ct.value)" />
+                      {{ ct.labelKey | translate }}
+                    </label>
+                  }
+                </fieldset>
+              </div>
+            }
+          </article>
+
+          <!-- Required Documents -->
+          <article
+            class="service-request__card"
+            [class.service-request__card--collapsed]="!sectionOpen.documents">
+            <header class="service-request__card-head">
+              <h3>{{ 'serviceRequestPage.cards.requiredDocument' | translate }}</h3>
+              <button
+                type="button"
+                class="service-request__toggle"
+                [attr.aria-label]="'serviceRequestPage.actions.toggle' | translate"
+                [attr.aria-expanded]="sectionOpen.documents"
+                (click)="toggleSection('documents')">
+                <span [class.is-collapsed]="!sectionOpen.documents"></span>
+              </button>
+            </header>
+            @if (sectionOpen.documents) {
+              <div class="service-request__card-body">
+                <formly-form
+                  [form]="form"
+                  [fields]="requestFields().requiredDocuments"
+                  [model]="model">
+                </formly-form>
+              </div>
+            }
+          </article>
+
+        }
+
+        @case (Variant.Standard) {
+
+          <!-- Plot Selection (existing only, no toggle) -->
+          <article
+            class="service-request__card"
+            [class.service-request__card--collapsed]="!sectionOpen.plot">
+            <header class="service-request__card-head">
+              <h3>{{ 'serviceRequestPage.cards.plotSelection' | translate }}</h3>
+              <button
+                type="button"
+                class="service-request__toggle"
+                [attr.aria-label]="'serviceRequestPage.actions.toggle' | translate"
+                [attr.aria-expanded]="sectionOpen.plot"
+                (click)="toggleSection('plot')">
+                <span [class.is-collapsed]="!sectionOpen.plot"></span>
+              </button>
+            </header>
+            @if (sectionOpen.plot) {
+              <div class="service-request__card-body">
+                <formly-form
+                  [form]="form"
+                  [fields]="requestFields().existingPlotType234Fields"
+                  [model]="model">
+                </formly-form>
+              </div>
+            }
+          </article>
+
+          <!-- Connection Details -->
+          <article
+            class="service-request__card"
+            [class.service-request__card--collapsed]="!sectionOpen.connection">
+            <header class="service-request__card-head">
+              <h3>{{ 'serviceRequestPage.cards.connectionDetails' | translate }}</h3>
+              <button
+                type="button"
+                class="service-request__toggle"
+                [attr.aria-label]="'serviceRequestPage.actions.toggle' | translate"
+                [attr.aria-expanded]="sectionOpen.connection"
+                (click)="toggleSection('connection')">
+                <span [class.is-collapsed]="!sectionOpen.connection"></span>
+              </button>
+            </header>
+            @if (sectionOpen.connection) {
+              <div class="service-request__card-body">
+                <fieldset class="request-radio-group">
+                  <legend class="request-radio-group__legend">
+                    {{ 'serviceRequestPage.form.connection.type.label' | translate }}
+                    <span class="request-required" aria-hidden="true">*</span>
+                  </legend>
+                  @for (ct of connectionTypes; track ct.value) {
+                    <label
+                      class="request-radio-option"
+                      [class.is-active]="connectionType() === ct.value">
+                      <input
+                        type="radio"
+                        name="connectionType"
+                        [value]="ct.value"
+                        [checked]="connectionType() === ct.value"
+                        (change)="selectConnectionType(ct.value)" />
+                      {{ ct.labelKey | translate }}
+                    </label>
+                  }
+                </fieldset>
+              </div>
+            }
+          </article>
+
+          <!-- Required Documents -->
+          <article
+            class="service-request__card"
+            [class.service-request__card--collapsed]="!sectionOpen.documents">
+            <header class="service-request__card-head">
+              <h3>{{ 'serviceRequestPage.cards.requiredDocument' | translate }}</h3>
+              <button
+                type="button"
+                class="service-request__toggle"
+                [attr.aria-label]="'serviceRequestPage.actions.toggle' | translate"
+                [attr.aria-expanded]="sectionOpen.documents"
+                (click)="toggleSection('documents')">
+                <span [class.is-collapsed]="!sectionOpen.documents"></span>
+              </button>
+            </header>
+            @if (sectionOpen.documents) {
+              <div class="service-request__card-body">
+                <formly-form
+                  [form]="form"
+                  [fields]="requestFields().requiredDocuments"
+                  [model]="model">
+                </formly-form>
+              </div>
+            }
+          </article>
+
+        }
+
+        @case (Variant.Tanker) {
+
+          <!-- Tanker Details -->
+          <article
+            class="service-request__card"
+            [class.service-request__card--collapsed]="!sectionOpen.tankerInfo">
+            <header class="service-request__card-head">
+              <h3>{{ 'serviceRequestPage.cards.tankerDetails' | translate }}</h3>
+              <button
+                type="button"
+                class="service-request__toggle"
+                [attr.aria-label]="'serviceRequestPage.actions.toggle' | translate"
+                [attr.aria-expanded]="sectionOpen.tankerInfo"
+                (click)="toggleSection('tankerInfo')">
+                <span [class.is-collapsed]="!sectionOpen.tankerInfo"></span>
+              </button>
+            </header>
+            @if (sectionOpen.tankerInfo) {
+              <div class="service-request__card-body">
+                <formly-form
+                  [form]="form"
+                  [fields]="requestFields().tankerInformation"
+                  [model]="model">
+                </formly-form>
+              </div>
+            }
+          </article>
+
+          <!-- Vehicle Information -->
+          <article
+            class="service-request__card"
+            [class.service-request__card--collapsed]="!sectionOpen.vehicleInfo">
+            <header class="service-request__card-head">
+              <h3>{{ 'serviceRequestPage.cards.vehicleInformation' | translate }}</h3>
+              <button
+                type="button"
+                class="service-request__toggle"
+                [attr.aria-label]="'serviceRequestPage.actions.toggle' | translate"
+                [attr.aria-expanded]="sectionOpen.vehicleInfo"
+                (click)="toggleSection('vehicleInfo')">
+                <span [class.is-collapsed]="!sectionOpen.vehicleInfo"></span>
+              </button>
+            </header>
+            @if (sectionOpen.vehicleInfo) {
+              <div class="service-request__card-body">
+                <formly-form
+                  [form]="form"
+                  [fields]="requestFields().vehicleInformation"
+                  [model]="model">
+                </formly-form>
+              </div>
+            }
+          </article>
+
+          <!-- Tanker Documents -->
+          <article
+            class="service-request__card"
+            [class.service-request__card--collapsed]="!sectionOpen.tankerDocs">
+            <header class="service-request__card-head">
+              <h3>{{ 'serviceRequestPage.cards.requiredDocument' | translate }}</h3>
+              <button
+                type="button"
+                class="service-request__toggle"
+                [attr.aria-label]="'serviceRequestPage.actions.toggle' | translate"
+                [attr.aria-expanded]="sectionOpen.tankerDocs"
+                (click)="toggleSection('tankerDocs')">
+                <span [class.is-collapsed]="!sectionOpen.tankerDocs"></span>
+              </button>
+            </header>
+            @if (sectionOpen.tankerDocs) {
+              <div class="service-request__card-body">
+                <formly-form
+                  [form]="form"
+                  [fields]="requestFields().tankerDocuments"
+                  [model]="model">
+                </formly-form>
+              </div>
+            }
+          </article>
+
+        }
+
+        @case (Variant.Noc) {
+
+          <!-- Project Details -->
+          <article
+            class="service-request__card"
+            [class.service-request__card--collapsed]="!sectionOpen.project">
+            <header class="service-request__card-head">
+              <h3>{{ 'serviceRequestPage.cards.projectDetails' | translate }}</h3>
+              <button
+                type="button"
+                class="service-request__toggle"
+                [attr.aria-label]="'serviceRequestPage.actions.toggle' | translate"
+                [attr.aria-expanded]="sectionOpen.project"
+                (click)="toggleSection('project')">
+                <span [class.is-collapsed]="!sectionOpen.project"></span>
+              </button>
+            </header>
+            @if (sectionOpen.project) {
+              <div class="service-request__card-body">
+                <formly-form
+                  [form]="form"
+                  [fields]="requestFields().projectDetails"
+                  [model]="model">
+                </formly-form>
+              </div>
+            }
+          </article>
+
+          <!-- NOC Required Documents -->
+          <article
+            class="service-request__card"
+            [class.service-request__card--collapsed]="!sectionOpen.nocDocs">
+            <header class="service-request__card-head">
+              <h3>{{ 'serviceRequestPage.cards.requiredDocument' | translate }}</h3>
+              <button
+                type="button"
+                class="service-request__toggle"
+                [attr.aria-label]="'serviceRequestPage.actions.toggle' | translate"
+                [attr.aria-expanded]="sectionOpen.nocDocs"
+                (click)="toggleSection('nocDocs')">
+                <span [class.is-collapsed]="!sectionOpen.nocDocs"></span>
+              </button>
+            </header>
+            @if (sectionOpen.nocDocs) {
+              <div class="service-request__card-body">
+                <formly-form
+                  [form]="form"
+                  [fields]="requestFields().nocDocuments"
+                  [model]="model">
+                </formly-form>
+              </div>
+            }
+          </article>
+
+        }
+
+        @case (Variant.Vat) {
+
+          <!-- Registration / Tax Details -->
+          <article
+            class="service-request__card"
+            [class.service-request__card--collapsed]="!sectionOpen.vatDetails">
+            <header class="service-request__card-head">
+              <h3>{{ 'serviceRequestPage.cards.vatDetails' | translate }}</h3>
+              <button
+                type="button"
+                class="service-request__toggle"
+                [attr.aria-label]="'serviceRequestPage.actions.toggle' | translate"
+                [attr.aria-expanded]="sectionOpen.vatDetails"
+                (click)="toggleSection('vatDetails')">
+                <span [class.is-collapsed]="!sectionOpen.vatDetails"></span>
+              </button>
+            </header>
+            @if (sectionOpen.vatDetails) {
+              <div class="service-request__card-body">
+                <formly-form
+                  [form]="form"
+                  [fields]="requestFields().vatDetails"
+                  [model]="model">
+                </formly-form>
+              </div>
+            }
+          </article>
+
+          <!-- VAT Required Documents -->
+          <article
+            class="service-request__card"
+            [class.service-request__card--collapsed]="!sectionOpen.vatDocs">
+            <header class="service-request__card-head">
+              <h3>{{ 'serviceRequestPage.cards.requiredDocument' | translate }}</h3>
+              <button
+                type="button"
+                class="service-request__toggle"
+                [attr.aria-label]="'serviceRequestPage.actions.toggle' | translate"
+                [attr.aria-expanded]="sectionOpen.vatDocs"
+                (click)="toggleSection('vatDocs')">
+                <span [class.is-collapsed]="!sectionOpen.vatDocs"></span>
+              </button>
+            </header>
+            @if (sectionOpen.vatDocs) {
+              <div class="service-request__card-body">
+                <formly-form
+                  [form]="form"
+                  [fields]="requestFields().vatDocuments"
+                  [model]="model">
+                </formly-form>
+              </div>
+            }
+          </article>
+
+        }
+
+        @case (Variant.Violation) {
+
+          <!-- Section 2: Violation Information -->
+          <article
+            class="service-request__card"
+            [class.service-request__card--collapsed]="!sectionOpen.violationDetailsSection">
+            <header class="service-request__card-head">
+              <h3>{{ 'serviceRequestPage.cards.violationInformation' | translate }}</h3>
+              <button
+                type="button"
+                class="service-request__toggle"
+                [attr.aria-label]="'serviceRequestPage.actions.toggle' | translate"
+                [attr.aria-expanded]="sectionOpen.violationDetailsSection"
+                (click)="toggleSection('violationDetailsSection')">
+                <span [class.is-collapsed]="!sectionOpen.violationDetailsSection"></span>
+              </button>
+            </header>
+            @if (sectionOpen.violationDetailsSection) {
+              <div class="service-request__card-body">
+                <formly-form
+                  [form]="form"
+                  [fields]="requestFields().violationDetailFields"
+                  [model]="model">
+                </formly-form>
+              </div>
+            }
+          </article>
+
+          <!-- Section 3: Required Document -->
+          <article
+            class="service-request__card"
+            [class.service-request__card--collapsed]="!sectionOpen.violationDocs">
+            <header class="service-request__card-head">
+              <h3>{{ 'serviceRequestPage.cards.requiredDocument' | translate }}</h3>
+              <button
+                type="button"
+                class="service-request__toggle"
+                [attr.aria-label]="'serviceRequestPage.actions.toggle' | translate"
+                [attr.aria-expanded]="sectionOpen.violationDocs"
+                (click)="toggleSection('violationDocs')">
+                <span [class.is-collapsed]="!sectionOpen.violationDocs"></span>
+              </button>
+            </header>
+            @if (sectionOpen.violationDocs) {
+              <div class="service-request__card-body">
+                <formly-form
+                  [form]="form"
+                  [fields]="requestFields().violationDocumentFiles"
+                  [model]="model">
+                </formly-form>
+              </div>
+            }
+          </article>
+
+        }
+
+      }
+
+      <!-- ── Section 5: Declaration ───────────────────────────────── -->
+      <article class="service-request__card service-request__card--declaration">
+        <div class="service-request__card-body">
+          <label class="request-declaration">
+            <input
+              type="checkbox"
+              class="request-declaration__checkbox"
+              [checked]="declaration()"
+              [attr.aria-checked]="declaration()"
+              (change)="toggleDeclaration()" />
+            <span class="request-declaration__text">
+              {{ 'serviceRequestPage.declaration.confirm' | translate }}
+            </span>
+          </label>
+        </div>
+      </article>
+
+      <!-- ── Actions ─────────────────────────────────────────────── -->
+      <div class="service-request__actions" role="group" [attr.aria-label]="'serviceRequestPage.actions.group' | translate">
+        <app-button
+          variant="action-outline"
+          type="button"
+          (clicked)="onCancel()">
+          {{ 'serviceRequestPage.actions.cancel' | translate }}
+        </app-button>
+        <app-button
+          variant="action-primary"
+          type="button"
+          (clicked)="onSubmit()">
+          {{ 'serviceRequestPage.actions.submit' | translate }}
+        </app-button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Success modal -->
+  <app-success-alert-modal
+    [isOpen]="isSubmitSuccessOpen()"
+    variant="service-request"
+    iconSrc="assets/images/service-request-success-badge.svg"
+    closeIconSrc="assets/images/service-request-alert-close.svg"
+    titleKey="serviceRequestPage.success.reference"
+    [titleParams]="{ ref: submitReferenceNumber() }"
+    descriptionKey="serviceRequestPage.success.description"
+    doneLabelKey="serviceRequestPage.success.done"
+    closeLabelKey="serviceRequestPage.success.close"
+    (done)="onSubmitSuccessDone()"
+    (closed)="onSubmitSuccessClose()">
+  </app-success-alert-modal>
+
+</main>

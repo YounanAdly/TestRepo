@@ -1,0 +1,71 @@
+# Marafiq AI Code Review — Azure DevOps pipeline
+#
+# Triggers only on PRs. Posts a summary comment + inline comments with ```suggestion
+# blocks that developers can copy-paste. Exits non-zero on CRITICAL rule violations.
+#
+# Setup (one-time):
+#   1. In Azure DevOps: Pipelines → New pipeline → point to this YAML.
+#   2. Pipeline → Edit → Variables → add secret variables:
+#        GEMINI_API_KEY           (current provider)
+#        ANTHROPIC_API_KEY        (optional, for later)
+#        AZURE_OPENAI_API_KEY     (optional)
+#        AZURE_OPENAI_ENDPOINT    (optional)
+#        AZURE_OPENAI_DEPLOYMENT  (optional)
+#   3. In Project Settings → Repositories → your repo → Policies → Build validation,
+#      add this pipeline as a required PR check.
+#   4. In the pipeline YAML above, make sure "Allow scripts to access OAuth token" is enabled
+#      (that is what `system.accessToken` in env: relies on).
+
+trigger: none            # do not run on branch pushes
+pr:
+  branches:
+    include:
+      - '*'
+  drafts: false
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  # Change this variable to switch providers without editing files:
+  #   gemini | anthropic | openai | azure-openai | copilot
+  AI_REVIEW_PROVIDER: 'gemini'
+  # Set to '1' during rollout to comment without blocking merges.
+  AI_REVIEW_SOFT: '0'
+
+steps:
+  - checkout: self
+    fetchDepth: 0                                # need base ref for the diff
+    persistCredentials: true
+
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '20.x'
+    displayName: 'Install Node 20'
+
+  - script: |
+      set -e
+      cd .ai-review
+      npm install --no-audit --no-fund
+    displayName: 'Install reviewer deps'
+
+  - script: |
+      set -e
+      cd .ai-review
+      node src/index.mjs
+    displayName: 'Run AI review'
+    env:
+      # Provider selection
+      AI_REVIEW_PROVIDER: $(AI_REVIEW_PROVIDER)
+      AI_REVIEW_SOFT: $(AI_REVIEW_SOFT)
+
+      # Provider secrets (set as Pipeline → Variables, tick "Keep this value secret")
+      GEMINI_API_KEY: $(GEMINI_API_KEY)
+      ANTHROPIC_API_KEY: $(ANTHROPIC_API_KEY)
+      OPENAI_API_KEY: $(OPENAI_API_KEY)
+      AZURE_OPENAI_API_KEY: $(AZURE_OPENAI_API_KEY)
+      AZURE_OPENAI_ENDPOINT: $(AZURE_OPENAI_ENDPOINT)
+      AZURE_OPENAI_DEPLOYMENT: $(AZURE_OPENAI_DEPLOYMENT)
+
+      # Azure DevOps auto-populates the rest; SYSTEM_ACCESSTOKEN needs to be forwarded explicitly.
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)

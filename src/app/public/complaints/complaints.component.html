@@ -1,0 +1,172 @@
+<main id="main-content" class="complaints-page page-enter">
+
+  <!-- ── Breadcrumb Sub-nav ─────────────────────────────────────────── -->
+  <section class="complaints-breadcrumb">
+    <div class="complaints-wrap">
+      <a [routerLink]="getLocalizedRoute('home')">{{ 'servicesPage.breadcrumb.home' | translate }}</a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+      <span>{{ 'header.nav.complaints' | translate }}</span>
+    </div>
+  </section>
+
+  <!-- ── Hero ──────────────────────────────────────────────────────── -->
+  <section class="complaints-hero">
+    <div class="complaints-wrap">
+      <div class="complaints-hero__title-row">
+        <button
+          type="button"
+          class="complaints-hero__back"
+          (click)="goBack()"
+          [attr.aria-label]="'complaintsPage.actions.back' | translate">
+          <img src="assets/images/back.svg" alt="" aria-hidden="true" />
+        </button>
+        <h1 class="complaints-hero__title">{{ 'complaintsPage.title' | translate }}</h1>
+      </div>
+      <p class="complaints-hero__subtitle">{{ 'complaintsPage.subtitle' | translate }}</p>
+      <p class="complaints-hero__prompt">{{ 'complaintsPage.selectType' | translate }}</p>
+    </div>
+  </section>
+
+  <!-- ── Complaint Type Cards ───────────────────────────────────────── -->
+  <section class="complaints-types">
+    <div class="complaints-wrap">
+      <div class="complaints-types__grid">
+        @for (card of complaintCards; track card.type) {
+          <button
+            type="button"
+            class="complaints-type-card"
+            [style.background-color]="card.cardBg"
+            (click)="navigateToComplaintForm(card.type)">
+            <div class="complaints-type-card__icon-wrap" [style.background-color]="card.iconBg">
+              <img [src]="card.imgSrc" [attr.alt]="card.imgAltKey | translate" />
+            </div>
+            <div class="complaints-type-card__info">
+              <h2 class="complaints-type-card__title">{{ card.titleKey | translate }}</h2>
+              <p class="complaints-type-card__desc">{{ card.descKey | translate }}</p>
+            </div>
+            <span class="complaints-type-card__arrow" aria-hidden="true">
+              <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+            </span>
+          </button>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── My Inquiries ───────────────────────────────────────────────── -->
+  <section class="complaints-list">
+    <div class="complaints-wrap">
+
+      <h2 class="complaints-list__title">{{ 'complaintsPage.myInquiries' | translate }}</h2>
+
+      <!-- Filter Row -->
+      <div class="complaints-list__filters">
+        <app-filter-dropdown
+          [options]="monthOptions"
+          [selectedValue]="selectedMonthKey()"
+          (selectionChange)="onMonthChange($event)">
+        </app-filter-dropdown>
+        <app-filter-dropdown
+          [options]="yearOptions"
+          [selectedValue]="selectedYearKey()"
+          (selectionChange)="onYearChange($event)">
+        </app-filter-dropdown>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="complaints-list__grid">
+        @if (complaintsResource.isLoading()) {
+          <app-skeleton-loader variant="card" [count]="4" />
+        } @else if (complaintsResource.error()) {
+          <div class="complaints-list__state complaints-list__state--error" role="alert">
+            <p>{{ 'errors.loadFailedDetail' | translate }}</p>
+            <button type="button"
+                    class="complaints-list__retry"
+                    (click)="complaintsResource.reload()">
+              {{ 'common.retry' | translate }}
+            </button>
+          </div>
+        } @else if (paginatedView().length === 0) {
+          <div class="complaints-list__state complaints-list__state--empty">
+            @if (hasNoComplaints()) {
+              <p class="complaints-list__state-title">{{ 'complaintsPage.empty.title' | translate }}</p>
+              <p class="complaints-list__state-detail">{{ 'complaintsPage.empty.detail' | translate }}</p>
+            } @else {
+              <p class="complaints-list__state-title">{{ 'complaintsPage.empty.filteredTitle' | translate }}</p>
+              <p class="complaints-list__state-detail">{{ 'complaintsPage.empty.filteredDetail' | translate }}</p>
+            }
+          </div>
+        } @else {
+          @for (item of paginatedView(); track item.incidentId) {
+            <button
+              type="button"
+              class="complaints-item-card"
+              (click)="viewComplaintDetails(item.ticketNumber)"
+              [attr.aria-label]="'complaintsPage.viewDetailsAriaLabel' | translate: { number: item.ticketNumber }">
+              <div class="complaints-item-card__top-row">
+                <!-- Date -->
+                <div class="complaints-item-card__date">
+                  <img src="assets/images/inquiry-calendar.svg" alt="" aria-hidden="true" />
+                  <span>{{ item.dateLabel }}</span>
+                </div>
+                <!-- Status Badge — id=1 (In Progress) → pending, else → approved. Variant resolved in `toCardVM`. -->
+                <span class="complaints-item-card__status" [class]="'complaints-item-card__status--' + item.statusVariant">
+                  <img
+                    class="complaints-item-card__status-icon"
+                    [src]="item.statusIconSrc"
+                    alt="" aria-hidden="true" />
+                  {{ item.statusLabel }}
+                </span>
+              </div>
+
+              <div class="complaints-item-card__body">
+                <h3 class="complaints-item-card__title">{{ item.title }}</h3>
+                <p class="complaints-item-card__desc">{{ item.description }}</p>
+              </div>
+
+              <p class="complaints-item-card__ref">
+                {{ 'complaintsPage.caseRef' | translate: { number: item.ticketNumber } }}
+              </p>
+            </button>
+          }
+        }
+      </div>
+
+      <!-- Pagination -->
+      @if (!complaintsResource.isLoading() && !complaintsResource.error() && hasResults()) {
+        <nav class="complaints-pagination" [attr.aria-label]="'complaintsPage.pagination' | translate">
+          <button
+            type="button"
+            class="complaints-pagination__btn"
+            [disabled]="currentPage() === 1"
+            (click)="prevPage()"
+            [attr.aria-label]="'complaintsPage.paginationPrev' | translate">
+            <img class="complaints-pagination__prev-icon" src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+          </button>
+
+          @for (page of pagesArray(); track page) {
+            <button
+              type="button"
+              class="complaints-pagination__page"
+              [class.complaints-pagination__page--active]="page === currentPage()"
+              (click)="setPage(page)"
+              [attr.aria-current]="page === currentPage() ? 'page' : null">
+              {{ page }}
+            </button>
+          }
+
+          <button
+            type="button"
+            class="complaints-pagination__btn"
+            [disabled]="currentPage() === totalPages()"
+            (click)="nextPage()"
+            [attr.aria-label]="'complaintsPage.paginationNext' | translate">
+            <img class="complaints-pagination__next-icon" src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+          </button>
+        </nav>
+      }
+
+    </div>
+  </section>
+
+</main>

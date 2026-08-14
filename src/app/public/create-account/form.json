@@ -1,0 +1,305 @@
+[
+  {
+    "type": "section-header",
+    "props": {
+      "labelKey": "createAccount.sections.selectAccountType"
+    }
+  },
+  {
+    "key": "accountType",
+    "type": "account-type-toggle",
+    "defaultValue": "personal",
+    "props": {
+      "ariaLabel": "createAccount.accountType.ariaLabel",
+      "options": [
+        { "value": "personal", "labelKey": "createAccount.accountType.personal", "iconSrc": "assets/images/account-type-user.svg" },
+        { "value": "organization", "labelKey": "createAccount.accountType.organization", "iconSrc": "assets/images/account-type-building.svg" }
+      ]
+    }
+  },
+  {
+    "type": "section-header",
+    "props": {
+      "labelKey": "createAccount.sections.applicantDetails"
+    }
+  },
+  {
+    "fieldGroupClassName": "create-account-row create-account-row--two",
+    "fieldGroup": [
+      {
+        "key": "firstName",
+        "type": "custom-input",
+        "className": "create-account-form-field create-account-col",
+        "validators": {
+          "validation": ["fullNamePattern"]
+        },
+        "props": {
+          "translate": true,
+          "required": true,
+          "minLength": 2,
+          "pattern": "^[A-Za-z\\u0600-\\u06FF\\s'.-]+$",
+          "placeholder": "createAccount.fields.firstName",
+          "variant": "login",
+          "autocomplete": "given-name",
+          "prefixIconSrc": "assets/images/create-account-name-icon.png",
+          "containerClass": "input-label",
+          "inputClass": "field-input",
+          "iconClass": "field-icon"
+        }
+      },
+      {
+        "key": "lastName",
+        "type": "custom-input",
+        "className": "create-account-form-field create-account-col",
+        "validators": {
+          "validation": ["fullNamePattern"]
+        },
+        "props": {
+          "translate": true,
+          "required": true,
+          "minLength": 2,
+          "pattern": "^[A-Za-z\\u0600-\\u06FF\\s'.-]+$",
+          "placeholder": "createAccount.fields.lastName",
+          "variant": "login",
+          "autocomplete": "family-name",
+          "prefixIconSrc": "assets/images/create-account-name-icon.png",
+          "containerClass": "input-label",
+          "inputClass": "field-input",
+          "iconClass": "field-icon"
+        }
+      }
+    ]
+  },
+  {
+    "fieldGroupClassName": "create-account-row create-account-row--single",
+    "fieldGroup": [
+      {
+        "key": "civilId",
+        "type": "custom-input",
+        "className": "create-account-form-field create-account-col",
+        "validators": {
+          "validation": ["numbersOnly"]
+        },
+        "props": {
+          "translate": true,
+          "required": true,
+          "placeholder": "createAccount.fields.civilId",
+          "variant": "login",
+          "type": "tel",
+          "inputmode": "numeric",
+          "maxLength": 7,
+          "pattern": "^\\d{7}$",
+          "prefixIconSrc": "assets/images/create-account-id-icon.svg",
+          "containerClass": "input-label",
+          "inputClass": "field-input",
+          "iconClass": "field-icon"
+        }
+      }
+    ]
+  },
+  {
+    "fieldGroupClassName": "create-account-row create-account-row--single",
+    "fieldGroup": [
+      {
+        "key": "emailAddress",
+        "type": "custom-input",
+        "className": "create-account-form-field create-account-col",
+        "validators": {
+          "validation": ["emailPattern"]
+        },
+        "props": {
+          "translate": true,
+          "required": true,
+          "placeholder": "createAccount.fields.emailAddress",
+          "variant": "login",
+          "type": "email",
+          "inputmode": "email",
+          "autocomplete": "email",
+          "prefixIconSrc": "assets/images/create-account-email-icon.png",
+          "containerClass": "input-label",
+          "inputClass": "field-input",
+          "iconClass": "field-icon"
+        }
+      }
+    ]
+  },
+  {
+    "fieldGroupClassName": "create-account-row create-account-row--single",
+    "fieldGroup": [
+      {
+        "key": "governorateId",
+        "type": "custom-dropdown",
+        "className": "create-account-form-field create-account-col",
+        "props": {
+          "translate": true,
+          "required": true,
+          "placeholder": "createAccount.fields.governorate",
+          "optionLabel": "label",
+          "optionValue": "value",
+          "containerClass": "input-label",
+          "inputClass": "field-input",
+          "iconClass": "field-icon"
+        }
+      }
+    ]
+  },
+  {
+    "fieldGroupClassName": "create-account-row create-account-row--single",
+    "fieldGroup": [
+      {
+        "key": "wilaya",
+        "type": "custom-dropdown",
+        "className": "create-account-form-field create-account-col",
+        "props": {
+          "translate": true,
+          "required": true,
+          "placeholder": "createAccount.fields.wilaya",
+          "optionLabel": "label",
+          "optionValue": "value",
+          "containerClass": "input-label",
+          "inputClass": "field-input",
+          "iconClass": "field-icon"
+        }
+      }
+    ]
+  },
+  {
+    "fieldGroupClassName": "create-account-row create-account-row--single",
+    "fieldGroup": [
+      {
+        "key": "address",
+        "type": "custom-input",
+        "className": "create-account-form-field create-account-col",
+        "props": {
+          "translate": true,
+          "placeholder": "createAccount.fields.address",
+          "variant": "login",
+          "autocomplete": "street-address",
+          "prefixIconSrc": "assets/images/create-account-address-icon.svg",
+          "containerClass": "input-label",
+          "inputClass": "field-input",
+          "iconClass": "field-icon"
+        }
+      }
+    ]
+  },
+  {
+    "fieldGroupClassName": "create-account-row create-account-row--single",
+    "fieldGroup": [
+      {
+        "key": "phone",
+        "type": "custom-input",
+        "className": "create-account-form-field create-account-col",
+        "validators": {
+          "validation": ["numbersOnly", "mobileNumberLength"]
+        },
+        "props": {
+          "translate": true,
+          "required": true,
+          "placeholder": "createAccount.fields.phone",
+          "variant": "login",
+          "type": "tel",
+          "inputmode": "tel",
+          "autocomplete": "tel",
+          "maxLength": 8,
+          "pattern": "^\\d{8}$",
+          "prefixIconSrc": "assets/images/create-account-phone-icon.png",
+          "containerClass": "input-label",
+          "inputClass": "field-input",
+          "iconClass": "field-icon"
+        }
+      }
+    ]
+  },
+  {
+    "type": "section-header",
+    "props": {
+      "labelKey": "createAccount.sections.companyDetails"
+    }
+  },
+  {
+    "fieldGroupClassName": "create-account-row create-account-row--two",
+    "fieldGroup": [
+      {
+        "key": "companyName",
+        "type": "custom-input",
+        "className": "create-account-form-field create-account-col",
+        "props": {
+          "translate": true,
+          "required": true,
+          "placeholder": "createAccount.fields.companyName",
+          "variant": "login",
+          "autocomplete": "organization",
+          "prefixIconSrc": "assets/images/create-account-building-icon.svg",
+          "containerClass": "input-label",
+          "inputClass": "field-input",
+          "iconClass": "field-icon"
+        }
+      },
+      {
+        "key": "crNumber",
+        "type": "custom-input",
+        "className": "create-account-form-field create-account-col",
+        "validators": {
+          "validation": ["numbersOnly"]
+        },
+        "props": {
+          "translate": true,
+          "required": true,
+          "placeholder": "createAccount.fields.crNumber",
+          "variant": "login",
+          "type": "tel",
+          "inputmode": "numeric",
+          "maxLength": 7,
+          "pattern": "^\\d{7}$",
+          "prefixIconSrc": "assets/images/create-account-document-icon.svg",
+          "containerClass": "input-label",
+          "inputClass": "field-input",
+          "iconClass": "field-icon"
+        }
+      }
+    ]
+  },
+  {
+    "fieldGroupClassName": "create-account-row create-account-row--two",
+    "fieldGroup": [
+      {
+        "key": "companyPhone",
+        "type": "custom-input",
+        "className": "create-account-form-field create-account-col",
+        "validators": {
+          "validation": ["numbersOnly", "mobileNumberLength"]
+        },
+        "props": {
+          "translate": true,
+          "required": true,
+          "placeholder": "createAccount.fields.companyPhone",
+          "variant": "login",
+          "type": "tel",
+          "inputmode": "tel",
+          "maxLength": 8,
+          "pattern": "^\\d{8}$",
+          "prefixIconSrc": "assets/images/create-account-phone-icon.png",
+          "containerClass": "input-label",
+          "inputClass": "field-input",
+          "iconClass": "field-icon"
+        }
+      },
+      {
+        "key": "companyAddress",
+        "type": "custom-input",
+        "className": "create-account-form-field create-account-col",
+        "props": {
+          "translate": true,
+          "placeholder": "createAccount.fields.companyAddress",
+          "variant": "login",
+          "autocomplete": "street-address",
+          "prefixIconSrc": "assets/images/create-account-address-icon.svg",
+          "containerClass": "input-label",
+          "inputClass": "field-input",
+          "iconClass": "field-icon"
+        }
+      }
+    ]
+  }
+]

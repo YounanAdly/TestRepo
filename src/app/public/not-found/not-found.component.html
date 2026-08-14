@@ -1,0 +1,15 @@
+<main class="not-found page-enter">
+  <div class="nf-card">
+    <div class="nf-code" aria-hidden="true">404</div>
+    <div class="nf-divider" aria-hidden="true"></div>
+    <h1 class="nf-title">{{ 'notFound.title' | translate }}</h1>
+    <p class="nf-subtitle">{{ 'notFound.subtitle' | translate }}</p>
+    <button
+      type="button"
+      class="nf-home-btn"
+      (click)="goHome()"
+      [attr.aria-label]="'notFound.actions.goHome' | translate">
+      {{ 'notFound.actions.goHome' | translate }}
+    </button>
+  </div>
+</main>

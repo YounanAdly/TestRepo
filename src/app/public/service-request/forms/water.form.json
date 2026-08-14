@@ -1,0 +1,406 @@
+{
+  "existingPlotType1Fields": [
+    {
+      "fieldGroupClassName": "request-grid",
+      "fieldGroup": [
+        {
+          "key": "existingPlot",
+          "type": "custom-dropdown",
+          "className": "request-col request-col--span2",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.plot.existingPlot.label",
+            "placeholder": "serviceRequestPage.form.plot.existingPlot.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "plotNumber",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.plot.plotNumber.label",
+            "placeholder": "serviceRequestPage.form.plot.plotNumber.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "serialSketchNumber",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.plot.serialSketchNumber.label",
+            "placeholder": "serviceRequestPage.form.plot.serialSketchNumber.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "plotWilaya",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.applicant.wilaya.label",
+            "placeholder": "serviceRequestPage.form.applicant.wilaya.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "regionVillage",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.plot.regionVillage.label",
+            "placeholder": "serviceRequestPage.form.plot.regionVillage.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "landArea",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.plot.landArea.label",
+            "placeholder": "serviceRequestPage.form.plot.landArea.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "landNumber",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.plot.landNumber.label",
+            "placeholder": "serviceRequestPage.form.plot.landNumber.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "premisesType",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.plot.premisesType.label",
+            "placeholder": "serviceRequestPage.form.plot.premisesType.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "latitude",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.plot.latitude.label",
+            "placeholder": "serviceRequestPage.form.plot.latitude.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "longitude",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.plot.longitude.label",
+            "placeholder": "serviceRequestPage.form.plot.longitude.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "functionalLocation",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.plot.functionalLocation.label",
+            "placeholder": "serviceRequestPage.form.plot.functionalLocation.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        }
+      ]
+    }
+  ],
+  "newPlotFields": [
+    {
+      "fieldGroupClassName": "request-grid",
+      "fieldGroup": [
+        {
+          "key": "newPlotNumber",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.plot.plotNumber.label",
+            "placeholder": "serviceRequestPage.form.plot.plotNumber.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "newSerialSketchNumber",
+          "type": "custom-input",
+          "className": "request-col",
+          "validators": { "validation": ["numbersOnly"] },
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.plot.serialSketchNumber.label",
+            "placeholder": "serviceRequestPage.form.plot.serialSketchNumber.placeholder",
+            "type": "tel",
+            "inputmode": "numeric",
+            "pattern": "^\\d+$",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "newWilaya",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.applicant.wilaya.label",
+            "placeholder": "serviceRequestPage.form.applicant.wilaya.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "newRegionVillage",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.plot.regionVillage.label",
+            "placeholder": "serviceRequestPage.form.plot.regionVillage.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "newLandArea",
+          "type": "custom-input",
+          "className": "request-col",
+          "validators": { "validation": ["numbersOnly"] },
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.plot.landArea.label",
+            "placeholder": "serviceRequestPage.form.plot.landArea.placeholder",
+            "type": "tel",
+            "inputmode": "numeric",
+            "pattern": "^\\d+$",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "newLandNumber",
+          "type": "custom-input",
+          "className": "request-col",
+          "validators": { "validation": ["numbersOnly"] },
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.plot.landNumber.label",
+            "placeholder": "serviceRequestPage.form.plot.landNumber.placeholder",
+            "type": "tel",
+            "inputmode": "numeric",
+            "pattern": "^\\d+$",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "newPremisesType",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.plot.premisesType.label",
+            "placeholder": "serviceRequestPage.form.plot.premisesType.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "newLatitude",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.plot.latitude.label",
+            "placeholder": "serviceRequestPage.form.plot.latitude.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "newLongitude",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.plot.longitude.label",
+            "placeholder": "serviceRequestPage.form.plot.longitude.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "newNoOfFloors",
+          "type": "custom-input",
+          "className": "request-col",
+          "validators": { "validation": ["numbersOnly"] },
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.plot.noOfFloors.label",
+            "placeholder": "serviceRequestPage.form.plot.noOfFloors.placeholder",
+            "type": "tel",
+            "inputmode": "numeric",
+            "pattern": "^\\d+$",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "newTotalBuildingArea",
+          "type": "custom-input",
+          "className": "request-col",
+          "validators": { "validation": ["numbersOnly"] },
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.plot.totalBuildingArea.label",
+            "placeholder": "serviceRequestPage.form.plot.totalBuildingArea.placeholder",
+            "type": "tel",
+            "inputmode": "numeric",
+            "pattern": "^\\d+$",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        }
+      ]
+    }
+  ],
+  "requiredDocuments": [
+    {
+      "fieldGroupClassName": "request-file-grid",
+      "fieldGroup": [
+        {
+          "key": "propertyCertificate",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.documents.propertyCertificate.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        },
+        {
+          "key": "commercialRegistration",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.documents.commercialRegistration.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        },
+        {
+          "key": "areaDrawingSketch",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.documents.areaDrawingSketch.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        },
+        {
+          "key": "municipalityDeliveryRequest",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.documents.municipalityDeliveryRequest.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        },
+        {
+          "key": "constructionCompletionCertificate",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.documents.constructionCompletionCertificate.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        },
+        {
+          "key": "constructionPermit",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.documents.constructionPermit.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        },
+        {
+          "key": "additionalAttachments",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.documents.additionalAttachments.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000,
+            "multiple": true
+          }
+        }
+      ]
+    }
+  ]
+}

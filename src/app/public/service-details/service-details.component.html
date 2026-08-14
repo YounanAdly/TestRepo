@@ -1,0 +1,78 @@
+<main class="service-details page-enter">
+  <section class="services-breadcrumb">
+    <div class="services-wrap">
+      <a [routerLink]="['/', currentLang(), 'home']">{{ 'servicesPage.breadcrumb.home' | translate }}</a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+      <a [routerLink]="['/', currentLang(), 'services']">{{ 'servicesPage.breadcrumb.current' | translate }}</a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+      <span>{{ pageTitle() }}</span>
+    </div>
+  </section>
+
+  <section class="services-hero">
+    <div class="services-wrap">
+      <div class="services-title-row">
+        <a class="services-back-link" [routerLink]="['/', currentLang(), 'services']"
+          [attr.aria-label]="'serviceDetailsPage.actions.backToServices' | translate">
+          <img src="assets/images/back.svg" alt="" aria-hidden="true" />
+        </a>
+        <h1>{{ pageTitle() }}</h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-intro-card" [attr.aria-label]="'serviceDetailsPage.intro.ariaLabel' | translate">
+    <div class="services-wrap">
+      <img class="service-intro-card__bg" src="assets/images/image-placeholder.png" alt="" aria-hidden="true" />
+      <img class="service-intro-card__figma-overlay" src="assets/images/service-intro-figma-overlay.svg" alt="" aria-hidden="true" />
+      <div class="service-intro-card__overlay">
+        @if (cardResource.isLoading()) {
+          <p class="service-intro-card__skeleton"></p>
+        } @else if (introDescription()) {
+          <p>{{ introDescription() }}</p>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="service-details-content">
+    <div class="services-wrap service-details-grid">
+      <article class="service-process" [attr.aria-label]="'serviceDetailsPage.process.title' | translate">
+        <h2>{{ 'serviceDetailsPage.process.title' | translate }}</h2>
+        <p>{{ 'serviceDetailsPage.process.description' | translate }}</p>
+
+        @if (cardResource.isLoading()) {
+          <ol class="service-process__skeleton-list">
+            @for (n of [1,2,3,4]; track n) {
+              <li class="service-process__skeleton-item"></li>
+            }
+          </ol>
+        } @else {
+          <ol>
+            @for (step of processSteps(); track step.order; let i = $index) {
+              <li>
+                <span class="service-process__rail" aria-hidden="true">
+                  <span class="service-process__index-badge">{{ i + 1 }}</span>
+                  @if (i < processSteps().length - 1) {
+                    <span class="service-process__connector"></span>
+                  }
+                </span>
+                <span class="service-process__label">
+                  {{ isAr() ? step.name : step.serviceProcessNameEnglish }}
+                </span>
+              </li>
+            }
+          </ol>
+        }
+      </article>
+
+      <app-service-about-section
+        [embedded]="true"
+        [estimatedTime]="estimatedTimeValue()"
+        [fees]="feesValue()"
+        [eligibility]="eligibilityValue()"
+        [serviceName]="cardData()?.serviceName ?? null"
+        [dynamicDocuments]="documentNames()" />
+    </div>
+  </section>
+</main>

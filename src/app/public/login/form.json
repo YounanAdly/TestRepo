@@ -1,0 +1,29 @@
+[
+  {
+    "fieldGroup": [
+      {
+        "key": "mobileNumber",
+        "type": "custom-input",
+        "wrappers": [],
+        "validators": {
+          "validation": ["numbersOnly", "mobileNumberLength"]
+        },
+        "props": {
+          "translate": true,
+          "required": true,
+          "placeholder": "login.fields.mobileNumber",
+          "variant": "login",
+          "type": "tel",
+          "inputmode": "tel",
+          "autocomplete": "tel",
+          "maxLength": 8,
+          "pattern": "^\\d+$",
+          "prefixIconSrc": "assets/images/create-account-phone-icon.png",
+          "containerClass": "input-label",
+          "inputClass": "field-input",
+          "iconClass": "field-icon"
+        }
+      }
+    ]
+  }
+]

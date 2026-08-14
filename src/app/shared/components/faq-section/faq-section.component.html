@@ -1,0 +1,49 @@
+<section class="faq-section">
+  <div class="faq-wrap">
+    <article class="faq-intro">
+      <div class="faq-title-block">
+        <p class="faq-kicker">{{ 'home.faq.kicker' | translate }}</p>
+        @let title = faqTitle() || ('home.faq.title' | translate);
+        <h2 class="faq-title">{{ title }}</h2>
+      </div>
+
+      <p class="faq-description">{{ 'home.faq.description' | translate }}</p>
+
+      <button
+        type="button"
+        class="faq-more-btn"
+        (click)="onViewMore()"
+        [attr.aria-label]="'home.faq.viewMore' | translate">
+        {{ 'home.faq.viewMore' | translate }}
+      </button>
+    </article>
+
+    <div class="faq-list" [attr.aria-label]="'home.faq.title' | translate" [attr.aria-busy]="faqsResource.isLoading() ? 'true' : null">
+      @if (faqsResource.isLoading()) {
+        <app-skeleton-loader variant="text" [count]="4" />
+      } @else if (faqsResource.error()) {
+        <p class="faq-error" role="alert">{{ 'errors.loadFailedTitle' | translate }}</p>
+      } @else {
+        @for (item of faqs(); track $index; let i = $index) {
+          <article
+            class="faq-item"
+            [class.faq-item-active]="activeFaqIndex() === i">
+            <button
+              type="button"
+              class="faq-question-btn"
+              (click)="onToggle(i)"
+              [attr.aria-expanded]="activeFaqIndex() === i ? 'true' : 'false'">
+              <span class="faq-question">{{ isAr() ? item.questionArabic : item.questionEnglish }}</span>
+              <img class="faq-chevron" src="assets/images/faq-chevron.svg" alt="" aria-hidden="true" />
+            </button>
+            @if (activeFaqIndex() === i) {
+              <p class="faq-answer">
+                {{ isAr() ? item.answerArabic : item.answerEnglish }}
+              </p>
+            }
+          </article>
+        }
+      }
+    </div>
+  </div>
+</section>

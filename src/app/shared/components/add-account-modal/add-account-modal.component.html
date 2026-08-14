@@ -1,0 +1,52 @@
+@if (isOpen()) {
+  <div class="add-account-overlay" (click)="onOverlayClick()">
+    <div
+      class="add-account-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="add-account-title"
+      cdkTrapFocus
+      cdkTrapFocusAutoCapture
+      (click)="$event.stopPropagation()">
+
+      <button
+        type="button"
+        class="add-account-close"
+        (click)="onClose()"
+        [attr.aria-label]="'myProfile.addAccountModal.closeAria' | translate">
+        <img src="assets/images/close-icon.svg" alt="" aria-hidden="true" />
+      </button>
+
+      <h2 id="add-account-title" class="add-account-title">
+        {{ 'myProfile.addAccountModal.title' | translate }}
+      </h2>
+
+      <form class="add-account-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="add-account-fields">
+          <formly-form
+            [form]="form"
+            [fields]="fields"
+            [model]="model"
+            [options]="formlyOptions">
+          </formly-form>
+          @if (isOrganizationSelected()) {
+            <formly-form
+              [form]="companyForm"
+              [fields]="companyFields"
+              [model]="model"
+              [options]="formlyOptions">
+            </formly-form>
+          }
+        </div>
+
+        <app-button
+          type="submit"
+          variant="login-primary"
+          [fullWidth]="true"
+          [disabled]="submitting() || !isValid()">
+          {{ (submitting() ? 'common.submitting' : 'myProfile.addAccountModal.submit') | translate }}
+        </app-button>
+      </form>
+    </div>
+  </div>
+}

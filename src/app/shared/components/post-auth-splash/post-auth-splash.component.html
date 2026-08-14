@@ -1,0 +1,14 @@
+<div class="splash-overlay" role="status" aria-live="polite">
+  <div class="splash-inner">
+    <span class="splash-logo-wrap">
+      <img class="splash-logo" [src]="logoSrc()" alt="Marafiq" />
+    </span>
+    <p class="splash-greeting">{{ greetingKey() | translate }}</p>
+    <p class="splash-message">{{ messageKey() | translate }}</p>
+    <div class="splash-dots" aria-hidden="true">
+      <span class="splash-dot"></span>
+      <span class="splash-dot"></span>
+      <span class="splash-dot"></span>
+    </div>
+  </div>
+</div>

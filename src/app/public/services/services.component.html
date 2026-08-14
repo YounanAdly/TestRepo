@@ -1,0 +1,60 @@
+<main class="page-enter">
+  <section class="services-breadcrumb">
+    <div class="services-wrap">
+      <a [routerLink]="['/', currentLang, 'home']">{{ 'servicesPage.breadcrumb.home' | translate }}</a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+      <span>{{ 'servicesPage.breadcrumb.current' | translate }}</span>
+    </div>
+  </section>
+
+  <section class="services-hero">
+    <div class="services-wrap">
+      <div class="services-title-row">
+        <a class="services-back-link" [routerLink]="['/', currentLang, 'home']"
+          [attr.aria-label]="'servicesPage.breadcrumb.home' | translate">
+          <img src="assets/images/back.svg" alt="" aria-hidden="true" />
+        </a>
+        <h1>{{ 'servicesPage.title' | translate }}</h1>
+      </div>
+      <h2>{{ 'servicesPage.subtitle' | translate }}</h2>
+    </div>
+  </section>
+
+  <section class="services-content">
+    <div class="services-wrap">
+      <div class="services-search" role="search">
+        <span class="services-search__icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="7.5" cy="7.5" r="6.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M12 12L16 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <input
+          class="services-search__input"
+          type="search"
+          [value]="searchQuery()"
+          (input)="searchQuery.set($any($event.target).value)"
+          [placeholder]="'servicesPage.search.placeholder' | translate"
+          [attr.aria-label]="'servicesPage.search.label' | translate" />
+      </div>
+
+      <div class="services-grid" [attr.aria-label]="'servicesPage.subtitle' | translate">
+        @for (card of filteredCards(); track card.serviceId) {
+          <app-service-offering-card
+            [title]="card.title"
+            [description]="card.description"
+            [imageSrc]="card.imageSrc"
+            [imageAlt]="card.imageAlt"
+            (apply)="onServiceApply(card.serviceId)" />
+        }
+      </div>
+
+      @if (filteredCards().length === 0) {
+        <p class="services-empty">
+          {{ 'servicesPage.search.noResults' | translate }}
+        </p>
+      }
+    </div>
+  </section>
+
+</main>

@@ -1,0 +1,126 @@
+@keyframes loginPromptOverlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes loginPromptModalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.login-prompt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: var(--color-modal-scrim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: loginPromptOverlayIn 0.22s ease both;
+}
+
+.login-prompt-modal {
+  position: relative;
+  width: min(440px, 92vw);
+  background: var(--color-modal-bg);
+  border-radius: 16px;
+  border: 1px solid var(--color-form-border);
+  padding: 32px 28px 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  animation: loginPromptModalIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) 0.04s both;
+}
+
+.login-prompt-close {
+  position: absolute;
+  top: 16px;
+  inset-inline-end: 16px;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s ease;
+}
+
+.login-prompt-close:hover {
+  opacity: 0.65;
+}
+
+.login-prompt-close:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.login-prompt-close img {
+  width: 16px;
+  height: 16px;
+  display: block;
+  object-fit: contain;
+}
+
+.login-prompt-title {
+  margin: 0;
+  font-family: 'AvantGarde Md BT', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--color-teal);
+}
+
+.login-prompt-message {
+  margin: 0;
+  font-family: 'AvantGarde Bk BT', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-body-text);
+}
+
+.login-prompt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-prompt-overlay,
+  .login-prompt-modal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-prompt-modal {
+    padding: 28px 20px 20px;
+    gap: 14px;
+  }
+
+  .login-prompt-actions {
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+
+  .login-prompt-actions app-button {
+    width: 100%;
+  }
+}

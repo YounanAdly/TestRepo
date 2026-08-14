@@ -1,0 +1,103 @@
+{
+  "projectDetails": [
+    {
+      "fieldGroupClassName": "request-grid",
+      "fieldGroup": [
+        {
+          "key": "projectName",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.noc.project.projectName.label",
+            "placeholder": "serviceRequestPage.form.noc.project.projectName.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "projectType",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.noc.project.projectType.label",
+            "placeholder": "serviceRequestPage.form.noc.project.projectType.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "projectLocation",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.noc.project.projectLocation.label",
+            "placeholder": "serviceRequestPage.form.noc.project.projectLocation.placeholder",
+            "optionLabel": "label",
+            "optionValue": "value",
+            "options": []
+          }
+        },
+        {
+          "key": "siteCondition",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.noc.project.siteCondition.label",
+            "placeholder": "serviceRequestPage.form.noc.project.siteCondition.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "functionalLocation",
+          "type": "custom-dropdown",
+          "className": "request-col request-col--span2",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.noc.project.functionalLocation.label",
+            "placeholder": "serviceRequestPage.form.noc.project.functionalLocation.placeholder",
+            "options": []
+          }
+        }
+      ]
+    }
+  ],
+  "nocDocuments": [
+    {
+      "fieldGroupClassName": "request-file-grid",
+      "fieldGroup": [
+        {
+          "key": "nocLetterToMarafiq",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.noc.documents.nocLetterToMarafiq.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        },
+        {
+          "key": "drawingKrooki",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.noc.documents.drawingKrooki.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        }
+      ]
+    }
+  ]
+}

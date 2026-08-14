@@ -1,0 +1,109 @@
+<main class="inquiry-page page-enter">
+	<section class="inquiry-breadcrumb">
+		<div class="inquiry-wrap">
+			<a [routerLink]="['/', currentLang, 'home']">{{ 'contactUsPage.breadcrumb.home' | translate }}</a>
+			<img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+			<span>{{ 'contactUsPage.breadcrumb.current' | translate }}</span>
+		</div>
+	</section>
+
+	<section class="inquiry-hero">
+		<div class="inquiry-wrap">
+			<div class="inquiry-title-row">
+				<button
+					class="inquiry-back"
+					type="button"
+					(click)="onBack()"
+					[attr.aria-label]="'contactUsPage.actions.backToHome' | translate">
+					<img src="assets/images/back.svg" alt="" aria-hidden="true" />
+				</button>
+
+				<div>
+					<h1>{{ 'contactUsPage.hero.title' | translate }}</h1>
+					<h2>{{ 'contactUsPage.hero.subtitle' | translate }}</h2>
+				</div>
+			</div>
+
+			<p class="inquiry-description">{{ 'contactUsPage.hero.description' | translate }}</p>
+		</div>
+	</section>
+
+	<section class="inquiry-composer">
+		<div class="inquiry-wrap">
+			<div class="inquiry-composer-shell">
+				<div class="inquiry-composer-card">
+					<textarea
+						class="inquiry-textarea"
+						[attr.placeholder]="'contactUsPage.composer.placeholder' | translate"
+						[attr.aria-label]="'contactUsPage.composer.placeholder' | translate"></textarea>
+
+					<div class="inquiry-attach-row">
+						<label class="inquiry-attach-label" for="inquiryAttachInput">
+							<img src="assets/images/inquiry-attach.svg" alt="" aria-hidden="true" />
+							<span>{{ attachedFileLabelKey ? (attachedFileLabelKey | translate) : attachedFileName }}</span>
+						</label>
+						<input id="inquiryAttachInput" type="file" (change)="onFileSelected($event)" />
+					</div>
+				</div>
+
+				<div class="inquiry-submit-wrap">
+					<button class="inquiry-submit-btn" type="button">
+						<span class="inquiry-submit-icon" aria-hidden="true"></span>
+						<span>{{ 'contactUsPage.actions.submitInquiry' | translate }}</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="inquiry-listing">
+		<div class="inquiry-wrap">
+			<h3 class="inquiry-list-title">{{ 'contactUsPage.inquiries.title' | translate }}</h3>
+
+			<div class="inquiry-filters" role="group" [attr.aria-label]="'contactUsPage.filters.ariaLabel' | translate">
+				<button type="button" class="inquiry-filter inquiry-filter--month" [attr.aria-label]="'contactUsPage.filters.monthLabel' | translate">
+					<span>{{ selectedMonthKey | translate }}</span>
+					<span class="inquiry-filter__chevron" aria-hidden="true"></span>
+				</button>
+
+				<button type="button" class="inquiry-filter inquiry-filter--year" [attr.aria-label]="'contactUsPage.filters.yearLabel' | translate">
+					<span>{{ selectedYearKey | translate }}</span>
+					<span class="inquiry-filter__chevron" aria-hidden="true"></span>
+				</button>
+			</div>
+
+			<div class="inquiry-grid">
+				<article class="inquiry-card" *ngFor="let item of inquiries; trackBy: trackByInquiryId">
+					<header class="inquiry-card__meta">
+						<div class="inquiry-card__date-wrap">
+							<img src="assets/images/inquiry-calendar.svg" alt="" aria-hidden="true" />
+							<span>{{ item.dateKey | translate }}</span>
+						</div>
+
+						<span class="inquiry-card__status" [class.is-pending]="item.status === 'pending'" [class.is-approved]="item.status === 'approved'">
+							<span class="inquiry-card__status-dot" aria-hidden="true"></span>
+							<span>{{ ('contactUsPage.inquiries.status.' + item.status) | translate }}</span>
+						</span>
+					</header>
+
+					<h4>{{ item.titleKey | translate }}</h4>
+					<p>{{ item.descriptionKey | translate }}</p>
+				</article>
+			</div>
+
+			<nav class="inquiry-pagination" [attr.aria-label]="'contactUsPage.pagination.ariaLabel' | translate">
+				<button type="button" class="inquiry-pagination__arrow" [attr.aria-label]="'contactUsPage.pagination.prev' | translate">
+					<span class="inquiry-pagination__left"></span>
+				</button>
+
+				<button type="button" class="inquiry-pagination__item is-active" aria-current="page">1</button>
+				<button type="button" class="inquiry-pagination__item">2</button>
+				<button type="button" class="inquiry-pagination__item">3</button>
+
+				<button type="button" class="inquiry-pagination__arrow" [attr.aria-label]="'contactUsPage.pagination.next' | translate">
+					<span class="inquiry-pagination__right"></span>
+				</button>
+			</nav>
+		</div>
+	</section>
+</main>

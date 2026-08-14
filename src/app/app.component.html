@@ -1,0 +1,23 @@
+
+@if (languageService.isReady()) {
+<a
+    href="#main-content"
+    (click)="skipToContent($event)"
+    class="skip-to-content">
+    Skip to content
+</a>
+<ng-container>
+    @if (!hideHeader) {
+    <app-header></app-header>
+    }
+    <main id="main-content" tabindex="-1" style="position: relative;">
+        <router-outlet></router-outlet>
+    </main>
+    @if (!hideFooter) {
+    <app-footer></app-footer>
+    }
+    <app-global-loader />
+    <app-login-prompt-dialog />
+    <p-toast position="top-right" />
+</ng-container>
+}

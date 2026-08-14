@@ -1,0 +1,166 @@
+<header class="app-header">
+  <div class="header-wrap">
+    <a class="header-logo-link" [routerLink]="isLinkActive('home') ? null : getLocalizedRoute('home')" [style.cursor]="isLinkActive('home') ? 'default' : 'pointer'">
+      <img
+        class="header-logo"
+        [src]="logoSrc()"
+        [attr.alt]="'home.hero.logoAlt' | translate" />
+    </a>
+
+    <div class="header-nav-shell">
+      <nav class="header-nav" [attr.aria-label]="'header.aria.nav' | translate">
+        @for (link of resolvedNavLinks; track link) {
+          <a
+            [routerLink]="isLinkActive(link.route) ? null : getLocalizedRoute(link.route)"
+            [class.active]="isLinkActive(link.route)"
+            [class.icon-only]="link.iconOnly">
+            @if (link.iconOnly) {
+              <img src="assets/images/home_icon.svg" alt="" aria-hidden="true" />
+            }
+            @if (!link.iconOnly) {
+              <span>{{ link.labelKey | translate }}</span>
+            }
+          </a>
+        }
+      </nav>
+
+      <div class="header-actions" [attr.aria-label]="'header.aria.actions' | translate">
+        <button type="button" class="icon-btn" [attr.aria-label]="'header.actions.phone' | translate">
+          <img src="assets/images/phone_icon.svg" alt="" aria-hidden="true" />
+        </button>
+
+        @if (isAuthenticated) {
+          <span class="divider" aria-hidden="true"></span>
+          <button type="button" class="icon-btn icon-btn--notify" (click)="goToNotifications()" [attr.aria-label]="'header.actions.notifications' | translate">
+            <img src="assets/images/notification_icon.svg" alt="" aria-hidden="true" />
+            <span class="notify-badge" aria-hidden="true">2</span>
+          </button>
+        }
+
+        <span class="divider" aria-hidden="true"></span>
+
+        <button type="button" class="lang-chip" (click)="toggleLanguage()" [attr.aria-label]="'header.actions.language' | translate">
+          <img src="assets/images/lang_icon.svg" alt="" aria-hidden="true" />
+          <span>{{ languageLabel }}</span>
+        </button>
+
+        <span class="divider" aria-hidden="true"></span>
+
+        @if (!isAuthenticated) {
+          <a class="login-link" [routerLink]="getLocalizedRoute('login')">
+            <span>{{ 'header.actions.login' | translate }}</span>
+          </a>
+        }
+
+        @if (isAuthenticated) {
+          <app-profile-dropdown
+            [accounts]="profileAccounts()"
+            [activeAccountId]="activeAccount()"
+            (accountSelected)="onAccountSelected($event)"
+            (addAccount)="onOpenAddAccount()"
+            (profileSelected)="goToProfile()"
+            (loggedOut)="logout()" />
+        }
+    </div>
+  </div>
+
+  <!-- ── Mobile hamburger (visible ≤ 900px) ── -->
+  <button
+    type="button"
+    class="hamburger"
+    (click)="openSidebar()"
+    [attr.aria-label]="'header.actions.openMenu' | translate"
+    aria-expanded="false">
+    <span class="hamburger__bar"></span>
+    <span class="hamburger__bar"></span>
+    <span class="hamburger__bar"></span>
+  </button>
+</div>
+</header>
+
+<!-- ── Mobile Sidebar ── -->
+<div
+  class="sidebar-overlay"
+  [class.is-open]="isSidebarOpen"
+  (click)="closeSidebar()"
+  aria-hidden="true">
+</div>
+
+<aside
+  class="sidebar"
+  [class.is-open]="isSidebarOpen"
+  role="dialog"
+  [attr.aria-label]="'header.aria.nav' | translate">
+
+  <!-- Sidebar header: logo + close -->
+  <div class="sidebar-head">
+    <img class="sidebar-logo" [src]="logoSrc()" [attr.alt]="'home.hero.logoAlt' | translate" />
+    <button
+      type="button"
+      class="sidebar-close"
+      (click)="closeSidebar()"
+      [attr.aria-label]="'header.actions.closeMenu' | translate">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Nav links -->
+  <nav class="sidebar-nav">
+    @for (link of resolvedNavLinks; track link) {
+      <a
+        class="sidebar-nav__link"
+        [routerLink]="isLinkActive(link.route) ? null : getLocalizedRoute(link.route)"
+        [class.active]="isLinkActive(link.route)"
+        (click)="closeSidebar()">
+        @if (link.iconOnly) {
+          <img src="assets/images/home_icon.svg" width="20" height="20" alt="" aria-hidden="true" />
+        }
+        @if (!link.iconOnly) {
+          <span>{{ link.labelKey | translate }}</span>
+        }
+      </a>
+    }
+  </nav>
+
+  <!-- Sidebar footer actions -->
+  <div class="sidebar-footer">
+    <button type="button" class="sidebar-action" (click)="toggleLanguage()">
+      <img src="assets/images/lang_icon.svg" width="19" height="19" alt="" aria-hidden="true" />
+      <span>{{ languageLabel }}</span>
+    </button>
+
+    @if (isAuthenticated) {
+      <button type="button" class="sidebar-action" [class.active]="isNotificationsActive" (click)="goToNotifications(); closeSidebar()">
+        <img src="assets/images/notification_icon.svg" width="18" height="18" alt="" aria-hidden="true" />
+        <span>{{ 'header.actions.notifications' | translate }}</span>
+      </button>
+    }
+
+    @if (!isAuthenticated) {
+      <a class="sidebar-login-btn" [routerLink]="getLocalizedRoute('login')" (click)="closeSidebar()">
+        {{ 'header.actions.login' | translate }}
+      </a>
+    }
+
+    @if (isAuthenticated) {
+      <button type="button" class="sidebar-logout-btn" (click)="logout()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        {{ 'header.actions.logout' | translate }}
+      </button>
+    }
+  </div>
+</aside>
+
+<app-add-account-modal
+  [isOpen]="isAddAccountOpen()"
+  [submitting]="isAddAccountSubmitting()"
+  (closed)="onAddAccountClosed()"
+  (created)="onAddAccountCreated($event)">
+</app-add-account-modal>

@@ -1,0 +1,19 @@
+<svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="7.35" result="blur"/>
+    </filter>
+  </defs>
+
+  <!-- Soft blurred glow behind the button (replaces Figma foreignObject backdrop-filter) -->
+  <ellipse cx="33.63" cy="33.26" rx="20.31" ry="20.56" fill="#E8A712" filter="url(#glow)"/>
+
+  <!-- Partial decorative arc (Figma "Spread" element) -->
+  <path d="M16.9181 49.0854C16.6876 49.3159 16.3133 49.3164 16.0887 49.0801C12.5299 45.3367 10.3095 40.5131 9.7857 35.3635C9.24191 30.0179 10.5595 24.6484 13.516 20.1617C16.4726 15.675 20.8868 12.346 26.0135 10.7369C30.9522 9.18685 36.2604 9.32434 41.1041 11.1178C41.4098 11.231 41.5571 11.5751 41.4362 11.8779C41.3153 12.1806 40.9721 12.3272 40.6663 12.2144C36.0751 10.5215 31.0463 10.3945 26.367 11.8632C21.4997 13.3909 17.3087 16.5515 14.5017 20.8112C11.6948 25.0709 10.4438 30.1688 10.9601 35.244C11.4564 40.1234 13.5569 44.6941 16.9237 48.2451C17.148 48.4817 17.1486 48.8549 16.9181 49.0854Z" fill="#E8A712"/>
+
+  <!-- Main orange circle body -->
+  <ellipse cx="33.63" cy="33.26" rx="20.31" ry="20.56" fill="#E8A712"/>
+
+  <!-- White right-pointing chevron arrow -->
+  <path d="M30.8362 26.1477L36.4211 32.748L30.8362 39.3484" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>

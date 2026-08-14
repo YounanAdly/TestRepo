@@ -1,0 +1,184 @@
+:host {
+  display: inline-block;
+  position: relative;
+}
+
+.filter-dropdown__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+  padding: 6px 14px;
+  border: 1.5px solid var(--color-orange);
+  border-radius: var(--radius-pill);
+  background: var(--color-filter-dropdown-bg);
+  cursor: pointer;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast);
+
+  &:hover {
+    background: var(--color-orange-soft-shadow);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 2px;
+  }
+}
+
+.filter-dropdown__label {
+  flex: 1;
+  color: var(--color-orange);
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  white-space: nowrap;
+  text-align: start;
+}
+
+.filter-dropdown__chevron {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--color-orange);
+  border-bottom: 2px solid var(--color-orange);
+  transform: rotate(45deg);
+  margin-bottom: 4px;
+  flex-shrink: 0;
+  transition: transform var(--transition-base), margin-bottom var(--transition-base);
+}
+
+.filter-dropdown.is-open .filter-dropdown__chevron {
+  transform: rotate(225deg);
+  margin-bottom: -4px;
+}
+
+.filter-dropdown__panel {
+  position: absolute;
+  inset-block-start: calc(100% + 6px);
+  inset-inline-start: 0;
+  min-width: 100%;
+  margin: 0;
+  padding: 6px 0;
+  list-style: none;
+  background: var(--color-modal-bg);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 6px 20px var(--color-dropdown-shadow);
+  z-index: 200;
+  animation: fd-panel-in 180ms var(--transition-fast) both;
+}
+
+@keyframes fd-panel-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.filter-dropdown__option {
+  padding: 9px 18px;
+  color: var(--color-body-text);
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-size: 15px;
+  line-height: 22px;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  white-space: nowrap;
+
+  &:hover {
+    background: var(--color-section-soft-bg);
+    color: var(--color-teal);
+  }
+
+  &.is-selected {
+    color: var(--color-orange);
+    font-family: 'AvantGarde Md BT', sans-serif;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filter-dropdown__chevron,
+  .filter-dropdown__trigger {
+    transition: none;
+  }
+
+  .filter-dropdown__panel {
+    animation: none;
+  }
+}
+
+/* =============================================================
+ *  Variant: `light` — neutral white pill (used on View Bills)
+ * ============================================================= */
+:host([data-variant='light']) {
+  display: block;
+
+  .filter-dropdown {
+    width: 100%;
+  }
+
+  .filter-dropdown__trigger {
+    width: 100%;
+    min-width: 0;
+    justify-content: space-between;
+    background: var(--color-modal-bg);
+    border: 1px solid var(--color-input-border);
+    border-radius: var(--radius-pill);
+    padding: 10px 20px;
+    min-height: 44px;
+
+    &:hover {
+      background: var(--color-modal-bg);
+      box-shadow: 0 2px 10px var(--color-dropdown-shadow);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-orange);
+      outline-offset: 2px;
+    }
+  }
+
+  .filter-dropdown__label {
+    color: var(--color-body-text);
+    font-family: 'AvantGarde Bk BT', sans-serif;
+    font-size: 15px;
+    line-height: 22px;
+
+    &.is-placeholder {
+      color: var(--color-placeholder-dimmed);
+    }
+  }
+
+  .filter-dropdown__chevron {
+    border-color: var(--color-orange);
+    width: 8px;
+    height: 8px;
+    margin-bottom: 3px;
+  }
+
+  .filter-dropdown.is-open .filter-dropdown__chevron {
+    margin-bottom: -3px;
+  }
+}
+
+/* =============================================================
+ *  Disabled state (any variant)
+ * ============================================================= */
+:host([data-disabled='true']) {
+  .filter-dropdown__trigger {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background: var(--color-summary-surface);
+    box-shadow: none;
+  }
+
+  .filter-dropdown__trigger:hover {
+    background: var(--color-summary-surface);
+    box-shadow: none;
+  }
+
+  .filter-dropdown__label,
+  .filter-dropdown__chevron {
+    color: var(--color-placeholder-dimmed);
+    border-color: var(--color-placeholder-dimmed);
+  }
+}
+

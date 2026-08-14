@@ -1,0 +1,57 @@
+<section
+  class="service-about"
+  [class.service-about--embedded]="embedded()"
+  [class]="rootClass()"
+  [attr.aria-label]="'home.serviceAbout.title' | translate">
+  <div class="service-about__wrap" [class.service-about__wrap--embedded]="embedded()">
+    <header class="service-about__header">
+      <div class="service-about__title-block">
+        <h2 class="service-about__title">{{ 'home.serviceAbout.title' | translate }}</h2>
+        <div class="service-about__title-line" aria-hidden="true"></div>
+      </div>
+
+      <button
+        type="button"
+        class="service-about__apply-btn"
+        (click)="onApplyNow()"
+        [attr.aria-label]="'home.serviceAbout.applyNow' | translate">
+        {{ 'home.serviceAbout.applyNow' | translate }}
+      </button>
+    </header>
+
+    <div class="service-about__meta-row">
+      @for (chip of metaChips(); track chip.labelKey) {
+        <article class="service-about__meta-chip">
+          <span class="service-about__meta-icon" aria-hidden="true">
+            <img [src]="chip.iconSrc" alt="" aria-hidden="true" />
+          </span>
+          <p class="service-about__meta-text">
+            <span class="service-about__meta-label">{{ chip.labelKey | translate }}</span>
+            @if (chip.directValue != null) {
+              <span>{{ chip.directValue }}</span>
+            } @else {
+              <span>{{ chip.valueKey | translate }}</span>
+            }
+          </p>
+        </article>
+      }
+    </div>
+
+    <div class="service-about__documents">
+      <h3 class="service-about__documents-title">{{ 'home.serviceAbout.documents.title' | translate }}</h3>
+
+      <ul class="service-about__documents-list">
+        @if (dynamicDocuments()?.length) {
+          @for (doc of dynamicDocuments()!; track doc) {
+            <li class="service-about__document-item">
+              <span class="service-about__document-icon" aria-hidden="true">
+                <img src="assets/images/service-icon-document.svg" alt="" aria-hidden="true" />
+              </span>
+              <span>{{ doc }}</span>
+            </li>
+          }
+        }
+      </ul>
+    </div>
+  </div>
+</section>

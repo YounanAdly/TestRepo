@@ -1,0 +1,56 @@
+name: Auto Update PR Title with Copilot/AI
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  update-title:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate Title using GitHub Models API
+        id: generate-title
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # 1. جلب الـ diff وتلخيصه حتى لا يتجاوز الحجم المسموح
+          DIFF=$(git diff origin/${{ github.base_ref }}...HEAD | head -n 200)
+
+          # 2. تجهيز الـ Prompt للـ Copilot Model
+          PROMPT="You are an automated assistant. Analyze the following git diff and generate a clear, concise Pull Request title (under 10 words, using conventional commits format like feat:, fix:, refactor:):\n\n$DIFF"
+
+          # 3. إرسال الطلب لـ GitHub Models Endpoint (استخدام gpt-4o-mini أو gpt-4o)
+          PAYLOAD=$(jq -n --arg prompt "$PROMPT" '{
+            model: "gpt-4o-mini",
+            messages: [{role: "user", content: $prompt}],
+            temperature: 0.2
+          }')
+
+          RESPONSE=$(curl -s -X POST "https://models.inference.ai.azure.com/chat/completions" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -d "$PAYLOAD")
+
+          # 4. استخراج العنوان الناتج
+          NEW_TITLE=$(echo "$RESPONSE" | jq -r '.choices[0].message.content' | tr -d '\n"' | xargs)
+
+          echo "Generated Title: $NEW_TITLE"
+          echo "NEW_TITLE=$NEW_TITLE" >> $GITHUB_ENV
+
+      - name: Update PR Title
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          if [ -n "$NEW_TITLE" ] && [ "$NEW_TITLE" != "null" ]; then
+            gh pr edit "$PR_URL" --title "$NEW_TITLE"
+          fi

@@ -1,0 +1,84 @@
+<div class="create-account-page page-enter">
+  <div class="bg-wrap" aria-hidden="true">
+    <div class="bg-flip">
+      <img class="bg-img" [ngSrc]="bgImage" fill priority alt="">
+      <div class="bg-overlay"></div>
+    </div>
+  </div>
+
+  <header class="nav-header">
+    <a href="#" class="nav-logo-link" [attr.aria-label]="'createAccount.seo.title' | translate">
+      <img [src]="logoNav" class="nav-logo-img" [attr.alt]="'home.hero.logoAlt' | translate">
+    </a>
+  </header>
+
+  <main id="main-content" class="main-content">
+    <div class="hero">
+      <div class="hero-body">
+        <h1 class="hero-title">{{ 'createAccount.hero.title' | translate }}</h1>
+        <p class="hero-sub">{{ 'createAccount.hero.description' | translate }}</p>
+      </div>
+      <div class="dots" aria-hidden="true">
+        <span class="dot dot-lg"></span>
+        <span class="dot dot-md"></span>
+        <span class="dot dot-sm"></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-top">
+          <img class="card-logo" [src]="logoCard" [attr.alt]="'home.hero.logoAlt' | translate">
+        </div>
+
+        <div class="card-form">
+          <h2 class="form-h">{{ 'createAccount.form.title' | translate }}</h2>
+
+          <form class="form-fields" [formGroup]="createAccountForm" (ngSubmit)="onSubmit()">
+            <div class="input-list">
+              <formly-form [form]="createAccountForm" [fields]="baseFields" [model]="createAccountModel" [options]="formlyOptions">
+              </formly-form>
+              @if (isOrganization()) {
+                <formly-form [form]="companyForm" [fields]="companyFields" [model]="createAccountModel" [options]="formlyOptions">
+                </formly-form>
+              }
+            </div>
+
+            <div class="already-account-wrap">
+              <button type="button" class="already-account" (click)="navigateToLogin()">
+                {{ 'createAccount.form.alreadyHaveAccount' | translate }}
+              </button>
+            </div>
+
+            <app-button
+              type="submit"
+              variant="login-primary"
+              [fullWidth]="true"
+              [disabled]="submittingForm() || !isFormValid()">
+              {{ (submittingForm() ? 'common.submitting' : 'createAccount.form.submit') | translate }}
+            </app-button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <app-otp-modal
+    [isOpen]="isOtpModalOpen()"
+    [otpLength]="otpLength"
+    [maskedMobileNumber]="displayMaskedPhone()"
+    [expiresAtUtc]="expiresAtUtc()"
+    [submitting]="submittingOtp()"
+    [errorKey]="otpErrorKey()"
+    (closed)="closeOtpModal()"
+    (verified)="onOtpVerified($event)"
+    (resend)="onResend()">
+  </app-otp-modal>
+
+  <app-success-alert-modal
+    [isOpen]="isSuccessModalOpen()"
+    (closed)="closeSuccessModal()"
+    (done)="onSuccessDone()">
+  </app-success-alert-modal>
+
+</div>

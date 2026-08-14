@@ -1,0 +1,206 @@
+<main id="main-content" class="profile-page page-enter">
+  <section class="profile-breadcrumb" aria-label="{{ 'myProfile.breadcrumb.current' | translate }}">
+    <div class="profile-wrap">
+      <a class="profile-breadcrumb__link" [routerLink]="localizedHomeRoute()">
+        {{ 'myProfile.breadcrumb.home' | translate }}
+      </a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" class="profile-breadcrumb__sep" />
+      <span class="profile-breadcrumb__current">
+        {{ 'myProfile.breadcrumb.current' | translate }}
+      </span>
+    </div>
+  </section>
+
+  <section class="profile-hero" aria-labelledby="profile-hero-title">
+    <div class="profile-wrap profile-hero__wrap">
+      <div class="profile-hero__text">
+        <h1 id="profile-hero-title" class="profile-hero__title">
+          {{ 'myProfile.hero.title' | translate }}
+        </h1>
+        <p class="profile-hero__subtitle">
+          {{ 'myProfile.hero.subtitle' | translate }}
+        </p>
+      </div>
+      <button
+        type="button"
+        class="add-account-btn"
+        (click)="onAddAccount()"
+        [attr.aria-label]="'myProfile.addAccount' | translate">
+        <img src="assets/images/profile-add-account.svg" alt="" aria-hidden="true" class="add-account-btn__icon" />
+        <span>{{ 'myProfile.addAccount' | translate }}</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="profile-content">
+    <div class="profile-wrap">
+
+      <div class="profile-top-card">
+        <article class="profile-card" aria-labelledby="profile-card-name">
+          <div
+            class="profile-card__avatar profile-card__avatar--initials"
+            [attr.aria-label]="'myProfile.hero.avatarAlt' | translate">
+            <span aria-hidden="true">{{ profile().initials }}</span>
+          </div>
+          <h2 id="profile-card-name" class="profile-card__name">{{ profile().fullName }}</h2>
+          <span class="profile-card__chip">{{ profile().accountTypeKey | translate }}</span>
+          <div class="profile-card__number">
+            <span class="profile-card__number-label">{{ 'myProfile.accountNumber' | translate }}</span>
+            <span class="profile-card__number-value" [title]="profile().accountNumber">{{ profile().accountNumber }}</span>
+          </div>
+          <button type="button" class="edit-profile-btn" (click)="onEditProfile()">
+            <img src="assets/images/profile-edit.svg" alt="" aria-hidden="true" class="edit-profile-btn__icon" />
+            <span>{{ 'myProfile.editProfile' | translate }}</span>
+          </button>
+        </article>
+
+        <section class="profile-overview" aria-labelledby="profile-overview-title">
+          <header class="profile-overview__header">
+            <h2 id="profile-overview-title" class="profile-overview__title">
+              {{ 'myProfile.overview.title' | translate }}
+            </h2>
+            <p class="profile-overview__description">
+              {{ 'myProfile.overview.description' | translate }}
+            </p>
+          </header>
+          <dl class="profile-overview__list">
+            @for (row of overviewRows(); track row.labelKey) {
+              <div class="profile-overview__row">
+                <dt class="profile-overview__label">{{ row.labelKey | translate }}</dt>
+                <dd class="profile-overview__value">{{ row.value }}</dd>
+              </div>
+            }
+          </dl>
+        </section>
+
+        <section class="profile-accounts" aria-labelledby="profile-accounts-title">
+          <header class="profile-accounts__header">
+            <h2 id="profile-accounts-title" class="profile-accounts__title">
+              {{ 'myProfile.myAccountTitle' | translate }}
+            </h2>
+            <p class="profile-accounts__subtitle">
+              {{ 'myProfile.selectYourAccount' | translate }}
+            </p>
+          </header>
+          <div class="profile-accounts__scroll" role="radiogroup" aria-labelledby="profile-accounts-title" tabindex="0">
+            @for (account of accounts(); track account.id) {
+              @let isSelected = account.id === selectedAccountId();
+              <button
+                type="button"
+                role="radio"
+                class="account-row"
+                [class.is-selected]="isSelected"
+                [attr.aria-checked]="isSelected"
+                [attr.aria-label]="'myProfile.selectAccount' | translate: { name: account.name }"
+                (click)="onSelectAccount(account.id)">
+                <span
+                  class="account-row__avatar"
+                  [class.account-row__avatar--personal]="account.variant === 'personal'"
+                  [class.account-row__avatar--company]="account.variant === 'company'"
+                  aria-hidden="true">
+                  <span class="account-row__initials">{{ account.initials }}</span>
+                </span>
+                <span class="account-row__body">
+                  <span class="account-row__type">{{ account.accountTypeKey | translate }}</span>
+                  <span class="account-row__number">{{ account.accountNumber }}</span>
+                </span>
+              </button>
+            }
+          </div>
+        </section>
+      </div>
+
+      <div class="profile-bottom-grid">
+        <section class="profile-table-card" aria-labelledby="profile-bill-accounts-title">
+          <header class="profile-table-card__header">
+            <h2 id="profile-bill-accounts-title" class="profile-section-title profile-section-title--lg">
+              {{ 'myProfile.billAccount.title' | translate }}
+            </h2>
+            <p class="profile-table-card__description">
+              {{ 'myProfile.billAccount.description' | translate }}
+            </p>
+          </header>
+          <div class="profile-table-shell">
+            <table class="profile-table">
+              <thead>
+                <tr>
+                  <th scope="col">{{ 'myProfile.billAccount.table.accountNumber' | translate }}</th>
+                  <th scope="col">{{ 'myProfile.billAccount.table.outstanding' | translate }}</th>
+                  <th scope="col">{{ 'myProfile.billAccount.table.status' | translate }}</th>
+                  <th scope="col" class="profile-table__chevron-col">
+                    <span class="visually-hidden">
+                      {{ 'myProfile.billAccount.actions.view' | translate }}
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of billAccounts(); track row.id) {
+                  @let isBillAccSelected = row.id === selectedBillAccountId();
+                  <tr
+                    class="profile-table__row"
+                    [class.is-selected]="isBillAccSelected"
+                    [attr.aria-selected]="isBillAccSelected">
+                    <td class="profile-table__ref">
+                      <button type="button" class="ref-link" (click)="onSelectBillAccount(row.id)">{{ row.accountNumber }}</button>
+                    </td>
+                    <td>{{ row.outstanding }}</td>
+                    <td>
+                      <span class="status-chip" [class]="'status-chip--account-' + row.status">
+                        {{ 'myProfile.billAccount.status.' + row.status | translate }}
+                      </span>
+                    </td>
+                    <td class="profile-table__chevron-col">
+                      <button
+                        type="button"
+                        class="bill-view-btn"
+                        (click)="$event.stopPropagation(); onViewBillAccount(row)"
+                        [attr.aria-label]="'myProfile.billAccount.actions.view' | translate">
+                        <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" class="bill-view-btn__icon" />
+                      </button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="profile-quick-actions" aria-labelledby="profile-quick-actions-title">
+          <header class="profile-quick-actions__header">
+            <h2 id="profile-quick-actions-title" class="profile-section-title profile-section-title--lg">
+              {{ 'myProfile.quickAction.title' | translate }}
+            </h2>
+            <p class="profile-quick-actions__subtitle">
+              {{ 'myProfile.quickAction.subtitle' | translate }}
+            </p>
+          </header>
+          <div class="profile-quick-actions__grid">
+            @for (action of quickActions(); track action.kind) {
+              <button
+                type="button"
+                class="quick-action-card quick-action-card--{{ action.kind }}"
+                (click)="onQuickAction(action)">
+                <span class="quick-action-card__icon" aria-hidden="true">
+                  <img [src]="action.iconSrc" alt="" width="36" height="36" loading="lazy" decoding="async" />
+                </span>
+                <span class="quick-action-card__body">
+                  <span class="quick-action-card__title">{{ action.titleKey | translate }}</span>
+                  <span class="quick-action-card__subtitle">{{ action.subtitleKey | translate }}</span>
+                </span>
+              </button>
+            }
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </section>
+
+  <app-add-account-modal
+    [isOpen]="isAddAccountOpen()"
+    [submitting]="isAddAccountSubmitting()"
+    (closed)="onAddAccountClosed()"
+    (created)="onAddAccountCreated($event)">
+  </app-add-account-modal>
+</main>

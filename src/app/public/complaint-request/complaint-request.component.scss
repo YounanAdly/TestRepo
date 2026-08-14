@@ -1,0 +1,396 @@
+.complaint-request {
+  padding-block-end: 4.5rem;
+  background: var(--color-modal-bg);
+}
+
+.complaint-request__wrap {
+  width: min(1312px, calc(100% - 36px));
+  margin: 0 auto;
+}
+
+.complaint-request__breadcrumb {
+  background: url('/assets/images/faq-breadcrumb-bg.svg') center / cover no-repeat;
+  padding: 11px 0;
+
+  .complaint-request__wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 30px;
+  }
+
+  a,
+  span {
+    font-family: 'AvantGarde Bk BT', sans-serif;
+    font-size: 14px;
+    line-height: 21px;
+    text-decoration: none;
+  }
+
+  a {
+    color: var(--color-white-80);
+  }
+
+  span {
+    color: var(--color-modal-bg);
+    font-weight: 700;
+  }
+
+  img {
+    width: 6px;
+    height: 12px;
+    filter: brightness(0) invert(1);
+  }
+}
+
+.complaint-request__hero {
+  padding: 28px 0 12px;
+  background: var(--color-modal-bg);
+  margin-bottom: 2rem;
+}
+
+.complaint-request__title-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  h1 {
+    margin: 0;
+    color: var(--color-teal);
+    font-family: 'AvantGarde Mk BT', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.18;
+    text-transform: uppercase;
+    padding-top: 6px;
+  }
+
+  p {
+    margin: 0.5rem 0 0;
+    color: var(--color-primary-blue);
+    line-height: 1.6;
+    font-size: 14px;
+    font-family: 'AvantGarde Bk BT', sans-serif;
+  }
+}
+
+.complaint-request__back {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+  }
+
+  :host-context([dir='rtl']) & img {
+    transform: scaleX(-1);
+  }
+}
+
+.complaint-request__content {
+  padding-block: 2.5rem 5rem;
+}
+
+.complaint-request__group-title {
+  margin: 0 0 1.25rem;
+  color: var(--color-dark-blue);
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.complaint-request__card {
+  margin-bottom: 2.5rem;
+  border: 0.3px solid var(--color-request-panel-border);
+  border-radius: 16px;
+  background: var(--color-request-panel-bg);
+  overflow: hidden;
+  box-shadow: 0 4px 20px var(--color-request-panel-shadow);
+}
+
+.complaint-request__card--collapsed {
+  margin-bottom: 1.5rem;
+
+  .complaint-request__card-head {
+    padding-bottom: 2.2rem;
+
+    h3 {
+      flex: 1;
+    }
+  }
+}
+
+.complaint-request__card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 2.2rem 2.2rem 1rem;
+
+  h3 {
+    margin: 0;
+    color: var(--color-dark-blue);
+    font-family: 'AvantGarde Md BT', sans-serif;
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+}
+
+.complaint-request__toggle {
+  border: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+
+  span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid var(--color-orange);
+    border-bottom: 2px solid var(--color-orange);
+    transform: rotate(45deg);
+    margin-bottom: 6px;
+    font-size: 0;
+
+    &.is-collapsed {
+      transform: rotate(-135deg);
+      margin-bottom: -6px;
+    }
+  }
+}
+
+.complaint-request__card-body {
+  padding: 0 2.2rem 1.8rem;
+}
+
+:host ::ng-deep .request-grid,
+:host ::ng-deep .request-file-grid {
+  display: grid;
+  gap: 2rem 2.2rem;
+  align-items: start;
+}
+
+:host ::ng-deep .request-grid.request-grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+:host ::ng-deep .request-grid.request-grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+:host ::ng-deep .request-file-grid.request-file-grid--single {
+  grid-template-columns: minmax(0, 560px);
+  justify-content: start;
+}
+
+:host ::ng-deep .request-col,
+:host ::ng-deep .request-file-col {
+  width: 100%;
+  min-width: 0;
+}
+
+:host ::ng-deep .request-col--full {
+  grid-column: 1 / -1;
+}
+
+/* Inputs follow the document direction (RTL/LTR) regardless of input type. */
+:host ::ng-deep .request-field-input {
+  direction: inherit !important;
+  text-align: start !important;
+}
+
+:host ::ng-deep .request-col.request-col--dimmed .form-label {
+  color: var(--color-placeholder-dimmed) !important;
+}
+
+:host ::ng-deep .request-col.request-col--dimmed .request-input-label {
+  background: var(--color-surface-muted) !important;
+  border-color: var(--color-form-border-dimmed) !important;
+  cursor: not-allowed !important;
+}
+
+:host ::ng-deep .request-col.request-col--dimmed .request-field-input,
+:host ::ng-deep .request-col.request-col--dimmed .request-field-input::placeholder {
+  color: var(--color-placeholder-dimmed) !important;
+}
+
+:host ::ng-deep .request-file-col formly-field,
+:host ::ng-deep .request-file-col formly-wrapper-form-field,
+:host ::ng-deep .request-file-col .form-group,
+:host ::ng-deep .request-file-col formly-field-file-upload {
+  display: block;
+  width: 100%;
+}
+
+:host ::ng-deep .request-col .form-label,
+:host ::ng-deep .request-file-col .form-label {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: var(--color-dark-blue);
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+:host ::ng-deep .complaint-request__content .form-label :is(.asterisk, .text-danger, span[aria-hidden='true']) {
+  color: var(--color-alert-danger) !important;
+}
+
+:host ::ng-deep .request-input-label,
+:host ::ng-deep .request-grid .custom-dropdown {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  min-height: 56px !important;
+  border: 1px solid var(--color-form-border) !important;
+  border-radius: 8px !important;
+  background: var(--color-modal-bg) !important;
+  transition: border-color 0.2s ease !important;
+}
+
+:host ::ng-deep .request-file-col .form-field {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  min-height: 48px !important;
+  border-radius: 8px !important;
+  background: var(--color-modal-bg) !important;
+  transition: border-color 0.2s ease !important;
+}
+
+:host ::ng-deep .request-col:focus-within .request-input-label,
+:host ::ng-deep .request-col:focus-within .custom-dropdown,
+:host ::ng-deep .request-col:focus-within .custom-dropdown .p-select-label-container,
+:host ::ng-deep .request-file-col:focus-within .form-field {
+  border-color: var(--color-orange) !important;
+}
+
+/* Locked / dimmed dropdown (e.g. pre-selected complaint type) */
+:host ::ng-deep .request-grid .custom-dropdown.dimmed {
+  background: var(--color-surface-muted) !important;
+  border-color: var(--color-form-border-dimmed) !important;
+  cursor: not-allowed;
+}
+
+:host ::ng-deep .request-grid .custom-dropdown.dimmed .p-select-label,
+:host ::ng-deep .request-grid .custom-dropdown.dimmed .p-select-dropdown,
+:host ::ng-deep .request-grid .custom-dropdown.dimmed .p-select-dropdown-icon {
+  color: var(--color-placeholder-dimmed) !important;
+}
+
+:host ::ng-deep .request-col:focus-within .custom-dropdown.dimmed,
+:host ::ng-deep .request-col:focus-within .custom-dropdown.dimmed .p-select-label-container {
+  border-color: var(--color-form-border-dimmed) !important;
+  box-shadow: none !important;
+}
+
+:host ::ng-deep .request-input-label {
+  padding: 0 18px !important;
+}
+
+:host ::ng-deep .request-field-input {
+  width: 100% !important;
+  font-size: 14px;
+  color: var(--color-body-text) !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+:host ::ng-deep .request-field-input.p-inputtext,
+:host ::ng-deep .request-field-input.p-inputtext:enabled:focus,
+:host ::ng-deep .request-field-input.p-inputtext:focus {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+:host ::ng-deep .request-field-input::placeholder,
+:host ::ng-deep .custom-dropdown .p-select-label.p-placeholder {
+  color: var(--color-placeholder-dimmed) !important;
+}
+
+:host ::ng-deep .custom-dropdown .p-select {
+  width: 100%;
+  min-height: 54px;
+  border: none !important;
+  border-radius: 8px;
+  background: transparent;
+  box-shadow: none !important;
+}
+
+:host ::ng-deep .custom-dropdown .p-select-label {
+  color: var(--color-body-text) !important;
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.complaint-request__actions {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+@media (max-width: 1200px) {
+  :host ::ng-deep .request-grid.request-grid--three {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .complaint-request__title-row h1 {
+    font-size: 34px;
+  }
+
+  :host ::ng-deep .request-grid.request-grid--three,
+  :host ::ng-deep .request-grid.request-grid--two,
+  :host ::ng-deep .request-file-grid.request-file-grid--single {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .complaint-request__card-head,
+  .complaint-request__card-body {
+    padding-inline: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .complaint-request__wrap {
+    width: min(1312px, calc(100% - 20px));
+  }
+
+  .complaint-request__actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .complaint-request__actions app-button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .complaint-request,
+  .complaint-request * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,43 @@
+<div>
+    <h1>{{ 'HELLO' | translate }}</h1>
+</div>
+
+<div>
+    {{'WELCOME' | translate}}
+</div>
+
+<div>
+    {{'GOODBYE' | translate}}
+</div>
+
+<div class="theme-controls">
+    <button (click)="applyThemeButton('light')">Light Theme</button>
+    <button (click)="applyThemeButton('black')">Black Theme</button>
+    <button (click)="applyThemeButton('green')">Custom Theme</button>
+</div>
+<button (click)="toggleLanguage()">toggle lang</button>
+<div class="font-controls">
+    <button (click)="fontService.decrease()">A-</button>
+    <button (click)="fontService.reset()">A</button>
+    <button (click)="fontService.increase()">A+</button>
+</div>
+
+<button class="btn btn-primary"
+    [routerLink]="'/'+languageService.getCurrentLanguage() + '/contact-us'">test</button>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+    <button type="submit">Submit</button>
+</form>
+
+@if (users$ | async; as users) {
+@for (item of users ?? []; track $index) {
+@if($last) {<span>last child</span> }
+<p>{{ item.fieldName }}</p>
+@for (test of item.dropdownValues; track $index) {
+<p>{{ test.label }}</p>
+}
+}
+}
+
+<app-map></app-map>

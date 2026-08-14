@@ -1,0 +1,232 @@
+<main id="main-content" class="inquiry-page page-enter">
+  <section class="inquiry-breadcrumb">
+    <div class="inquiry-wrap">
+      <a [routerLink]="['/', currentLang(), 'home']">{{ 'inquiryPage.breadcrumb.home' | translate }}</a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+      <span>{{ 'inquiryPage.breadcrumb.current' | translate }}</span>
+    </div>
+  </section>
+
+  <section class="inquiry-hero">
+    <div class="inquiry-wrap">
+      <div class="inquiry-title-row">
+        <button
+          class="inquiry-back"
+          type="button"
+          (click)="onBack()"
+          [attr.aria-label]="'inquiryPage.actions.backToHome' | translate">
+          <img src="assets/images/back.svg" alt="" aria-hidden="true" />
+        </button>
+
+        <div>
+          <h1>{{ 'inquiryPage.hero.title' | translate }}</h1>
+          <h2>{{ 'inquiryPage.hero.subtitle' | translate }}</h2>
+        </div>
+      </div>
+
+      <p class="inquiry-description">{{ 'inquiryPage.hero.description' | translate }}</p>
+    </div>
+  </section>
+
+  <section class="inquiry-composer">
+    <div class="inquiry-wrap">
+      <div class="inquiry-composer-shell">
+        <div class="inquiry-composer-card">
+          <textarea
+            class="inquiry-textarea"
+            [attr.placeholder]="'inquiryPage.composer.placeholder' | translate"
+            [attr.aria-label]="'inquiryPage.composer.placeholder' | translate"
+            (input)="onInquiryTextChange($event)"></textarea>
+
+          <div class="inquiry-attach-row">
+            <label class="inquiry-attach-label" for="inquiryAttachInput">
+              <img src="assets/images/inquiry-attach.svg" alt="" aria-hidden="true" />
+              <span>{{ attachedFileLabelKey ? (attachedFileLabelKey | translate) : attachedFileName() }}</span>
+            </label>
+            <input id="inquiryAttachInput" type="file" (change)="onFileSelected($event)" />
+          </div>
+        </div>
+
+        <div class="inquiry-submit-wrap">
+          <button class="inquiry-submit-btn" type="button"
+            (click)="onSubmitInquiry()"
+            [disabled]="isSubmitting()"
+            [attr.aria-busy]="isSubmitting()">
+            <span>{{ 'inquiryPage.actions.submitInquiry' | translate }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="inquiry-listing">
+    <div class="inquiry-wrap">
+      <h3 class="inquiry-list-title">{{ 'inquiryPage.inquiries.title' | translate }}</h3>
+
+      <div class="inquiry-filters" role="group" [attr.aria-label]="'inquiryPage.filters.ariaLabel' | translate">
+        <app-filter-dropdown
+          [options]="monthOptions"
+          [selectedValue]="selectedMonthKey()"
+          (selectionChange)="onMonthChange($event)">
+        </app-filter-dropdown>
+
+        <app-filter-dropdown
+          [options]="yearOptions"
+          [selectedValue]="selectedYearKey()"
+          (selectionChange)="onYearChange($event)">
+        </app-filter-dropdown>
+      </div>
+
+      <div class="inquiry-grid">
+        @if (listResource.isLoading()) {
+          <app-skeleton-loader variant="card" [count]="2" />
+        } @else if (listResource.error()) {
+          <div class="inquiry-grid__state inquiry-grid__state--error" role="alert">
+            <p>{{ 'errors.loadFailedDetail' | translate }}</p>
+            <button type="button" class="inquiry-grid__retry" (click)="listResource.reload()">
+              {{ 'common.retry' | translate }}
+            </button>
+          </div>
+        } @else if (pagedInquiries().length === 0) {
+          <div class="inquiry-grid__state inquiry-grid__state--empty">
+            <p>{{ 'inquiryPage.inquiries.empty' | translate }}</p>
+          </div>
+        } @else {
+          @for (item of pagedInquiries(); track item.inquiryId) {
+            <article
+              class="inquiry-card"
+              role="button"
+              tabindex="0"
+              [attr.aria-label]="item.inquiry"
+              (click)="openDetail(item)"
+              (keydown.enter)="openDetail(item)"
+              (keydown.space)="$event.preventDefault(); openDetail(item)">
+              <header class="inquiry-card__meta">
+                <div class="inquiry-card__date-wrap">
+                  <img src="assets/images/inquiry-calendar.svg" alt="" aria-hidden="true" />
+                  <span>{{ formatDate(item.createdOn) }}</span>
+                </div>
+                <span
+                  class="inquiry-card__status"
+                  [class.is-approved]="!isPendingStatus(item.status.id)"
+                  [class.is-pending]="isPendingStatus(item.status.id)">
+                  <img
+                    class="inquiry-card__status-icon"
+                    [src]="statusIconSrc(item.status.id)"
+                    alt=""
+                    aria-hidden="true" />
+                  <span>{{ currentLang() === 'ar' ? item.status.descriptionAr : item.status.descriptionEn }}</span>
+                </span>
+              </header>
+              <h4 class="inquiry-card__heading">{{ item.inquiry }}</h4>
+              @let noResponse = !item.response;
+              <p class="inquiry-card__desc" [class.is-no-response]="noResponse">
+                @if (noResponse) {
+                  <img class="inquiry-card__no-response-icon" src="assets/images/inquiry-no-response.svg" alt="" aria-hidden="true" />
+                }
+                {{ item.response || ('inquiryPage.inquiries.noResponse' | translate) }}
+              </p>
+              <p class="inquiry-card__ref">{{ 'inquiryPage.inquiries.ref' | translate: { number: item.name } }}</p>
+            </article>
+          }
+        }
+      </div>
+
+      <nav class="inquiry-pagination" [attr.aria-label]="'inquiryPage.pagination.ariaLabel' | translate">
+        <button
+          type="button"
+          class="inquiry-pagination__arrow"
+          [disabled]="currentPage() === 1"
+          [attr.aria-label]="'inquiryPage.pagination.prev' | translate"
+          (click)="prevPage()">
+          <img class="inquiry-pagination__prev-icon" src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+        </button>
+
+        @for (p of pages(); track p) {
+          <button
+            type="button"
+            [class.is-active]="p === currentPage()"
+            [attr.aria-current]="p === currentPage() ? 'page' : null"
+            class="inquiry-pagination__item"
+            (click)="goToPage(p)">
+            {{ p }}
+          </button>
+        }
+
+        <button
+          type="button"
+          class="inquiry-pagination__arrow"
+          [disabled]="currentPage() === totalPages()"
+          [attr.aria-label]="'inquiryPage.pagination.next' | translate"
+          (click)="nextPage()">
+          <img class="inquiry-pagination__next-icon" src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+        </button>
+      </nav>
+    </div>
+  </section>
+
+  <app-success-alert-modal
+    [isOpen]="isSubmitSuccessOpen()"
+    variant="service-request"
+    iconSrc="assets/images/service-request-success-badge.svg"
+    closeIconSrc="assets/images/service-request-alert-close.svg"
+    titleKey="inquiryPage.success.title"
+    [titleParams]="{ ref: submitReferenceNumber() }"
+    descriptionKey="inquiryPage.success.description"
+    doneLabelKey="inquiryPage.success.done"
+    closeLabelKey="inquiryPage.success.close"
+    (done)="onSubmitSuccessDone()"
+    (closed)="onSubmitSuccessClose()">
+  </app-success-alert-modal>
+
+  @if (selectedInquiry()) {
+    <div
+      class="inquiry-detail-backdrop"
+      role="presentation"
+      (click)="closeDetail()"
+      (keydown.escape)="closeDetail()">
+    </div>
+    <div
+      class="inquiry-detail-dialog"
+      role="dialog"
+      [attr.aria-label]="selectedInquiry()!.inquiry"
+      cdkTrapFocus
+      cdkTrapFocusAutoCapture>
+      <div class="inquiry-detail-dialog__header">
+        <h2 class="inquiry-detail-dialog__id">{{ selectedInquiry()!.name }}</h2>
+        <button
+          type="button"
+          class="inquiry-detail-dialog__close"
+          [attr.aria-label]="'inquiryPage.detail.close' | translate"
+          (click)="closeDetail()">
+          <img src="assets/images/service-request-alert-close.svg" alt="" aria-hidden="true" />
+        </button>
+      </div>
+      <div class="inquiry-detail-dialog__meta">
+        <div class="inquiry-detail-dialog__date-wrap">
+          <img src="assets/images/inquiry-calendar.svg" alt="" aria-hidden="true" />
+          <span>{{ formatDate(selectedInquiry()!.createdOn) }}</span>
+        </div>
+        <span
+          class="inquiry-detail-dialog__status"
+          [class.is-approved]="!isPendingStatus(selectedInquiry()!.status.id)"
+          [class.is-pending]="isPendingStatus(selectedInquiry()!.status.id)">
+          <img
+            class="inquiry-detail-dialog__status-icon"
+            [src]="statusIconSrc(selectedInquiry()!.status.id)"
+            alt=""
+            aria-hidden="true" />
+          <span>{{ currentLang() === 'ar' ? selectedInquiry()!.status.descriptionAr : selectedInquiry()!.status.descriptionEn }}</span>
+        </span>
+      </div>
+      <p class="inquiry-detail-dialog__inquiry">{{ selectedInquiry()!.inquiry }}</p>
+      @let detailNoResponse = !selectedInquiry()!.response;
+      <p class="inquiry-detail-dialog__body" [class.is-no-response]="detailNoResponse">
+        @if (detailNoResponse) {
+          <img class="inquiry-detail-dialog__no-response-icon" src="assets/images/inquiry-no-response.svg" alt="" aria-hidden="true" />
+        }
+        {{ selectedInquiry()!.response || ('inquiryPage.inquiries.noResponse' | translate) }}
+      </p>
+    </div>
+  }
+</main>

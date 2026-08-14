@@ -1,0 +1,70 @@
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
+*.figma.png
+*-figma.png
+
+# Temp / scratch working files (never commit)
+.tmp/
+.scratch/
+.figma-refs/
+figma-refs/
+
+# Figma reference screenshots dropped at project root or public/
+figma-*.png
+figma-*.jpg
+marafiq_form_node.png
+public/media-*.png
+public/media-*.jpg
+
+# Stray design-reference images inside assets
+src/assets/images/figma-*.png
+src/assets/images/filter-bar.png
+.kilo/kilo.jsonc
+.kilo/run-script
+opencode.json
+
+# AI Code Review — local env + installed deps (workflows install fresh each run)
+.ai-review/.env
+.ai-review/node_modules/
+.ai-review/package-lock.json
+.github/prompts/generate-project-rules.prompt.md

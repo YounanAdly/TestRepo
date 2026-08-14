@@ -1,0 +1,564 @@
+.service-request {
+  padding-block-end: 4.5rem;
+  background: var(--color-modal-bg);
+}
+
+.service-request__wrap {
+  width: min(1312px, calc(100% - 36px));
+  margin: 0 auto;
+}
+
+.service-request__breadcrumb {
+  background: url('/assets/images/faq-breadcrumb-bg.svg') center / cover no-repeat;
+  padding: 11px 0;
+
+  .service-request__wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 30px;
+  }
+
+  a,
+  span {
+    font-family: 'AvantGarde Bk BT', sans-serif;
+    font-size: 14px;
+    line-height: 21px;
+    text-decoration: none;
+  }
+
+  a {
+    color: var(--color-white-80);
+  }
+
+  span {
+    color: var(--color-modal-bg);
+    font-weight: 700;
+  }
+
+  img {
+    width: 6px;
+    height: 12px;
+    filter: brightness(0) invert(1);
+  }
+}
+
+.service-request__hero {
+  padding: 28px 0 12px;
+  background: var(--color-modal-bg);
+  margin-bottom: 2rem;
+}
+
+.service-request__title-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  h1 {
+    margin: 0;
+    color: var(--color-teal);
+    font-family: 'AvantGarde Mk BT', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.18;
+    text-transform: uppercase;
+    padding-top: 6px;
+  }
+
+  p {
+    margin: 0.5rem 0 0;
+    color: var(--color-primary-blue);
+    line-height: 1.6;
+    font-size: 14px;
+    font-family: "AvantGarde Bk BT", sans-serif;
+  }
+}
+
+.service-request__back {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+  }
+
+  :host-context([dir='rtl']) & img {
+    transform: scaleX(-1);
+  }
+}
+
+.service-request__content {
+  padding-block: 2.5rem 5rem;
+}
+
+.service-request__group-title {
+  margin: 0 0 1.25rem;
+  color: var(--color-dark-blue);
+  font-family: "AvantGarde Md BT", sans-serif;
+  font-size: 2.0rem;
+  /* 20px */
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.service-request__card {
+  margin-bottom: 2.5rem;
+  border: 0.3px solid var(--color-request-panel-border);
+  border-radius: 16px;
+  background: var(--color-request-panel-bg); // #92B5B8 at 4%
+  overflow: hidden;
+  box-shadow: 0 4px 20px var(--color-request-panel-shadow);
+}
+
+.service-request__card--collapsed {
+  margin-bottom: 1.5rem;
+}
+
+.service-request__card-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 2.2rem 2.2rem 1rem; // More space at top, less at bottom
+
+  h3 {
+    margin: 0;
+    color: var(--color-dark-blue);
+    font-family: "AvantGarde Md BT", sans-serif;
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+}
+
+.service-request__toggle {
+  border: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent !important;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+
+  span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid var(--color-orange);
+    border-bottom: 2px solid var(--color-orange);
+    transform: rotate(45deg);
+    margin-bottom: 6px; // Adjust for chevron alignment
+    font-size: 0; // Completely hide the text character (⌃)
+
+
+    &.is-collapsed {
+      transform: rotate(-135deg);
+      margin-bottom: -6px;
+    }
+  }
+}
+
+.service-request__card--collapsed .service-request__card-head {
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.6rem;
+  padding-bottom: 1.6rem;
+}
+
+.service-request__card--collapsed .service-request__card-head h3 {
+  margin: 0;
+  text-align: start;
+}
+
+.service-request__card--collapsed .service-request__toggle {
+  position: static;
+}
+
+.service-request__card-body {
+  padding: 0 2.2rem 1.8rem;
+}
+
+:host ::ng-deep .request-grid,
+:host ::ng-deep .request-file-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem 2.2rem;
+  align-items: start;
+}
+
+:host ::ng-deep .request-grid.request-grid--2col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 1.5rem;
+}
+
+:host ::ng-deep .request-col,
+:host ::ng-deep .request-file-col {
+  width: 100%;
+  min-width: 0;
+}
+
+:host ::ng-deep .request-col formly-field,
+:host ::ng-deep .request-col formly-wrapper-form-field,
+:host ::ng-deep .request-col .form-group,
+:host ::ng-deep .request-col formly-field-custom-input {
+  display: block;
+  width: 100%;
+}
+
+:host ::ng-deep .request-col .form-label,
+:host ::ng-deep .request-file-col .form-label {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: var(--color-dark-blue);
+  font-family: "AvantGarde Bk BT", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  transition: color 0.2s ease;
+}
+
+/* File-upload labels are single-line with ellipsis to preserve column alignment. */
+:host ::ng-deep .request-file-col .form-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  cursor: default;
+  /* Show full text on hover so accessibility is not compromised. */
+  &:hover {
+    white-space: normal;
+    overflow: visible;
+    background: var(--color-modal-bg, #fff);
+    position: relative;
+    z-index: 1;
+  }
+}
+
+:host-context([dir='rtl']) :host ::ng-deep .request-col .form-label,
+:host-context([dir='rtl']) :host ::ng-deep .request-file-col .form-label {
+  display: block;
+  width: 100%;
+  direction: rtl;
+  text-align: right;
+}
+
+:host ::ng-deep .request-col:focus-within .form-label,
+:host ::ng-deep .request-file-col:focus-within .form-label {
+  color: var(--color-orange) !important;
+}
+
+:host ::ng-deep .request-col .form-control {
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+:host ::ng-deep .service-request__content .form-label :is(.asterisk, .text-danger, span[aria-hidden='true']) {
+  color: var(--color-alert-danger) !important;
+}
+
+:host ::ng-deep .request-file-col .file-hint {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "AvantGarde Bk BT", sans-serif;
+}
+
+:host ::ng-deep .request-input-label,
+:host ::ng-deep .request-grid .custom-dropdown,
+:host ::ng-deep .request-grid .custom-calendar,
+:host ::ng-deep .request-grid .custom-multiselect,
+:host ::ng-deep .request-grid .custom-searchable-select {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  min-height: 56px !important;
+  border: 1px solid var(--color-form-border) !important;
+  border-radius: 8px !important;
+  background: var(--color-modal-bg) !important;
+  transition: border-color 0.2s ease !important;
+}
+
+:host ::ng-deep .request-file-col .form-field {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  min-height: 48px !important;
+  border-radius: 8px !important;
+  background: var(--color-modal-bg) !important;
+  transition: border-color 0.2s ease !important;
+}
+
+:host ::ng-deep .request-col:focus-within .request-input-label,
+:host ::ng-deep .request-col:focus-within .custom-dropdown,
+:host ::ng-deep .request-col:focus-within .custom-dropdown .p-select-label-container,
+:host ::ng-deep .request-col:focus-within .custom-calendar,
+:host ::ng-deep .request-col:focus-within .custom-calendar .p-datepicker,
+:host ::ng-deep .request-col:focus-within .custom-multiselect,
+:host ::ng-deep .request-col:focus-within .custom-multiselect .p-multiselect-label-container,
+:host ::ng-deep .request-col:focus-within .custom-searchable-select,
+:host ::ng-deep .request-file-col:focus-within .form-field {
+  border-color: var(--color-orange) !important;
+}
+
+:host ::ng-deep .request-input-label {
+  padding: 0 18px !important;
+}
+
+:host ::ng-deep .request-input-label .custom-input-left-content {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+}
+
+:host ::ng-deep .request-field-input {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  font-size: 0.875rem;
+  color: var(--color-body-text) !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+:host ::ng-deep .request-field-input::placeholder {
+  color: var(--color-placeholder-dimmed) !important;
+  opacity: 1;
+}
+
+:host-context([dir='rtl']) :host ::ng-deep .request-field-input,
+:host-context([dir='rtl']) :host ::ng-deep .request-field-input::placeholder {
+  text-align: right !important;
+}
+
+:host ::ng-deep .request-col--dimmed .form-label {
+  color: var(--color-placeholder-dimmed) !important;
+}
+
+:host ::ng-deep .request-col--dimmed .request-input-label {
+  background: var(--color-surface-muted) !important;
+}
+
+:host ::ng-deep .request-input-label.is-dimmed {
+  background: var(--color-surface-muted) !important;
+  border-color: var(--color-form-border-dimmed) !important;
+  cursor: default !important;
+}
+
+:host ::ng-deep .request-input-label.is-dimmed .request-field-input,
+:host ::ng-deep .request-input-label.is-dimmed .request-field-input::placeholder {
+  color: var(--color-placeholder-dimmed) !important;
+}
+
+:host ::ng-deep .request-field-input.p-inputtext,
+:host ::ng-deep .request-field-input.p-inputtext:enabled,
+:host ::ng-deep .request-field-input.p-inputtext:focus {
+  font-size: 14px !important;
+  color: var(--color-body-text) !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+:host ::ng-deep .request-input-label:focus-within {
+  border-color: var(--color-orange) !important;
+  box-shadow: 0 0 0 3px var(--color-orange-focus-ring) !important;
+}
+
+:host ::ng-deep .request-field-input:-webkit-autofill,
+:host ::ng-deep .request-field-input:-webkit-autofill:hover,
+:host ::ng-deep .request-field-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-body-text) !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--color-surface-muted) inset !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+:host ::ng-deep .request-grid .custom-dropdown .p-select-label {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: var(--color-placeholder-dimmed);
+}
+
+:host ::ng-deep .request-grid .custom-dropdown .p-select-dropdown {
+  color: var(--color-icon-muted);
+}
+
+.service-request__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.1rem;
+  padding-top: 0.4rem;
+}
+
+// ── Radio option group (Plot Option / Connection Type) ──────────────────────
+
+.request-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  border: none;
+  padding: 0 0 1.5rem;
+  margin: 0;
+
+  &__legend {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.75rem;
+    color: var(--color-dark-blue);
+    font-family: "AvantGarde Bk BT", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+
+.request-radio-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  padding: 0.55rem 1.25rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--color-form-border);
+  background: var(--color-modal-bg);
+  color: var(--color-body-text);
+  font-family: "AvantGarde Bk BT", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: border-color 0.18s ease, background 0.18s ease;
+  user-select: none;
+
+  input[type='radio'] {
+    accent-color: var(--color-teal);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  &.is-active {
+    border-color: var(--color-teal);
+    background: var(--color-section-soft-bg);
+    color: var(--color-teal-dark);
+    font-weight: 600;
+  }
+
+  &:hover:not(.is-active) {
+    border-color: var(--color-otp-border);
+  }
+
+  &:focus-within {
+    outline: 2px solid var(--color-teal);
+    outline-offset: 2px;
+  }
+}
+
+.request-required {
+  color: var(--color-alert-danger);
+  margin-inline-start: 2px;
+}
+
+// ── Span-2 grid column for the existing-plot dropdown ──────────────────────
+
+:host ::ng-deep .request-col--span2 {
+  grid-column: span 2;
+}
+
+// ── Declaration card & checkbox ────────────────────────────────────────────
+
+.service-request__card--declaration {
+  margin-bottom: 1.5rem;
+}
+
+.service-request__card--declaration .service-request__card-body {
+  padding-top: 1.8rem;
+}
+
+.request-declaration {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+
+  &__checkbox {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--color-teal);
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-teal);
+      outline-offset: 2px;
+    }
+  }
+
+  &__text {
+    color: var(--color-body-text);
+    font-family: "AvantGarde Bk BT", sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+[dir='rtl'] .request-declaration {
+  direction: rtl;
+}
+
+@media (max-width: 900px) {
+  .service-request__wrap {
+    inline-size: min(1312px, 100% - 1.5rem);
+  }
+
+  :host ::ng-deep .request-grid,
+  :host ::ng-deep .request-file-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .service-request__title-row {
+    align-items: start;
+  }
+
+  .service-request__group-title {
+    font-size: 1.35rem;
+  }
+
+  .service-request__card-head h3 {
+    font-size: 1.35rem;
+  }
+
+  :host ::ng-deep .request-grid,
+  :host ::ng-deep .request-file-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-request__actions {
+    justify-content: stretch;
+    flex-direction: column;
+  }
+
+  .service-request__actions app-button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-request__back {
+    transition: none;
+  }
+}

@@ -1,0 +1,124 @@
+<main id="main-content" class="complaint-request page-enter">
+  <section class="complaint-request__breadcrumb">
+    <div class="complaint-request__wrap">
+      <a [routerLink]="['/', currentLang, 'home']">{{ 'servicesPage.breadcrumb.home' | translate }}</a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+      <a [routerLink]="['/', currentLang, 'complaints']">{{ 'header.nav.complaints' | translate }}</a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+      <span>{{ selectedComplaintTitleKey() | translate }}</span>
+    </div>
+  </section>
+
+  <section class="complaint-request__hero">
+    <div class="complaint-request__wrap">
+      <div class="complaint-request__title-row">
+        <a
+          class="complaint-request__back"
+          [routerLink]="['/', currentLang, 'complaints']"
+          [attr.aria-label]="'complaintRequestPage.actions.backToHome' | translate">
+          <img src="assets/images/back.svg" alt="" aria-hidden="true" />
+        </a>
+
+        <div>
+          <h1>{{ selectedComplaintTitleKey() | translate }}</h1>
+          <p>{{ 'complaintRequestPage.description' | translate }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="complaint-request__content">
+    <div class="complaint-request__wrap">
+      <h2 class="complaint-request__group-title">{{ 'complaintRequestPage.sections.applicantInfo' | translate }}</h2>
+
+      @let sections = sectionOpen();
+
+      <article class="complaint-request__card" [class.complaint-request__card--collapsed]="!sections.applicant">
+        <header class="complaint-request__card-head">
+          <h3 id="section-applicant-head">{{ 'complaintRequestPage.cards.customerRequestDetails' | translate }}</h3>
+          <button
+            type="button"
+            class="complaint-request__toggle"
+            [attr.aria-expanded]="sections.applicant"
+            aria-controls="section-applicant-body"
+            [attr.aria-label]="'complaintRequestPage.cards.customerRequestDetails' | translate"
+            (click)="toggleSection('applicant')">
+            <span aria-hidden="true" [class.is-collapsed]="!sections.applicant">⌃</span>
+          </button>
+        </header>
+        @if (sections.applicant) {
+          <div id="section-applicant-body" class="complaint-request__card-body">
+            <formly-form [form]="form" [fields]="requestFields.applicantInformation" [model]="model"></formly-form>
+          </div>
+        }
+      </article>
+
+      <article class="complaint-request__card" [class.complaint-request__card--collapsed]="!sections.complaint">
+        <header class="complaint-request__card-head">
+          <h3 id="section-complaint-head">{{ 'complaintRequestPage.cards.complaintDetails' | translate }}</h3>
+          <button
+            type="button"
+            class="complaint-request__toggle"
+            [attr.aria-expanded]="sections.complaint"
+            aria-controls="section-complaint-body"
+            [attr.aria-label]="'complaintRequestPage.cards.complaintDetails' | translate"
+            (click)="toggleSection('complaint')">
+            <span aria-hidden="true" [class.is-collapsed]="!sections.complaint">⌃</span>
+          </button>
+        </header>
+        @if (sections.complaint) {
+          <div id="section-complaint-body" class="complaint-request__card-body">
+            <formly-form [form]="form" [fields]="requestFields.complaintDetails" [model]="model"></formly-form>
+          </div>
+        }
+      </article>
+
+      <article class="complaint-request__card" [class.complaint-request__card--collapsed]="!sections.documents">
+        <header class="complaint-request__card-head">
+          <h3 id="section-documents-head">{{ 'complaintRequestPage.cards.requiredDocument' | translate }}</h3>
+          <button
+            type="button"
+            class="complaint-request__toggle"
+            [attr.aria-expanded]="sections.documents"
+            aria-controls="section-documents-body"
+            [attr.aria-label]="'complaintRequestPage.cards.requiredDocument' | translate"
+            (click)="toggleSection('documents')">
+            <span aria-hidden="true" [class.is-collapsed]="!sections.documents">⌃</span>
+          </button>
+        </header>
+        @if (sections.documents) {
+          <div id="section-documents-body" class="complaint-request__card-body">
+            <formly-form [form]="form" [fields]="requestFields.requiredDocuments" [model]="model"></formly-form>
+          </div>
+        }
+      </article>
+
+      <div class="complaint-request__actions">
+        <app-button variant="action-outline" type="button" (clicked)="onCancel()">
+          {{ 'complaintRequestPage.actions.cancel' | translate }}
+        </app-button>
+        <app-button
+          variant="action-primary"
+          type="button"
+          [disabled]="isSubmitting()"
+          (clicked)="onSubmit()">
+          {{ 'complaintRequestPage.actions.submit' | translate }}
+        </app-button>
+      </div>
+    </div>
+  </section>
+
+  <app-success-alert-modal
+    [isOpen]="isSubmitSuccessOpen()"
+    variant="service-request"
+    iconSrc="assets/images/service-request-success-badge.svg"
+    closeIconSrc="assets/images/service-request-alert-close.svg"
+    titleKey="serviceRequestPage.success.reference"
+    [titleParams]="{ ref: submitReferenceNumber() }"
+    descriptionKey="serviceRequestPage.success.description"
+    doneLabelKey="serviceRequestPage.success.done"
+    closeLabelKey="serviceRequestPage.success.close"
+    (done)="onSubmitSuccessDone()"
+    (closed)="onSubmitSuccessClose()">
+  </app-success-alert-modal>
+</main>

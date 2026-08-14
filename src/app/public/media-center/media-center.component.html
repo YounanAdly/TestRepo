@@ -1,0 +1,216 @@
+<main class="page-enter mc-page">
+
+  <!-- ── Breadcrumb ──────────────────────────────────────────────── -->
+  <section class="mc-breadcrumb">
+    <div class="mc-wrap">
+      <a [routerLink]="['/', currentLang, 'home']">{{ 'mediaCenterPage.breadcrumb.home' | translate }}</a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+      <span>{{ 'mediaCenterPage.breadcrumb.current' | translate }}</span>
+    </div>
+  </section>
+
+  <!-- ── Hero ───────────────────────────────────────────────────── -->
+  <section class="mc-hero">
+    <div class="mc-wrap">
+      <div class="mc-hero__title-row">
+        <button type="button" class="mc-back-btn" (click)="goBack()"
+          [attr.aria-label]="'mediaCenterPage.hero.backAria' | translate">
+          <img src="assets/images/back.svg" alt="" aria-hidden="true" />
+        </button>
+        <h1 class="mc-hero__title">{{ 'mediaCenterPage.hero.title' | translate }}</h1>
+      </div>
+      <h2 class="mc-hero__subtitle">{{ 'mediaCenterPage.hero.subtitle' | translate }}</h2>
+      <p class="mc-hero__desc">{{ 'mediaCenterPage.hero.description' | translate }}</p>
+    </div>
+  </section>
+
+  <!-- ── Filter tabs ────────────────────────────────────────────── -->
+  <section class="mc-filters-section">
+    <div class="mc-wrap">
+      <nav class="mc-tabs" [attr.aria-label]="'mediaCenterPage.filters.ariaLabel' | translate">
+        @for (tab of tabs; track tab) {
+          <button
+            type="button"
+            class="mc-tab"
+            [class.mc-tab--active]="activeFilter === tab.key"
+            (click)="setFilter(tab.key)">
+            <span class="mc-tab__icon mc-tab__icon--{{ tab.iconKey }}"></span>
+            <span class="mc-tab__label">{{ tab.labelKey | translate }}</span>
+            @if (activeFilter === tab.key) {
+              <span class="mc-tab__indicator" aria-hidden="true"></span>
+            }
+          </button>
+        }
+      </nav>
+      <div class="mc-tabs-underline"></div>
+
+      <!-- Results bar -->
+      <div class="mc-results-bar">
+        <p class="mc-results-bar__count">{{ 'mediaCenterPage.results.showing' | translate }}</p>
+        <div class="mc-results-bar__controls">
+          <div class="mc-dropdown mc-dropdown--category"
+            [class.mc-dropdown--open]="categoryDropdownOpen"
+            (click)="toggleCategoryDropdown()">
+            <span>
+              {{ activeFilter === 'all'
+              ? ('mediaCenterPage.controls.allCategories' | translate)
+              : ('mediaCenterPage.tabs.' + activeFilter | translate) }}
+            </span>
+            <svg class="mc-dropdown__chevron" width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M1 1L8.5 8.5L16 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            @if (categoryDropdownOpen) {
+              <ul class="mc-dropdown__menu" role="listbox"
+                [attr.aria-label]="'mediaCenterPage.controls.categoriesAria' | translate">
+                @for (tab of tabs; track tab) {
+                  <li
+                    class="mc-dropdown__option"
+                    [class.mc-dropdown__option--active]="activeFilter === tab.key"
+                    role="option" [attr.aria-selected]="activeFilter === tab.key"
+                    (click)="$event.stopPropagation(); setFilter(tab.key)">
+                    {{ tab.labelKey | translate }}
+                  </li>
+                }
+              </ul>
+            }
+          </div>
+          <div class="mc-dropdown mc-dropdown--sort"
+            [class.mc-dropdown--open]="sortDropdownOpen"
+            (click)="toggleSortDropdown()">
+            <span>{{ ('mediaCenterPage.controls.' + sortOrder) | translate }}</span>
+            <svg class="mc-dropdown__chevron" width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M1 1L8.5 8.5L16 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            @if (sortDropdownOpen) {
+              <ul class="mc-dropdown__menu" role="listbox"
+                [attr.aria-label]="'mediaCenterPage.controls.sortAria' | translate">
+                <li class="mc-dropdown__option"
+                  [class.mc-dropdown__option--active]="sortOrder === 'latest'"
+                  role="option" [attr.aria-selected]="sortOrder === 'latest'"
+                  (click)="$event.stopPropagation(); setSortOrder('latest')">
+                  {{ 'mediaCenterPage.controls.latest' | translate }}
+                </li>
+                <li class="mc-dropdown__option"
+                  [class.mc-dropdown__option--active]="sortOrder === 'oldest'"
+                  role="option" [attr.aria-selected]="sortOrder === 'oldest'"
+                  (click)="$event.stopPropagation(); setSortOrder('oldest')">
+                  {{ 'mediaCenterPage.controls.oldest' | translate }}
+                </li>
+              </ul>
+            }
+          </div>
+          <div class="mc-view-toggle"
+            [attr.aria-label]="'mediaCenterPage.controls.viewToggleAria' | translate">
+            <button type="button" class="mc-view-toggle__btn"
+              [class.mc-view-toggle__btn--active]="viewMode === 'grid'"
+              (click)="viewMode = 'grid'" [attr.aria-label]="'mediaCenterPage.controls.gridView' | translate">
+              <!-- Grid: 4 squares matching Figma node 14519:227937 -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7" rx="1" fill="currentColor"/>
+                <rect x="14" y="3" width="7" height="7" rx="1" fill="currentColor"/>
+                <rect x="3" y="13" width="7" height="7" rx="1" fill="currentColor"/>
+                <rect x="14" y="13" width="7" height="7" rx="1" fill="currentColor"/>
+              </svg>
+            </button>
+            <span class="mc-view-toggle__divider" aria-hidden="true"></span>
+            <button type="button" class="mc-view-toggle__btn"
+              [class.mc-view-toggle__btn--active]="viewMode === 'list'"
+              (click)="viewMode = 'list'" [attr.aria-label]="'mediaCenterPage.controls.listView' | translate">
+              <!-- List: dots + lines matching Figma node 14519:227943 -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M3 5H4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M8 5H9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M13 5H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M3 12H4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M8 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M13 12H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M3 19H4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M8 19H9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M13 19H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Media grid ────────────────────────────────────────────── -->
+  <section class="mc-grid-section">
+    <div class="mc-wrap">
+      <div class="mc-grid" [class.mc-grid--list]="viewMode === 'list'">
+        @for (item of filteredItems; track item) {
+          <article class="mc-card"
+            role="button" tabindex="0"
+            (click)="openDetail(item)"
+            (keydown.enter)="openDetail(item)"
+            (keydown.space)="$event.preventDefault(); openDetail(item)"
+            [attr.aria-label]="item.titleKey | translate">
+            <div class="mc-card__image-wrap">
+              <img class="mc-card__image" [src]="item.imageSrc"
+                [alt]="item.titleKey | translate" loading="lazy" />
+              <span class="mc-card__badge mc-card__badge--{{ item.category }}">
+                {{ 'mediaCenterPage.categories.' + item.category | translate }}
+              </span>
+            </div>
+            <div class="mc-card__body">
+              <h3 class="mc-card__title">{{ item.titleKey | translate }}</h3>
+              <div class="mc-card__footer">
+                <span class="mc-card__date">
+                  <svg class="mc-card__calendar-icon" width="14" height="14" viewBox="0 0 14 14"
+                    fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="0.5" y="1.5" width="13" height="12" rx="1.5" stroke="currentColor"/>
+                    <path d="M0.5 5.5H13.5" stroke="currentColor" stroke-width="1"/>
+                    <rect x="3.5" y="0.5" width="1" height="2" rx="0.5" fill="currentColor"/>
+                    <rect x="9.5" y="0.5" width="1" height="2" rx="0.5" fill="currentColor"/>
+                  </svg>
+                  {{ item.date }}
+                </span>
+                <button type="button" class="mc-card__arrow"
+                  (click)="$event.stopPropagation(); openDetail(item)"
+                  [attr.aria-label]="'mediaCenterPage.readMore' | translate">
+                  <!-- Right-pointing chevron matching Figma orange arrow -->
+                  <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M1 1L8 8L1 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pagination ─────────────────────────────────────────────── -->
+  <section class="mc-pagination-section">
+    <div class="mc-wrap">
+      <nav class="mc-pagination" [attr.aria-label]="'mediaCenterPage.pagination.ariaLabel' | translate">
+        <button type="button" class="mc-page-arrow"
+          [disabled]="currentPage === 1"
+          (click)="setPage(currentPage - 1)"
+          [attr.aria-label]="'mediaCenterPage.pagination.prev' | translate">
+          <img class="mc-page-prev-icon" src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+        </button>
+
+        @for (page of pageRange; track page) {
+          <button
+            type="button"
+            class="mc-page-btn"
+            [class.mc-page-btn--active]="page === currentPage"
+            (click)="setPage(page)">
+            {{ page }}
+          </button>
+        }
+
+        <button type="button" class="mc-page-arrow mc-page-arrow--next"
+          [disabled]="currentPage === totalPages"
+          (click)="setPage(currentPage + 1)"
+          [attr.aria-label]="'mediaCenterPage.pagination.next' | translate">
+          <img class="mc-page-next-icon" src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+        </button>
+      </nav>
+    </div>
+  </section>
+
+</main>

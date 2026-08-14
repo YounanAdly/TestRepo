@@ -1,0 +1,500 @@
+/* ── Layout wrapper ───────────────────────────────────────────────── */
+.complaints-wrap {
+  width: min(1312px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* `page-enter` applies a transform, which creates a stacking context.
+   Keep this page above the footer so filter overlays are not clipped under it. */
+.complaints-page {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Breadcrumb ───────────────────────────────────────────────────── */
+.complaints-breadcrumb {
+  background: url('/assets/images/faq-breadcrumb-bg.svg') center / cover no-repeat;
+  padding: 11px 0;
+
+  .complaints-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 30px;
+  }
+
+  a,
+  span {
+    font-family: 'AvantGarde Bk BT', sans-serif;
+    font-size: 14px;
+    line-height: 21px;
+    text-decoration: none;
+  }
+
+  a {
+    color: var(--color-white-80);
+  }
+
+  span {
+    color: var(--color-modal-bg);
+    font-family: 'AvantGarde Md BT', sans-serif;
+  }
+
+  img {
+    width: 6px;
+    height: 12px;
+    filter: brightness(0) invert(1);
+  }
+
+  :host-context([dir='rtl']) & img {
+    transform: rotate(180deg);
+  }
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────── */
+.complaints-hero {
+  padding: 48px 0 16px;
+
+  &__title-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 6px;
+  }
+
+  &__back {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border: none;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    img {
+      width: 38px;
+      height: 38px;
+    }
+
+    :host-context([dir='rtl']) & img {
+      transform: scaleX(-1);
+    }
+  }
+
+  &__title {
+    font-family: 'AvantGarde Md BT', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--color-teal);
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+
+  &__subtitle {
+    font-family: 'AvantGarde Bk BT', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--color-primary-blue);
+    margin: 0 0 14px;
+  }
+
+  &__prompt {
+    font-family: 'AvantGarde Md BT', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-teal-dark);
+    margin: 0;
+  }
+
+  :host-context([dir='rtl']) & {
+    &__subtitle,
+    &__prompt {
+      margin-inline-start: 0;
+    }
+  }
+}
+
+/* ── Complaint Type Cards ─────────────────────────────────────────── */
+.complaints-types {
+  padding: 12px 0 40px;
+}
+
+.complaints-types__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 27px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.complaints-type-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 29px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: start;
+  width: 100%;
+  position: relative;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--color-card-shadow-subtle);
+  }
+
+  &__icon-wrap {
+    width: 82px;
+    height: 82px;
+    border-radius: 41px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    font-family: 'AvantGarde Bk BT', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-dark-blue);
+    margin: 0 0 8px;
+    line-height: 1.2;
+  }
+
+  &__desc {
+    font-family: 'AvantGarde Bk BT', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-text-neutral);
+    line-height: 21px;
+    margin: 0;
+  }
+
+  &__arrow {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 8px;
+      height: 14px;
+    }
+  }
+
+  :host-context([dir='rtl']) & {
+    &__arrow img {
+      transform: scaleX(-1);
+    }
+  }
+}
+
+/* ── My Inquiries Section ─────────────────────────────────────────── */
+.complaints-list {
+  padding: 0 0 64px;
+}
+
+.complaints-list__title {
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-teal);
+  text-transform: uppercase;
+  margin: 0 0 24px;
+}
+
+/* ── Filter Row ───────────────────────────────────────────────────── */
+.complaints-list__filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+/* ── Complaints Grid ──────────────────────────────────────────────── */
+.complaints-list__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 40px;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  
+
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+
+  // Loading / error / empty placeholders span the full grid width.
+  app-skeleton-loader,
+  .complaints-list__state {
+    grid-column: 1 / -1;
+  }
+}
+
+.complaints-list__state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 48px 24px;
+  text-align: center;
+  background: var(--color-modal-bg);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px var(--color-request-panel-shadow);
+
+  p {
+    margin: 0;
+    font-family: 'AvantGarde Bk BT', sans-serif;
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--color-text-neutral);
+  }
+
+  &--error p {
+    color: var(--color-text-strong);
+  }
+}
+
+.complaints-list__state-title {
+  font-family: 'AvantGarde Md BT', sans-serif !important;
+  font-size: 18px !important;
+  color: var(--color-dark-blue) !important;
+}
+
+.complaints-list__state-detail {
+  color: var(--color-placeholder-dimmed) !important;
+}
+
+.complaints-list__retry {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  border: 1px solid var(--color-orange);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-orange);
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+
+  &:hover {
+    background: var(--color-orange);
+    color: var(--color-modal-bg);
+  }
+}
+
+/* ── Complaint Item Card ──────────────────────────────────────────── */
+.complaints-item-card {
+  background: var(--color-modal-bg);
+  border: 0;
+  border-radius: 16px;
+  padding: 14px 19px;
+  box-shadow: 0 2px 8px var(--color-request-panel-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: start;
+  width: 100%;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px var(--color-card-shadow-subtle);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-teal);
+    outline-offset: 2px;
+  }
+
+  &__top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-inline-end: 10px;
+
+    img {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    span {
+      font-family: 'AvantGarde Bk BT', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--color-primary-blue);
+    }
+  }
+
+  &__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    border-radius: 25px;
+    font-family: 'AvantGarde Bk BT', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+
+    // Single-color placeholder until the backend defines a status.id → color mapping.
+    &--default {
+      background: var(--color-inquiry-status-approved-bg);
+      color: var(--color-inquiry-status-approved);
+    }
+
+    &--approved {
+      background: var(--color-inquiry-status-approved-bg);
+      color: var(--color-inquiry-status-approved);
+    }
+
+    &--pending {
+      background: var(--color-inquiry-status-pending-bg);
+      color: var(--color-inquiry-status-pending);
+    }
+  }
+
+  &__status-icon {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__title {
+    font-family: 'AvantGarde Bk BT', sans-serif;
+    font-size: 22px;
+    color: var(--color-dark-blue);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  &__desc {
+    font-family: 'AvantGarde Bk BT', sans-serif;
+    font-size: 16px;
+    color: var(--color-placeholder-dimmed);
+    line-height: 22px;
+    margin: 0;
+  }
+
+  &__ref {
+    font-family: 'AvantGarde Bk BT', sans-serif;
+    font-size: 16px;
+    color: var(--color-dark-blue);
+    line-height: 22px;
+    margin: 4px 0 0;
+  }
+}
+
+/* ── Pagination ───────────────────────────────────────────────────── */
+.complaints-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  &__btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s ease;
+
+    img {
+      width: 8px;
+      height: 14px;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover {
+      background: var(--color-pagination-btn-hover-bg);
+    }
+  }
+
+  &__prev-icon {
+    transform: scaleX(-1);
+  }
+
+  &__next-icon {
+    transform: none;
+  }
+
+  &__page {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-text-strong);
+    line-height: 24px;
+    transition: background 0.15s ease;
+
+    &--active {
+      background: var(--color-notification-pagination-active);
+    }
+
+    &:not(&--active):hover {
+      background: var(--color-pagination-btn-hover-bg);
+    }
+  }
+}
+
+:host-context([dir='rtl']) .complaints-pagination {
+  .complaints-pagination__prev-icon {
+    transform: none;
+  }
+
+  .complaints-pagination__next-icon {
+    transform: scaleX(-1);
+  }
+}

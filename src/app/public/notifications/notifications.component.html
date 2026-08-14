@@ -1,0 +1,97 @@
+<main class="notifications-page page-enter">
+  <section class="notifications-breadcrumb">
+    <div class="notifications-wrap">
+      <a [routerLink]="['/', currentLang, 'home']">{{ 'notificationsPage.breadcrumb.home' | translate }}</a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+      <span>{{ 'notificationsPage.breadcrumb.current' | translate }}</span>
+    </div>
+  </section>
+
+  <section class="notifications-hero">
+    <div class="notifications-wrap">
+      <div class="notifications-title-row">
+        <button
+          class="notifications-back"
+          type="button"
+          (click)="onBack()"
+          [attr.aria-label]="'notificationsPage.actions.backToHome' | translate">
+          <img src="assets/images/back.svg" alt="" aria-hidden="true" />
+        </button>
+
+        <div>
+          <h1>{{ 'notificationsPage.hero.title' | translate }}</h1>
+          <h2>{{ 'notificationsPage.hero.subtitle' | translate }}</h2>
+        </div>
+      </div>
+
+      <p class="notifications-description">{{ 'notificationsPage.hero.description' | translate }}</p>
+    </div>
+  </section>
+
+  <section class="notifications-content">
+    <div class="notifications-wrap">
+      <h3 class="notifications-section-title">{{ 'notificationsPage.section.title' | translate }}</h3>
+
+      <div class="notifications-filters" role="group" [attr.aria-label]="'notificationsPage.filters.ariaLabel' | translate">
+        <app-filter-dropdown
+          [options]="monthOptions"
+          [selectedValue]="selectedMonthKey"
+          (selectionChange)="onMonthChange($event)">
+        </app-filter-dropdown>
+
+        <app-filter-dropdown
+          [options]="yearOptions"
+          [selectedValue]="selectedYearKey"
+          (selectionChange)="onYearChange($event)">
+        </app-filter-dropdown>
+      </div>
+
+      <div class="notifications-list-shell">
+        <div class="notifications-list" [attr.aria-label]="'notificationsPage.section.title' | translate">
+          @for (item of notifications; track trackById($index, item)) {
+            <article class="notification-item" [ngClass]="'notification-item--' + item.tone">
+              <span class="notification-item__accent" aria-hidden="true"></span>
+              <div class="notification-item__content">
+                <div class="notification-item__main">
+                  <img class="notification-item__icon" [src]="item.iconSrc" alt="" aria-hidden="true" />
+                  <div class="notification-item__text">
+                    <h4>{{ item.titleKey | translate }}</h4>
+                    <p>{{ item.descriptionKey | translate }}</p>
+                  </div>
+                </div>
+                <span class="notification-item__time">{{ item.timeKey | translate }}</span>
+              </div>
+            </article>
+          }
+        </div>
+      </div>
+
+      <nav class="notifications-pagination" [attr.aria-label]="'notificationsPage.pagination.ariaLabel' | translate">
+        <button type="button" class="notifications-pagination__arrow"
+          [disabled]="currentPage() === 1"
+          (click)="prevPage()"
+          [attr.aria-label]="'notificationsPage.pagination.prev' | translate">
+          <img class="notifications-pagination__prev-icon" src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+        </button>
+
+        @for (p of pages(); track p) {
+          <button
+            type="button"
+            class="notifications-pagination__item"
+            [class.is-active]="p === currentPage()"
+            [attr.aria-current]="p === currentPage() ? 'page' : null"
+            (click)="goToPage(p)">
+            {{ p }}
+          </button>
+        }
+
+        <button type="button" class="notifications-pagination__arrow"
+          [disabled]="currentPage() === totalPages()"
+          (click)="nextPage()"
+          [attr.aria-label]="'notificationsPage.pagination.next' | translate">
+          <img class="notifications-pagination__next-icon" src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+        </button>
+      </nav>
+    </div>
+  </section>
+</main>

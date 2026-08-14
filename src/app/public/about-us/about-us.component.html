@@ -1,0 +1,140 @@
+<main id="main-content" class="page-enter au-page">
+
+  <!-- ── Breadcrumb strip ──────────────────────────────────────── -->
+  <section class="au-breadcrumb">
+    <div class="au-wrap">
+      <a [routerLink]="['/', currentLang(), 'home']">{{ 'aboutUsPage.breadcrumb.home' | translate }}</a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+      <span>{{ 'aboutUsPage.breadcrumb.current' | translate }}</span>
+    </div>
+  </section>
+
+  <!-- ── Hero ─────────────────────────────────────────────────── -->
+  <section class="au-hero">
+    <div class="au-wrap">
+      <div class="au-hero__title-row">
+        <button type="button" class="au-back-btn" (click)="goBack()"
+          [attr.aria-label]="'aboutUsPage.hero.backAria' | translate">
+          <img src="assets/images/back.svg" alt="" aria-hidden="true" />
+        </button>
+        <h1 class="au-hero__title">{{ heroTitle() || ('aboutUsPage.hero.title' | translate) }}</h1>
+      </div>
+      <h2 class="au-hero__subtitle">{{ overviewTitle() || ('aboutUsPage.hero.subtitle' | translate) }}</h2>
+      <p class="au-hero__desc">{{ heroDescription() || ('aboutUsPage.hero.description' | translate) }}</p>
+    </div>
+  </section>
+
+  <!-- ── Tab bar ───────────────────────────────────────────────── -->
+  <section class="au-tabs-section">
+    <div class="au-wrap">
+      <nav class="au-tabs" [attr.aria-label]="'aboutUsPage.tabs.ariaLabel' | translate">
+        @for (tab of tabs; track tab) {
+          <button
+            type="button"
+            class="au-tab"
+            [class.au-tab--active]="activeTab() === tab.key"
+            (click)="setTab(tab.key)"
+            [attr.aria-current]="activeTab() === tab.key ? 'true' : null">
+            <!-- Tab icon -->
+            <span class="au-tab__icon" aria-hidden="true">
+              <img [src]="tab.iconPath" width="24" height="24" alt="" />
+            </span>
+            <span class="au-tab__label">{{ tabLabel(tab.key) || (tab.fallbackLabelKey | translate) }}</span>
+            @if (activeTab() === tab.key) {
+              <span class="au-tab__indicator" aria-hidden="true"></span>
+            }
+          </button>
+        }
+      </nav>
+      <div class="au-tabs-underline"></div>
+    </div>
+  </section>
+
+  <!-- ── Tab content ───────────────────────────────────────────── -->
+  <section class="au-content">
+    <div class="au-wrap">
+
+      <!-- Overview tab -->
+      @if (activeTab() === 'overview') {
+        @if (aboutResource.isLoading()) {
+          <app-skeleton-loader variant="card" [count]="3"></app-skeleton-loader>
+        } @else if (aboutResource.error()) {
+          <div class="au-state au-state--error" role="alert">
+            <p>{{ 'errors.loadFailedDetail' | translate }}</p>
+            <button type="button" class="au-state__retry" (click)="aboutResource.reload()">
+              {{ 'common.retry' | translate }}
+            </button>
+          </div>
+        } @else {
+          <div class="au-overview au-tab-panel">
+            <!-- Left: text + 4 cards -->
+            <div class="au-overview__left">
+              <div class="au-who">
+                <h3 class="au-who__title">{{ overviewTitle() || ('aboutUsPage.overview.whoTitle' | translate) }}</h3>
+                <p class="au-who__para">{{ overviewDescription() || ('aboutUsPage.overview.whoPara1' | translate) }}</p>
+              </div>
+              <div class="au-stats">
+                @for (card of statCards; track card) {
+                  <article class="au-stat-card">
+                    <img class="au-stat-card__icon" [src]="card.iconPath" alt="" aria-hidden="true" width="50" height="50" />
+                    <div class="au-stat-card__body">
+                      <p class="au-stat-card__value">{{ card.valueKey | translate }}</p>
+                      <p class="au-stat-card__label">{{ card.labelKey | translate }}</p>
+                      <p class="au-stat-card__desc">{{ card.descKey | translate }}</p>
+                    </div>
+                  </article>
+                }
+              </div>
+            </div>
+            <!-- Right: tall image with overlay -->
+            <div class="au-overview__image-wrap">
+              <img
+                class="au-overview__image"
+                ngSrc="assets/images/about-us-plant.jpg"
+                fill
+                priority
+                [alt]="'aboutUsPage.overview.imageAlt' | translate"
+                />
+              <div class="au-overview__overlay" aria-hidden="true">
+                <p class="au-overview__tagline">{{ 'aboutUsPage.overview.tagline' | translate }}</p>
+                <p class="au-overview__tagline-sub">{{ 'aboutUsPage.overview.taglineSub' | translate }}</p>
+              </div>
+            </div>
+          </div>
+        }
+      }
+
+      <!-- Mission tab -->
+      @if (activeTab() === 'mission') {
+        <div class="au-tab-panel au-simple-panel">
+          <h3 class="au-panel__title">{{ missionTitle() || ('aboutUsPage.mission.title' | translate) }}</h3>
+          <p class="au-panel__para">{{ missionDescription() || ('aboutUsPage.mission.body' | translate) }}</p>
+        </div>
+      }
+
+      <!-- Vision tab -->
+      @if (activeTab() === 'vision') {
+        <div class="au-tab-panel au-simple-panel">
+          <h3 class="au-panel__title">{{ visionTitle() || ('aboutUsPage.vision.title' | translate) }}</h3>
+          <p class="au-panel__para">{{ visionDescription() || ('aboutUsPage.vision.body' | translate) }}</p>
+        </div>
+      }
+
+      <!-- Values tab -->
+      @if (activeTab() === 'values') {
+        <div class="au-tab-panel au-simple-panel">
+          <h3 class="au-panel__title">{{ valuesTitle() || ('aboutUsPage.values.title' | translate) }}</h3>
+          @if (valuesLines().length > 0) {
+            @for (line of valuesLines(); track line) {
+              <p class="au-panel__para">{{ line }}</p>
+            }
+          } @else {
+            <p class="au-panel__para">{{ 'aboutUsPage.values.body' | translate }}</p>
+          }
+        </div>
+      }
+
+    </div>
+  </section>
+
+</main>

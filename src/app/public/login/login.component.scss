@@ -1,0 +1,566 @@
+/* ─────────────────────────────────────────────────────────────
+   Host
+───────────────────────────────────────────────────────────── */
+:host {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+}
+
+@keyframes authFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes authSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+[dir='rtl'] {
+  @keyframes authSlideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-32px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Page shell
+───────────────────────────────────────────────────────────── */
+.login-page {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  background: var(--color-page-backdrop);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Background (full-viewport cover, horizontally flipped)
+───────────────────────────────────────────────────────────── */
+.bg-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+.bg-flip {
+  position: absolute;
+  inset: 0;
+  transform: scaleX(1);
+}
+
+.bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  /* gradient is inside flip container, 129° matches Figma exactly */
+  background: linear-gradient(
+    129deg,
+    var(--color-overlay-start) 28.147%,
+    var(--color-overlay-mid) 67.6%,
+    var(--color-overlay-end) 88.548%
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Navigation header
+───────────────────────────────────────────────────────────── */
+.nav-header {
+  position: relative;
+  z-index: 2;
+  padding-block-start: 56px;
+  padding-inline-start: 100px;
+  flex-shrink: 0;
+  animation: authFadeUp 0.52s cubic-bezier(0.2, 0.8, 0.2, 1) 0.06s both;
+}
+
+.nav-logo-link {
+  display: block;
+  width: 171px;
+  height: 48px;
+  overflow: hidden;
+}
+
+.nav-logo-img {
+  width: 104.01%;
+  height: 111.34%;
+  margin-inline-start: -1.6%;
+  margin-top: -2.02%;
+  object-fit: contain;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Main layout  (hero left | card right)
+───────────────────────────────────────────────────────────── */
+.main-content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  /* nav = 56px top padding + 48px logo = ~104px; Figma places content at 197px */
+  padding-block-start: 93px;
+  padding-block-end: 60px;
+  padding-inline: 100px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Hero (left column)
+───────────────────────────────────────────────────────────── */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  flex-shrink: 0;
+  padding-bottom: 60px; /* aligns bottom with card base */
+  animation: authFadeUp 0.64s cubic-bezier(0.2, 0.8, 0.2, 1) 0.14s both;
+}
+
+.hero-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 180px;
+}
+
+.hero-title {
+  font-family: 'AvantGarde Bk BT', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 1;
+  color: var(--color-modal-bg);
+  text-transform: uppercase;
+  max-width: 422px;
+  width: 100%;
+  margin: 0;
+}
+
+.hero-sub {
+  font-family: 'AvantGarde Bk BT', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.3;
+  color: var(--color-modal-bg);
+  max-width: 523px;
+  width: 100%;
+  margin: 0;
+}
+
+/* Pagination dots */
+.dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dot {
+  display: block;
+  height: 7px;
+  border-radius: 16px;
+  flex-shrink: 0;
+}
+
+.dot-lg { width: 37px; background: var(--color-modal-bg); }
+.dot-md { width: 20px; background: var(--color-white-80); }
+.dot-sm { width: 15px; background: var(--color-white-80); }
+
+/* ─────────────────────────────────────────────────────────────
+   Login card
+───────────────────────────────────────────────────────────── */
+.card {
+  background: var(--color-modal-bg);
+  border-radius: 16px;
+  box-shadow: 0 1px 20px 0 var(--color-auth-card-shadow);
+  width: 716px;
+  height: auto;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 45px;
+  box-sizing: border-box;
+  animation: authSlideIn 0.72s cubic-bezier(0.2, 0.8, 0.2, 1) 0.08s both;
+}
+
+.card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  max-width: 566px;
+  width: 100%;
+}
+
+/* Card top: logo + welcome */
+.card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 57px;
+}
+
+.card-logo {
+  width: 332px;
+  height: 93px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+:host-context([dir='rtl']) .card-logo {
+  object-position: right center;
+}
+
+.card-welcome {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.welcome-h {
+  font-family: 'AvantGarde Bk BT', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 32px;
+  color: var(--color-teal-dark);
+  margin: 0;
+}
+
+.welcome-p {
+  font-family: 'AvantGarde Bk BT', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--color-text-neutral);
+  margin: 0;
+}
+
+/* Form */
+.card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 33px;
+}
+
+.form-h {
+  font-family: 'AvantGarde Bk BT', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 32px;
+  color: var(--color-teal);
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 49px;
+}
+
+.form-fields formly-form,
+.form-fields formly-field,
+.form-fields formly-group,
+.form-fields formly-validation-message {
+  width: 100%;
+  display: block;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Input field  (label wraps icon + real input)
+───────────────────────────────────────────────────────────── */
+.input-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 45px;
+  padding: 6px 20px;
+  box-sizing: border-box;
+  background: var(--color-modal-bg);
+  border: 1px solid var(--color-input-border);
+  border-radius: 16px;
+  cursor: text;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-label:focus-within {
+  border-color: var(--color-teal);
+  box-shadow: 0 0 0 3px var(--color-teal-focus-ring);
+}
+
+.field-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.field-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  min-width: 0;
+  font-family: 'AvantGarde Bk BT', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--color-body-text);
+}
+
+.field-input::placeholder {
+  color: var(--color-placeholder-muted);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Action buttons
+───────────────────────────────────────────────────────────── */
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.btn {
+  width: 100%;
+  max-width: 566px;
+  padding: 12px;
+  border-radius: 16px;
+  border: none;
+  font-family: 'AvantGarde Bk BT', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.15s ease;
+}
+
+.btn:active { opacity: 0.88; }
+
+.btn-primary {
+  background: var(--color-orange);
+  color: var(--color-modal-bg);
+}
+
+.btn-primary:hover { background: var(--color-orange-hover); }
+
+.btn-outline {
+  background: var(--color-modal-bg);
+  border: 1px solid var(--color-input-border);
+  color: var(--color-orange);
+}
+
+.btn-outline:hover { background: var(--color-surface-soft); }
+
+/* "or" divider */
+.or-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 456px;
+}
+
+.or-line {
+  display: block;
+  flex: 1;
+  height: 0.5px;
+}
+
+/* lines: white on outside, teal toward "or" text */
+.or-line-l { background: linear-gradient(to right, var(--color-modal-bg), var(--color-teal)); }
+.or-line-r { background: linear-gradient(to left,  var(--color-modal-bg), var(--color-teal)); }
+
+.or-label {
+  font-family: 'AvantGarde Bk BT', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--color-text-strong);
+  letter-spacing: 0.15px;
+  padding: 0 10px;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-header,
+  .hero,
+  .card {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Responsive — large desktop  (≤ 1440px)
+   Minimum needed for full layout: ~1512px, so compress below that
+───────────────────────────────────────────────────────────── */
+@media (max-width: 1440px) {
+  .nav-header { padding-inline-start: 60px; }
+
+  .main-content {
+    padding-inline: 60px;
+    gap: 60px;
+  }
+
+  .hero-title { font-size: 36px; width: auto; max-width: 360px; }
+  .hero-sub   { font-size: 18px; width: auto; max-width: 400px; }
+
+  .card { width: 580px; height: auto; }
+  .card-inner { width: 100%; }
+  .card-logo  { width: 260px; height: 78px; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Responsive — tablet  (≤ 1024px)
+───────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .main-content {
+    padding-inline: 40px;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .hero { padding-bottom: 0; }
+  .hero-title { font-size: 30px; max-width: 300px; }
+  .hero-sub   { font-size: 16px; max-width: 320px; }
+
+  .card { width: 480px; height: auto; min-height: 580px; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Responsive — small tablet  (≤ 820px)
+   Stack hero above card
+───────────────────────────────────────────────────────────── */
+@media (max-width: 820px) {
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 32px 40px;
+    gap: 0;
+  }
+
+  .hero { display: none; }
+
+  .card {
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    min-height: unset;
+    padding: 40px 32px;
+  }
+
+  .card-inner { width: 100%; }
+  .card-logo  { width: 240px; height: auto; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Responsive — mobile  (≤ 600px)
+   Hide hero, focus on card
+───────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .nav-header {
+    padding-block-start: 24px;
+    padding-inline-start: 20px;
+  }
+
+  .nav-logo-link { width: 130px; height: 36px; }
+
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 20px 32px;
+    gap: 0;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: unset;
+    padding: 28px 20px;
+    border-radius: 12px;
+  }
+
+  .card-top    { gap: 28px; }
+  .card-logo   { width: 180px; height: auto; }
+  .welcome-h   { font-size: 24px; line-height: 28px; }
+  .welcome-p   { font-size: 14px; }
+  .form-h      { font-size: 20px; }
+  .form-fields { gap: 24px; }
+  .or-row      { width: 100%; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Responsive — very small  (≤ 375px)
+───────────────────────────────────────────────────────────── */
+@media (max-width: 375px) {
+  .nav-header {
+    padding-block-start: 20px;
+    padding-inline-start: 16px;
+  }
+  .card       { padding: 20px 16px; }
+  .card-logo  { width: 160px; }
+  .welcome-h  { font-size: 20px; line-height: 24px; }
+  .welcome-p  { font-size: 13px; }
+  .form-h     { font-size: 18px; }
+  .card-top   { gap: 20px; }
+  .card-inner { gap: 24px; }
+}
+
+/* Landscape / short-viewport: tighten vertical rhythm */
+@media (max-height: 680px) {
+  .nav-header { padding-top: 16px; }
+
+  .main-content { padding-top: 16px; padding-bottom: 16px; }
+
+  .card-top    { gap: 20px; }
+  .card-inner  { gap: 20px; }
+  .card-form   { gap: 16px; }
+  .form-fields { gap: 20px; }
+  .card-logo   { height: 52px; width: auto; }
+  .welcome-h   { font-size: 22px; }
+  .card        { padding: 28px 32px; }
+}
+

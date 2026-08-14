@@ -1,0 +1,394 @@
+/* ────────────────────────────────────────────────────────────────
+   Media Center Detail — pixel-perfect from Figma node 14533:199244
+   ──────────────────────────────────────────────────────────────── */
+
+.mcd-page {
+  background: var(--color-modal-bg);
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* ── Layout wrapper (matches 1312px content width) ────────────── */
+.mcd-wrap {
+  width: min(1312px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   BREADCRUMB  (4 levels, dark bg, Figma y=99 h=52)
+   ──────────────────────────────────────────────────────────────── */
+.mcd-breadcrumb {
+  background: url('/assets/images/faq-breadcrumb-bg.svg') center / cover no-repeat;
+  padding: 11px 0;  /* matches Figma 11px top/bottom padding */
+
+  .mcd-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+    min-height: 30px;
+  }
+
+  a {
+    font-family: 'AvantGarde Bk BT', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    color: var(--color-white-80);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color var(--transition-fast);
+
+    &:hover {
+      color: var(--color-modal-bg);
+    }
+  }
+
+  &__category {
+    /* Same style as regular breadcrumb link */
+    color: var(--color-white-80);
+  }
+
+  &__current {
+    /* Last item: bold 700, white — matches Figma "h14 bold" */
+    font-family: 'AvantGarde Bk BT', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 21px;
+    color: var(--color-modal-bg);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 380px;
+  }
+
+  &__sep {
+    width: 5px;
+    height: 10px;
+    filter: brightness(0) invert(1);
+    flex-shrink: 0;
+    opacity: 0.8;
+  }
+
+  :host-context([dir='rtl']) &__sep {
+    transform: rotate(180deg);
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   TITLE ROW  (Figma y=186 h=38)
+   Back button: 38×38, orange strokes
+   Title: AvantGarde Bk BT Demi 700, 32px, #008c98 (teal)
+   ──────────────────────────────────────────────────────────────── */
+.mcd-header {
+  padding: 32px 0 24px;
+}
+
+.mcd-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 21px;  /* matches Figma gap between back icon and title */
+}
+
+.mcd-back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: opacity var(--transition-fast);
+
+  img {
+    width: 38px;
+    height: 38px;
+  }
+
+  &:hover {
+    opacity: 0.75;
+  }
+
+  :host-context([dir='rtl']) & img {
+    transform: scaleX(-1);
+  }
+}
+
+.mcd-title {
+  /* Figma: "title" style — AvantGarde Bk BT Demi 700, 32px, #008c98 */
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-teal);
+  margin: 0;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   HERO IMAGE + BADGE  (Figma y=259 h=366 for image, total frame h=410)
+   Image frame: 1312×366, cornerRadius 16, overflow hidden
+   Badge: x=20 y=24, cornerRadius 9, bg #00788b, padding 14/26, 18px white AvantGarde Md BT
+   ──────────────────────────────────────────────────────────────── */
+.mcd-hero-section {
+  padding-bottom: 0;
+}
+
+.mcd-image-frame {
+  position: relative;
+  width: 100%;
+  /* Figma ratio 1312 / 366 */
+  aspect-ratio: 1312 / 366;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface-muted);
+
+  &__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+/* Badge — positioned at x=20 y=24 (Figma: inset-inline-start=20, top=24) */
+.mcd-badge {
+  position: absolute;
+  top: 24px;
+  inset-inline-start: 20px;
+
+  /* Figma: padding 14px top/bottom, 26px left/right */
+  padding: 14px 26px;
+
+  /* Figma: cornerRadius 9 */
+  border-radius: 9px;
+
+  /* Figma: AvantGarde Md BT, 18px, Medium (400), white */
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--color-modal-bg);
+  line-height: 1;
+
+  /* Category colours */
+  &--news        { background: var(--color-teal-dark); }
+  &--gallery     { background: var(--color-teal-dark); }
+  &--announcement { background: var(--color-dark-blue); }
+  &--videos      { background: var(--color-orange); }
+}
+
+/* ── Meta row (Figma y=386, h=24, below image) ────────────────── */
+.mcd-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+}
+
+.mcd-meta__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;   /* 8px between icon and text */
+
+  /* Figma: "text 16 regular" — AvantGarde Bk BT 16px Book 400, #083a81 */
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--color-dark-blue);
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+/* Divider: thin 1px line, 24px tall (Figma: Rectangle 13, cornerRadius 12) */
+.mcd-meta__divider {
+  width: 1px;
+  height: 24px;
+  border-radius: 12px;
+  background: var(--color-dark-blue);
+  opacity: 0.3;
+  flex-shrink: 0;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   ARTICLE BODY
+   ──────────────────────────────────────────────────────────────── */
+.mcd-body {
+  padding-bottom: 80px;
+}
+
+/* Lead paragraph (Figma: "h18 bold" — AvantGarde Bk BT Demi 700, 18px, #4a4a4a) */
+.mcd-body__lead {
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-neutral);
+  margin: 0 0 14px;
+  max-width: 1034px;  /* matches Figma text node width */
+  line-height: 1.5;
+}
+
+/* Regular body paragraphs (Figma: "text 16 regular" — 16px Book 400, lh 22px, #4a4a4a) */
+.mcd-body__para {
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--color-text-neutral);
+  margin: 0 0 24px;
+  max-width: 1056px;  /* matches Figma text node width */
+}
+
+/* ────────────────────────────────────────────────────────────────
+   QUOTE BLOCK  (Figma: Frame 1597883954)
+   Width 1102, h 146, cornerRadius 16, padding 16/14
+   Border: 1px solid #00788b (strokes s6)
+   ──────────────────────────────────────────────────────────────── */
+.mcd-quote {
+  display: flex;
+  gap: 0;           /* icon is positioned at x=38, text at x=48 — 10px gap */
+  align-items: flex-start;
+
+  /* Figma exact specs */
+  border: 1px solid var(--color-teal-dark);
+  border-radius: var(--radius-lg);
+  padding: 16px 14px;
+
+  max-width: 1102px;
+  margin: 0 0 24px;
+
+  /* blockquote reset */
+  quotes: none;
+
+  :host-context([dir='rtl']) & {
+    flex-direction: row-reverse;
+  }
+}
+
+/* Quote icon — positioned at x=38 within 14px padding = 38-14=24px inner offset */
+.mcd-quote__icon-wrap {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-top: 3px;
+  margin-inline-end: 10px;
+  margin-inline-start: 24px;  /* 38px - 14px padding = 24px inner offset */
+}
+
+/* Text content starts at x=48 within 14px padding = 34px inner offset */
+.mcd-quote__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Quote text (Figma: "text 16 regular" — 16px Book 400, lh 22px, #4a4a4a) */
+.mcd-quote__text {
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--color-text-neutral);
+  margin: 0 0 23px;  /* gap before attribution: y=67-44=23px from Figma */
+  max-width: 890px;  /* matches Figma text node width */
+}
+
+.mcd-quote__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;  /* y difference: 25-21=4px between author and role */
+}
+
+/* Author name (Figma: "h18 bold" — 18px Demi 700, #083a81) with bullet */
+.mcd-quote__author {
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  font-style: normal;
+  color: var(--color-dark-blue);
+  line-height: 21px;
+
+  /* Bullet prefix from Figma screenshot */
+  &::before {
+    content: '• ';
+    color: var(--color-dark-blue);
+  }
+}
+
+/* Role (Figma: "h18 regular" — 18px Book 400, #608bc7) */
+.mcd-quote__role {
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--color-quote-role);
+  line-height: 22px;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   RESPONSIVE
+   ──────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .mcd-title {
+    font-size: 26px;
+  }
+
+  .mcd-image-frame {
+    aspect-ratio: 16 / 7;
+  }
+}
+
+@media (max-width: 768px) {
+  .mcd-title {
+    font-size: 20px;
+  }
+
+  .mcd-image-frame {
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+  }
+
+  .mcd-badge {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  .mcd-meta {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .mcd-meta__item {
+    font-size: 14px;
+  }
+
+  .mcd-body__lead {
+    font-size: 16px;
+  }
+
+  .mcd-body__para,
+  .mcd-quote__text,
+  .mcd-quote__author,
+  .mcd-quote__role {
+    font-size: 15px;
+  }
+
+  .mcd-quote__icon-wrap {
+    margin-inline-start: 8px;
+  }
+
+  .mcd-breadcrumb .mcd-wrap {
+    flex-wrap: wrap;
+  }
+
+  .mcd-breadcrumb__current {
+    max-width: 200px;
+  }
+}

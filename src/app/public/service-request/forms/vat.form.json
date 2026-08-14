@@ -1,0 +1,111 @@
+{
+  "vatDetails": [
+    {
+      "fieldGroupClassName": "request-grid",
+      "fieldGroup": [
+        {
+          "key": "vatin",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.vat.vatin.label",
+            "placeholder": "serviceRequestPage.form.vat.vatin.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "premisesType",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.vat.premisesType.label",
+            "placeholder": "serviceRequestPage.form.vat.premisesType.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "taxCertificateExpiryDate",
+          "type": "custom-calendar",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.vat.taxCertificateExpiryDate.label",
+            "placeholder": "serviceRequestPage.form.vat.taxCertificateExpiryDate.placeholder"
+          }
+        },
+        {
+          "key": "licenseExpiryDate",
+          "type": "custom-calendar",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.vat.licenseExpiryDate.label",
+            "placeholder": "serviceRequestPage.form.vat.licenseExpiryDate.placeholder"
+          }
+        }
+      ]
+    }
+  ],
+  "vatDocuments": [
+    {
+      "fieldGroupClassName": "request-file-grid",
+      "fieldGroup": [
+        {
+          "key": "licenseRecordSEZ",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.vat.documents.licenseRecordSEZ.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        },
+        {
+          "key": "validTaxCertificate",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.vat.documents.validTaxCertificate.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        },
+        {
+          "key": "taxExemptionCertificateSEZ",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.vat.documents.taxExemptionCertificateSEZ.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        },
+        {
+          "key": "validCommercialRegistration",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.vat.documents.validCommercialRegistration.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        }
+      ]
+    }
+  ]
+}

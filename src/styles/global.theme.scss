@@ -1,0 +1,541 @@
+@font-face {
+  font-family: "Avant Garde Book BT";
+  src: url("/assets/fonts/AVGARDN_2.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AvantGarde Bk BT";
+  src: url("/assets/fonts/AVGARDN_2.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Avant Garde Demi BT";
+  src: url("/assets/fonts/AVGARDD_2.woff") format("woff");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AvantGarde Md BT";
+  src: url("/assets/fonts/AVGARDD_2.woff") format("woff");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Avant Garde Demi Oblique BT";
+  src: url("/assets/fonts/AVGARDDO_2.woff") format("woff");
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+}
+
+html {
+  font-size: 10px;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Avant Garde Book BT", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  select,
+  textarea {
+    font-size: max(14px, 1.4rem);
+  }
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+div,
+h1 {
+  font-size: 2rem;
+}
+
+body.loading {
+  overflow: hidden;
+}
+
+/* Shared routed-page enter motion utility. */
+.page-enter {
+  animation: page-enter 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   View Transitions API — native cross-fade between routes (Angular 17+).
+   Driven by `withViewTransitions()` in app.config.ts. Browsers without
+   support degrade gracefully (no animation, no JS cost).
+   ────────────────────────────────────────────────────────────────────────── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 280ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::view-transition-old(root) {
+  animation-name: vt-fade-out;
+}
+
+::view-transition-new(root) {
+  animation-name: vt-fade-in;
+}
+
+@keyframes vt-fade-out {
+  to { opacity: 0; }
+}
+
+@keyframes vt-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Scroll-reveal classes — consumed by `[appScrollReveal]` directive.
+   The directive adds `.reveal-<variant>` initially (hidden state) and
+   adds `.is-visible` when the element enters the viewport. Use logical
+   transforms so RTL is respected automatically.
+   ────────────────────────────────────────────────────────────────────────── */
+.reveal-fade,
+.reveal-fade-up,
+.reveal-fade-in-x {
+  opacity: 0;
+  transition:
+    opacity var(--transition-slow, 400ms cubic-bezier(0.22, 1, 0.36, 1)),
+    transform var(--transition-slow, 400ms cubic-bezier(0.22, 1, 0.36, 1));
+  will-change: opacity, transform;
+}
+
+.reveal-fade-up   { transform: translate3d(0, 18px, 0); }
+.reveal-fade-in-x { transform: translate3d(var(--reveal-x, 18px), 0, 0); }
+
+[dir="rtl"] .reveal-fade-in-x { transform: translate3d(calc(var(--reveal-x, 18px) * -1), 0, 0); }
+
+.reveal-fade.is-visible,
+.reveal-fade-up.is-visible,
+.reveal-fade-in-x.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-fade,
+  .reveal-fade-up,
+  .reveal-fade-in-x {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ── Skeleton shimmer keyframe (consumed by SkeletonLoaderComponent) ── */
+@keyframes skeleton-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* ── Stagger animation-delay utilities ── */
+.stagger-1 { animation-delay: 60ms; }
+.stagger-2 { animation-delay: 120ms; }
+.stagger-3 { animation-delay: 180ms; }
+.stagger-4 { animation-delay: 240ms; }
+.stagger-5 { animation-delay: 300ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-1,
+  .stagger-2,
+  .stagger-3,
+  .stagger-4,
+  .stagger-5 { animation-delay: 0ms; }
+}
+
+/* ── Card lift — add class to any interactive card ── */
+.card-lift {
+  transition: transform var(--transition-base, 250ms ease),
+              box-shadow var(--transition-base, 250ms ease);
+  cursor: pointer;
+}
+
+.card-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+}
+
+.card-lift:active {
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-lift:hover,
+  .card-lift:active { transform: none; }
+}
+
+/* ── Consistent focus-ring utility ── */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm, 6px);
+}
+
+/* ── Button cursor baseline (enforces pointer on all clickable elements) ── */
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]) { cursor: pointer; }
+button:disabled                             { cursor: not-allowed; }
+
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background-color: var(--color-skip-link-bg);
+  color: var(--bg-color);
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  text-decoration: none;
+  z-index: 10000;
+  transition: top 0.2s ease;
+}
+
+.skip-to-content:focus {
+  top: 1rem;
+  outline: 2px solid var(--bg-color);
+}
+
+/* Custom Dropdown Panel Styling (PrimeNG Select) */
+.custom-dropdown-panel {
+  background: var(--color-modal-bg) !important;
+  border: 1px solid var(--color-input-border) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  margin-top: 4px !important;
+
+  .p-select-list-container {
+    padding: 8px 0 !important;
+  }
+
+  .p-select-option {
+    padding: 10px 16px !important;
+    color: var(--color-body-text) !important;
+    font-family: 'AvantGarde Bk BT', sans-serif !important;
+    font-size: 14px !important;
+    transition: background 0.2s ease !important;
+
+    &:hover,
+    &.p-focus {
+      background: var(--color-surface-muted) !important;
+    }
+
+    &.p-highlight {
+      background: var(--color-section-soft-bg) !important;
+      color: var(--color-dark-blue) !important;
+    }
+  }
+
+  .p-select-empty-message {
+    padding: 12px 16px !important;
+    color: var(--color-placeholder-dimmed) !important;
+    font-size: 14px !important;
+  }
+}
+
+// Global PrimeNG Focus/Open overrides to remove green
+:root {
+  --p-primary-color: var(--color-orange) !important;
+  --p-primary-500: var(--color-orange) !important;
+  --p-select-focus-border-color: var(--color-orange) !important;
+  --p-inputtext-focus-border-color: var(--color-orange) !important;
+  --p-multiselect-focus-border-color: var(--color-orange) !important;
+  --p-datepicker-focus-border-color: var(--color-orange) !important;
+  
+  /* Ensure white background for all PrimeNG inputs against the grey sections */
+  --p-select-background: #ffffff !important;
+  --p-inputtext-background: #ffffff !important;
+  --p-multiselect-background: #ffffff !important;
+  --p-datepicker-background: #ffffff !important;
+}
+
+[class*="p-"] {
+  --p-primary-color: var(--color-orange) !important;
+  --p-focus-ring-color: var(--color-orange-focus-ring) !important;
+}
+
+.p-select.p-select-open,
+.p-select:not(.p-disabled).p-focus,
+.p-inputwrapper-focus,
+.p-multiselect.p-multiselect-open,
+.p-multiselect:not(.p-disabled).p-focus,
+.p-calendar.p-inputwrapper-focus,
+.p-datepicker.p-inputwrapper-focus {
+  border-color: var(--color-orange) !important;
+  box-shadow: 0 0 0 3px var(--color-orange-focus-ring) !important;
+}
+
+// ─── PrimeNG DatePicker panel (appended to body) ──────────────────────────────
+.p-datepicker-panel {
+  // Override PrimeNG v18 internal CSS variables so dark theme cannot bleed in
+  --p-datepicker-panel-background:               var(--color-modal-bg);
+  --p-datepicker-panel-color:                    var(--color-body-text);
+  --p-datepicker-panel-border-color:             var(--color-form-border);
+  --p-datepicker-panel-border-radius:            14px;
+  --p-datepicker-panel-shadow:                   0 8px 32px rgba(0, 0, 0, 0.12);
+  --p-datepicker-header-background:              var(--color-modal-bg);
+  --p-datepicker-header-color:                   var(--color-dark-blue);
+  --p-datepicker-header-border-color:            var(--color-form-border);
+  --p-datepicker-day-name-color:                 var(--color-placeholder-dimmed);
+  --p-datepicker-date-background:                transparent;
+  --p-datepicker-date-color:                     var(--color-body-text);
+  --p-datepicker-date-hover-background:          var(--color-orange-hover-bg);
+  --p-datepicker-date-hover-color:               var(--color-orange);
+  --p-datepicker-date-selected-background:       var(--color-orange);
+  --p-datepicker-date-selected-color:            #ffffff;
+  --p-datepicker-date-today-background:          transparent;
+  --p-datepicker-date-today-color:               var(--color-orange);
+  --p-datepicker-date-today-border-color:        var(--color-orange);
+  --p-datepicker-other-month-date-color:         var(--color-icon-muted);
+  --p-datepicker-month-view-month-background:    transparent;
+  --p-datepicker-month-view-month-color:         var(--color-body-text);
+  --p-datepicker-month-view-month-hover-background: var(--color-orange-hover-bg);
+  --p-datepicker-month-view-month-hover-color:   var(--color-orange);
+  --p-datepicker-month-view-month-selected-background: var(--color-orange);
+  --p-datepicker-month-view-month-selected-color: #ffffff;
+  --p-datepicker-year-view-year-background:      transparent;
+  --p-datepicker-year-view-year-color:           var(--color-body-text);
+  --p-datepicker-year-view-year-hover-background: var(--color-orange-hover-bg);
+  --p-datepicker-year-view-year-hover-color:     var(--color-orange);
+  --p-datepicker-year-view-year-selected-background: var(--color-orange);
+  --p-datepicker-year-view-year-selected-color:  #ffffff;
+  --p-datepicker-nav-button-color:               var(--color-orange);
+  --p-datepicker-nav-button-hover-background:    var(--color-filter-dropdown-bg);
+
+  font-family: 'AvantGarde Bk BT', 'Century Gothic', 'Trebuchet MS', sans-serif !important;
+  background: var(--color-modal-bg) !important;
+  color: var(--color-body-text) !important;
+  border: 1px solid var(--color-form-border) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px var(--color-card-shadow-subtle) !important;
+  padding: 16px !important;
+  min-width: 280px !important;
+
+  // ── Header ──────────────────────────────────────────────────────────────────
+  .p-datepicker-header {
+    background: var(--color-modal-bg) !important;
+    color: var(--color-dark-blue) !important;
+    border-bottom-color: var(--color-form-border) !important;
+    padding-bottom: 12px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .p-datepicker-prev-button,
+  .p-datepicker-next-button {
+    color: var(--color-orange) !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 8px !important;
+    width: 32px !important;
+    height: 32px !important;
+    cursor: pointer !important;
+    transition: background 0.15s ease !important;
+
+    &:hover {
+      background: var(--color-filter-dropdown-bg) !important;
+    }
+
+    .p-icon {
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
+
+  .p-datepicker-title {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: var(--color-dark-blue) !important;
+    gap: 6px !important;
+  }
+
+  .p-datepicker-select-month,
+  .p-datepicker-select-year {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-family: inherit !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: var(--color-dark-blue) !important;
+    cursor: pointer !important;
+    padding: 2px 4px !important;
+    border-radius: 6px !important;
+    transition: background 0.15s ease, color 0.15s ease !important;
+
+    &:hover {
+      background: var(--color-filter-dropdown-bg) !important;
+      color: var(--color-orange) !important;
+    }
+  }
+
+  // ── Weekday header row ────────────────────────────────────────────────────
+  .p-datepicker-day-name {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    color: var(--color-placeholder-dimmed) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.04em !important;
+  }
+
+  // ── Day cells ─────────────────────────────────────────────────────────────
+  .p-datepicker-day-cell {
+    padding: 2px !important;
+  }
+
+  .p-datepicker-day {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 50% !important;
+    font-size: 13px !important;
+    color: var(--color-body-text) !important;
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background 0.15s ease, color 0.15s ease !important;
+
+    &:hover:not(.p-datepicker-day-selected):not(.p-disabled) {
+      background: var(--color-orange-hover-bg) !important;
+      color: var(--color-orange) !important;
+    }
+
+    &.p-datepicker-day-selected,
+    &[aria-selected="true"] {
+      background: var(--color-orange) !important;
+      color: var(--color-modal-bg) !important;
+      font-weight: 600 !important;
+    }
+
+    &.p-datepicker-day-today:not(.p-datepicker-day-selected) {
+      border: 2px solid var(--color-orange) !important;
+      color: var(--color-orange) !important;
+      font-weight: 600 !important;
+      background: transparent !important;
+    }
+
+    &.p-datepicker-day-outside-month {
+      color: var(--color-icon-muted) !important;
+    }
+
+    &.p-disabled, &:disabled {
+      opacity: 0.35 !important;
+      cursor: not-allowed !important;
+    }
+  }
+
+  // ── Month view ────────────────────────────────────────────────────────────
+  .p-datepicker-month-view {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+    padding-top: 8px !important;
+  }
+
+  .p-datepicker-month {
+    padding: 10px 6px !important;
+    border-radius: 10px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: var(--color-body-text) !important;
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background 0.15s ease, color 0.15s ease !important;
+
+    &:hover:not(.p-datepicker-month-selected) {
+      background: var(--color-orange-hover-bg) !important;
+      color: var(--color-orange) !important;
+    }
+
+    &.p-datepicker-month-selected, &[aria-selected="true"] {
+      background: var(--color-orange) !important;
+      color: var(--color-modal-bg) !important;
+      font-weight: 600 !important;
+    }
+  }
+
+  // ── Year view ─────────────────────────────────────────────────────────────
+  .p-datepicker-year-view {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+    padding-top: 8px !important;
+  }
+
+  .p-datepicker-year {
+    padding: 10px 6px !important;
+    border-radius: 10px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: var(--color-body-text) !important;
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background 0.15s ease, color 0.15s ease !important;
+
+    &:hover:not(.p-datepicker-year-selected) {
+      background: var(--color-orange-hover-bg) !important;
+      color: var(--color-orange) !important;
+    }
+
+    &.p-datepicker-year-selected, &[aria-selected="true"] {
+      background: var(--color-orange) !important;
+      color: var(--color-modal-bg) !important;
+      font-weight: 600 !important;
+    }
+  }
+}
+
+// RTL support for calendar panel
+[dir='rtl'] .p-datepicker-panel {
+  direction: rtl;
+}

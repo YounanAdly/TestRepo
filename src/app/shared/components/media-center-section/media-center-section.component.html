@@ -1,0 +1,82 @@
+<section class="support-complaints-section">
+  <div class="media-center-wrap">
+    <div class="media-center-head">
+      <div class="media-center-title-block">
+        <p class="media-center-kicker">{{ 'home.mediaCenter.kicker' | translate }}</p>
+        <h2 class="media-center-title">{{ 'home.mediaCenter.title' | translate }}</h2>
+      </div>
+
+      <button
+        type="button"
+        class="media-center-more-btn"
+        (click)="onViewMoreMediaCenter()"
+        [attr.aria-label]="'home.mediaCenter.viewMore' | translate">
+        {{ 'home.mediaCenter.viewMore' | translate }}
+      </button>
+    </div>
+
+    <div class="media-news-grid">
+      @for (item of mediaNewsItems; track item) {
+        <button
+          type="button"
+          class="media-news-card"
+          (click)="openVideoPreview(item.videoUrl)"
+          [attr.aria-label]="item.openPreviewLabelKey | translate">
+          <img class="media-news-image" [src]="item.imageSrc" [attr.alt]="item.imageAltKey | translate" />
+        </button>
+      }
+    </div>
+
+    <div class="media-watch-row">
+      <article class="media-watch-copy">
+        <h3 class="media-watch-title">{{ 'home.mediaCenter.watch.title' | translate }}</h3>
+        <p class="media-watch-subtitle">{{ 'home.mediaCenter.watch.subtitle' | translate }}</p>
+        <p class="media-watch-description">{{ 'home.mediaCenter.watch.description' | translate }}</p>
+      </article>
+
+      <button
+        type="button"
+        class="media-video-trigger"
+        (click)="openVideoPreview()"
+        [attr.aria-label]="'home.mediaCenter.video.openPreview' | translate">
+        <img
+          class="media-video-cover"
+          src="assets/images/media-video-cover.png"
+          [attr.alt]="'home.mediaCenter.video.coverAlt' | translate" />
+        <span class="media-video-overlay" aria-hidden="true"></span>
+        <span class="media-video-play" aria-hidden="true">
+          <span class="media-video-play-triangle"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<div
+  #videoModal
+  class="video-preview-modal"
+  [class.video-preview-modal--open]="isVideoPreviewOpen"
+  role="dialog"
+  aria-modal="true"
+  [attr.aria-label]="'home.mediaCenter.video.previewDialog' | translate"
+  [cdkTrapFocus]="isVideoPreviewOpen"
+  cdkTrapFocusAutoCapture
+  (click)="closeVideoPreview()">
+  <div class="video-preview-dialog" (click)="$event.stopPropagation()">
+    <button
+      type="button"
+      class="video-preview-close"
+      (click)="closeVideoPreview()"
+      [attr.aria-label]="'home.mediaCenter.video.closePreview' | translate">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+    <video
+      #videoPreviewElement
+      class="video-preview-player"
+      controls
+      playsinline
+      [src]="mediaPreviewVideoUrl">
+    </video>
+  </div>
+</div>

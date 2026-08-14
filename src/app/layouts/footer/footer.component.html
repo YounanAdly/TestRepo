@@ -1,0 +1,70 @@
+<footer class="site-footer" role="contentinfo">
+	<section class="footer-main">
+		<div class="footer-main-inner">
+			<div class="footer-brand">
+				<img class="footer-logo" [src]="logoSrc()" [alt]="'footer.brand.logoAlt' | translate">
+
+				<div class="social-list" aria-label="Social links">
+					@for (social of socialLinks(); track social.platform) {
+						<a
+							class="social-link"
+							[href]="social.href"
+							target="_blank"
+							rel="noopener noreferrer"
+							[attr.aria-label]="social.ariaLabelKey | translate">
+							<img
+								class="social-icon"
+								[src]="'assets/images/' + social.platform + '.svg'"
+								alt=""
+								aria-hidden="true" />
+						</a>
+					}
+				</div>
+			</div>
+
+			<nav class="footer-menu" [attr.aria-label]="'footer.menu.title' | translate">
+				<h2 class="footer-title">{{ 'footer.menu.title' | translate }}</h2>
+				<ul>
+					@for (link of menuLinks(); track link.labelKey) {
+						<li>
+							<a [routerLink]="getLocalizedRoute(link.route)">{{ link.labelKey | translate }}</a>
+						</li>
+					}
+				</ul>
+			</nav>
+
+			<section class="footer-contact" [attr.aria-label]="'footer.contact.title' | translate">
+				<h2 class="footer-title">{{ 'footer.contact.title' | translate }}</h2>
+
+				<ul>
+					@for (contact of contactInfo(); track contact.textKey) {
+						<li>
+							<img
+								class="contact-icon"
+								[src]="'assets/images/contact-' + contact.icon + '.svg'"
+								alt=""
+								aria-hidden="true" />
+							<a class="contact-link" [href]="contact.href">{{ contact.textKey | translate }}</a>
+						</li>
+					}
+				</ul>
+			</section>
+		</div>
+	</section>
+
+	<section class="footer-bottom">
+		<div class="footer-bottom-inner">
+			<p>{{ 'footer.bottom.copyright' | translate : { year: year } }}</p>
+
+			<nav [attr.aria-label]="'footer.bottom.legalNav' | translate">
+				<ul>
+					@for (link of legalLinks(); track link.labelKey) {
+						<li>
+							<a [routerLink]="getLocalizedRoute(link.route)">{{ link.labelKey | translate }}</a>
+						</li>
+					}
+				</ul>
+			</nav>
+		</div>
+	</section>
+</footer>

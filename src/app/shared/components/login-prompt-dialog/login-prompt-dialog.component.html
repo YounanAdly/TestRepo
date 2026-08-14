@@ -1,0 +1,37 @@
+@if (authPrompt.isOpen()) {
+  <div class="login-prompt-overlay" (click)="onCancel()">
+    <div
+      class="login-prompt-modal"
+      role="alertdialog"
+      aria-modal="true"
+      aria-labelledby="login-prompt-title"
+      aria-describedby="login-prompt-message"
+      cdkTrapFocus
+      cdkTrapFocusAutoCapture
+      (click)="$event.stopPropagation()">
+      <button
+        class="login-prompt-close"
+        type="button"
+        (click)="onCancel()"
+        [attr.aria-label]="'auth.loginRequired.closeAria' | translate">
+        <img src="assets/images/close-icon.svg" alt="" aria-hidden="true">
+      </button>
+
+      <h2 class="login-prompt-title" id="login-prompt-title">
+        {{ 'auth.loginRequired.title' | translate }}
+      </h2>
+      <p class="login-prompt-message" id="login-prompt-message">
+        {{ 'auth.loginRequired.message' | translate }}
+      </p>
+
+      <div class="login-prompt-actions">
+        <app-button type="button" variant="action-outline" (clicked)="onCancel()">
+          {{ 'auth.loginRequired.cancel' | translate }}
+        </app-button>
+        <app-button type="button" variant="action-primary" (clicked)="onLogin()">
+          {{ 'auth.loginRequired.login' | translate }}
+        </app-button>
+      </div>
+    </div>
+  </div>
+}

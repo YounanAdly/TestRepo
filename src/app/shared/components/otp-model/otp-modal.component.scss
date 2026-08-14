@@ -1,0 +1,279 @@
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes modalPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.otp-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: var(--color-otp-overlay);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(24px, 12vh, 164px) 24px 24px;
+  animation: overlayFadeIn 0.22s ease both;
+}
+
+.otp-modal {
+  width: min(640px, 92vw);
+  background: var(--color-modal-bg);
+  border-radius: 10px;
+  padding: 32px 80px;
+  position: relative;
+  box-sizing: border-box;
+  animation: modalPopIn 0.34s cubic-bezier(0.2, 0.8, 0.2, 1) 0.06s both;
+}
+
+.otp-close {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-orange);
+  transition: opacity 0.15s ease;
+}
+
+.otp-close:hover {
+  opacity: 0.65;
+}
+
+.otp-close img {
+  width: 16px;
+  height: 16px;
+  display: block;
+  object-fit: contain;
+}
+
+[dir='rtl'] .otp-close {
+  left: auto;
+  right: 24px;
+}
+
+.otp-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.otp-verification-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+}
+
+.otp-verification-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 19px;
+}
+
+.otp-illustration {
+  width: 114px;
+  height: 91px;
+}
+
+.otp-text-container {
+  padding: 10px;
+}
+
+.otp-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+}
+
+.otp-description {
+  margin: 0;
+  text-align: center;
+  font-family: 'AvantGarde Md BT', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--color-body-text);
+  white-space: nowrap;
+}
+
+.otp-description span {
+  color: var(--color-teal);
+}
+
+.otp-number {
+  margin: 0;
+  width: 190px;
+  text-align: center;
+  font-family: 'AvantGarde Md BT', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--color-teal);
+}
+
+.otp-code-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  width: 100%;
+}
+
+.otp-inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.otp-input {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--color-otp-border);
+  border-radius: 11px;
+  text-align: center;
+  font-family: 'AvantGarde Md BT', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--color-dark-blue) !important;
+  background-color: var(--color-modal-input-bg) !important;
+  outline: none;
+}
+
+.otp-input:focus {
+  border-color: var(--color-teal);
+  box-shadow: 0 0 0 3px rgba(0, 140, 152, 0.15);
+}
+
+.otp-verify-wrap {
+  width: 229px;
+}
+
+.otp-error {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-family: 'AvantGarde Md BT', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-error, var(--color-orange));
+}
+
+.otp-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.otp-timer {
+  margin: 0;
+  font-family: 'AvantGarde Md BT', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-body-text);
+  text-align: center;
+}
+
+.otp-timer-value {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-teal);
+  margin-inline-start: 4px;
+}
+
+.otp-timer--expired {
+  color: var(--color-error, var(--color-orange));
+}
+
+.otp-resend {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-family: 'AvantGarde Md BT', 'Century Gothic', 'Trebuchet MS', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-teal);
+  cursor: pointer;
+  text-decoration: underline;
+  transition: opacity var(--transition-fast, 150ms ease);
+}
+
+.otp-resend:hover:not(:disabled) {
+  opacity: 0.75;
+}
+
+.otp-resend:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.otp-resend:disabled {
+  color: var(--color-body-text-muted, var(--color-body-text));
+  opacity: 0.55;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .otp-overlay,
+  .otp-modal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .otp-overlay {
+    padding: 16px;
+  }
+
+  .otp-modal {
+    width: 100%;
+    max-width: 520px;
+    padding: 28px 20px;
+  }
+
+  .otp-close {
+    top: 16px;
+    left: 16px;
+  }
+
+  [dir='rtl'] .otp-close {
+    left: auto;
+    right: 16px;
+  }
+
+  .otp-description {
+    font-size: 15px;
+    line-height: 21px;
+    white-space: normal;
+  }
+
+  .otp-number {
+    font-size: 15px;
+  }
+}

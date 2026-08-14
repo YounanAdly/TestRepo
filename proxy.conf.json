@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://app-api-marafiq-we-dev-001.azurewebsites.net",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

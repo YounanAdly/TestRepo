@@ -1,0 +1,654 @@
+:host {
+  display: block;
+  min-height: 100%;
+}
+
+/* =============================================================
+ *  Page shell
+ * ============================================================= */
+.account-summary-page {
+  background: var(--color-surface-soft);
+  padding-bottom: 96px;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.acct-wrap {
+  width: min(1312px, calc(100% - 36px));
+  margin-inline: auto;
+}
+
+/* =============================================================
+ *  Breadcrumb strip (matches profile / faq)
+ * ============================================================= */
+.acct-breadcrumb {
+  background: url('/assets/images/faq-breadcrumb-bg.svg') center / cover no-repeat;
+  padding-block: 11px;
+
+  .acct-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 30px;
+  }
+}
+
+.acct-breadcrumb__link,
+.acct-breadcrumb__current {
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-size: 14px;
+  line-height: 21px;
+  text-decoration: none;
+}
+
+.acct-breadcrumb__link {
+  color: var(--color-white-80);
+  transition: color var(--transition-fast);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color-modal-bg);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-modal-bg);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+}
+
+.acct-breadcrumb__current {
+  color: var(--color-modal-bg);
+  font-family: 'AvantGarde Md BT', sans-serif;
+}
+
+.acct-breadcrumb__sep {
+  width: 6px;
+  height: 12px;
+  filter: brightness(0) invert(1);
+}
+
+[dir='rtl'] .acct-breadcrumb__sep {
+  transform: scaleX(-1);
+}
+
+/* =============================================================
+ *  Hero
+ * ============================================================= */
+.acct-hero {
+  padding-top: 36px;
+}
+
+.acct-hero__wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.acct-hero__title {
+  margin: 0;
+  color: var(--color-teal);
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.acct-hero__subtitle {
+  margin: 0;
+  color: var(--color-primary-blue);
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+/* =============================================================
+ *  Stat cards (4 across, wrap on tablet)
+ * ============================================================= */
+.acct-stats {
+  padding-top: 26px;
+}
+
+.acct-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: var(--color-modal-bg);
+  border-radius: 17px;
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 129px;
+  box-shadow: 0 4px 22px var(--color-profile-card-shadow);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.stat-card__icon {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.stat-card--number .stat-card__icon {
+  background: var(--color-account-summary-number-bg);
+}
+
+.stat-card--consumption .stat-card__icon {
+  background: var(--color-account-summary-consumption-bg);
+}
+
+.stat-card--billing .stat-card__icon {
+  background: var(--color-account-summary-billing-bg);
+}
+
+.stat-card--type .stat-card__icon {
+  background: var(--color-account-summary-type-bg);
+}
+
+.stat-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.stat-card__label {
+  color: var(--color-account-summary-label);
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.stat-card__value {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  color: var(--color-account-summary-label);
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.stat-card__value-main {
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.stat-card__value-suffix {
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--color-account-summary-label);
+  vertical-align: super;
+}
+
+.stat-card__meta {
+  color: var(--color-account-summary-label);
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+/* =============================================================
+ *  Body grid (two columns: left info panels, right chart + quick)
+ * ============================================================= */
+.acct-body {
+  padding-top: 24px;
+}
+
+.acct-body__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 581fr) minmax(0, 690fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.acct-body__col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+/* =============================================================
+ *  Shared panel card
+ * ============================================================= */
+.acct-panel {
+  background: var(--color-modal-bg);
+  border-radius: 17px;
+  padding: 25px;
+  box-shadow: 0 4px 22px var(--color-profile-card-shadow);
+}
+
+.acct-panel__header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 18px;
+}
+
+.acct-panel__title {
+  margin: 0;
+  color: var(--color-teal);
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.acct-panel__subtitle {
+  margin: 0;
+  color: var(--color-account-summary-fast-access);
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.acct-panel__rows {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.acct-panel__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--color-account-summary-divider);
+  min-height: 44px;
+
+  &.is-last {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  &:first-child {
+    padding-top: 4px;
+  }
+}
+
+.acct-panel__label {
+  margin: 0;
+  color: var(--color-account-summary-label);
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  white-space: nowrap;
+}
+
+.acct-panel__value {
+  margin: 0;
+  color: var(--color-account-summary-value);
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: end;
+  word-break: break-word;
+  min-width: 0;
+}
+
+.acct-panel__value--status {
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-weight: 700;
+}
+
+.acct-panel__value--active {
+  color: var(--color-account-summary-status-active);
+}
+
+/* =============================================================
+ *  Consumption chart card
+ * ============================================================= */
+.acct-chart-card__header {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.acct-chart-card__filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px 4px 12px;
+  border-radius: 21px;
+  background: var(--color-account-summary-chart-chip-bg);
+  border: 1px solid var(--color-account-summary-chart-chip-border);
+  color: var(--color-text-neutral);
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  white-space: nowrap;
+}
+
+.acct-chart-card__filter-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.acct-chart-card__hero {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 16px;
+}
+
+.acct-chart-card__hero-value {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  color: var(--color-dark-blue);
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.1;
+}
+
+.acct-chart-card__hero-number {
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-weight: 700;
+}
+
+.acct-chart-card__hero-unit {
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--color-dark-blue);
+  vertical-align: super;
+}
+
+.acct-chart-card__hero-meta {
+  color: var(--color-dark-blue);
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.acct-chart {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 10px;
+  align-items: stretch;
+  /* Timeline flows oldest-to-newest LTR in every locale (chart convention). */
+  direction: ltr;
+}
+
+.acct-chart__y-axis {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 177px;
+}
+
+.acct-chart__y-tick {
+  color: var(--color-account-summary-label);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: end;
+}
+
+.acct-chart__canvas {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.acct-chart__svg {
+  width: 100%;
+  height: 177px;
+  display: block;
+  overflow: visible;
+}
+
+.acct-chart__area {
+  transition: opacity var(--transition-base);
+}
+
+.acct-chart__x-axis {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.acct-chart__x-tick {
+  color: var(--color-account-summary-label);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.acct-chart__x-tick:first-child {
+  text-align: start;
+}
+
+.acct-chart__x-tick:last-child {
+  text-align: end;
+}
+
+/* =============================================================
+ *  Quick action grid
+ * ============================================================= */
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.quick-card {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  background: var(--color-quick-action-bg);
+  border-radius: 17px;
+  padding: 22px;
+  min-height: 102px;
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  text-align: start;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px var(--color-profile-card-shadow);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 2px;
+  }
+}
+
+.quick-card__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-account-summary-quick-icon-bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    display: block;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.quick-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.quick-card__title {
+  color: var(--color-account-summary-label);
+  font-family: 'AvantGarde Bk BT', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.quick-card__subtitle {
+  color: var(--color-account-summary-label);
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+/* =============================================================
+ *  Responsive
+ * ============================================================= */
+@media (max-width: 1120px) {
+  .acct-stats__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .acct-body__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .acct-hero__title {
+    font-size: 26px;
+  }
+
+  .acct-hero__subtitle {
+    font-size: 18px;
+  }
+
+  .acct-stats__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .acct-panel {
+    padding: 20px;
+  }
+
+  .acct-panel__title {
+    font-size: 20px;
+  }
+
+  .quick-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .quick-card {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .quick-card__icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .stat-card {
+    padding: 18px;
+  }
+
+  .stat-card__icon {
+    width: 64px;
+    height: 64px;
+
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .stat-card__label {
+    font-size: 16px;
+  }
+
+  .stat-card__value {
+    font-size: 22px;
+  }
+
+  .acct-chart {
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .acct-chart__svg,
+  .acct-chart__y-axis {
+    height: 148px;
+  }
+
+  .acct-chart__x-tick,
+  .acct-chart__y-tick {
+    font-size: 10px;
+  }
+}
+
+/* =============================================================
+ *  Reduced-motion
+ * ============================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .stat-card,
+  .quick-card {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}

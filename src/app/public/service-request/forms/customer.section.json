@@ -1,0 +1,114 @@
+{
+  "customerInformation": [
+    {
+      "fieldGroupClassName": "request-grid",
+      "fieldGroup": [
+        {
+          "key": "customerName",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.applicant.customerName.label",
+            "placeholder": "serviceRequestPage.form.applicant.customerName.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "civilId",
+          "type": "custom-input",
+          "className": "request-col",
+          "validators": { "validation": ["numbersOnly"] },
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.applicant.civilId.label",
+            "placeholder": "serviceRequestPage.form.applicant.civilId.placeholder",
+            "type": "tel",
+            "inputmode": "numeric",
+            "pattern": "^\\d+$",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "crNumber",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.applicant.crNumber.label",
+            "placeholder": "serviceRequestPage.form.applicant.crNumber.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "mobileNumber",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.applicant.mobileNumber.label",
+            "placeholder": "serviceRequestPage.form.applicant.mobileNumber.placeholder",
+            "type": "tel",
+            "inputmode": "tel",
+            "maxLength": 8,
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "email",
+          "type": "custom-input",
+          "className": "request-col",
+          "validators": { "validation": ["emailPattern"] },
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.applicant.email.label",
+            "placeholder": "serviceRequestPage.form.applicant.email.placeholder",
+            "type": "email",
+            "inputmode": "email",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "permanentAddress",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "label": "serviceRequestPage.form.applicant.permanentAddress.label",
+            "placeholder": "serviceRequestPage.form.applicant.permanentAddress.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        },
+        {
+          "key": "wilaya",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.applicant.wilaya.label",
+            "placeholder": "serviceRequestPage.form.applicant.wilaya.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input",
+            "dimmed": true
+          }
+        }
+      ]
+    }
+  ]
+}

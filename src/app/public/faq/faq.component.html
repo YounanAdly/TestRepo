@@ -1,0 +1,74 @@
+<main class="page-enter">
+  <section class="faq-page-breadcrumb">
+    <div class="faq-page-wrap">
+      <a [routerLink]="['/', currentLang(), 'home']">{{ 'faqPage.breadcrumb.home' | translate }}</a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+      <span>{{ 'faqPage.breadcrumb.current' | translate }}</span>
+    </div>
+  </section>
+
+  <section class="faq-page-hero">
+    <div class="faq-page-wrap">
+      <div class="faq-page-title-row">
+        <a class="faq-back-link" [routerLink]="['/', currentLang(), 'home']"
+          [attr.aria-label]="'faqPage.breadcrumb.home' | translate">
+          <img src="assets/images/back.svg" alt="" aria-hidden="true" />
+        </a>
+
+        <div class="faq-page-title-block">
+          @if (faqsResource.isLoading()) {
+            <app-skeleton-loader variant="text" [count]="1" />
+          } @else {
+            <h1>{{ pageTitle() }}</h1>
+          }
+        </div>
+      </div>
+
+      @if (faqsResource.isLoading()) {
+        <app-skeleton-loader variant="text" [count]="1" />
+      } @else {
+        <p>{{ pageDescription() }}</p>
+      }
+    </div>
+  </section>
+
+  <section class="faq-page-content">
+    <div class="faq-page-wrap faq-page-grid">
+      <article class="faq-inquiry-card">
+        <img class="faq-inquiry-frame" src="assets/images/faq-inquiry-frame.svg" alt="" aria-hidden="true" />
+
+        <div class="faq-inquiry-content">
+          <h3>{{ 'faqPage.inquiry.title' | translate }}</h3>
+          <p>{{ 'faqPage.inquiry.description' | translate }}</p>
+          <button type="button" (click)="onGoToInquiry()">{{ 'faqPage.inquiry.cta' | translate }}</button>
+        </div>
+      </article>
+
+      <div class="faq-list-column">
+        <div class="faq-list" [attr.aria-label]="pageTitle()">
+          @if (faqsResource.isLoading()) {
+            <app-skeleton-loader variant="text" [count]="4" />
+          } @else {
+            @for (item of faqs(); track item; let i = $index) {
+              <article class="faq-item"
+                [class.faq-item-active]="activeFaqIndex() === i">
+                <button type="button" class="faq-question-btn" (click)="onToggle(i)"
+                  [attr.aria-expanded]="activeFaqIndex() === i ? 'true' : 'false'"
+                  [attr.aria-label]="isAr() ? item.questionArabic : item.questionEnglish">
+                  <span class="faq-question">{{ isAr() ? item.questionArabic : item.questionEnglish }}</span>
+                  <img class="faq-chevron" src="assets/images/faq-chevron.svg" alt="" aria-hidden="true" />
+                </button>
+                @if (activeFaqIndex() === i) {
+                  <p class="faq-answer">
+                    {{ isAr() ? item.answerArabic : item.answerEnglish }}
+                  </p>
+                }
+              </article>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>

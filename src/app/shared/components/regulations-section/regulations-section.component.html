@@ -1,0 +1,58 @@
+<section class="regulations-section" [attr.aria-label]="'home.regulations.title' | translate">
+  <div class="regulations-wrap">
+    <div class="regulations-head">
+      <div class="regulations-title-block">
+        <p class="regulations-kicker">{{ 'home.regulations.kicker' | translate }}</p>
+        <h2 class="regulations-title">{{ 'home.regulations.title' | translate }}</h2>
+      </div>
+
+      <button
+        type="button"
+        class="regulations-more-btn"
+        (click)="onViewMore()"
+        [attr.aria-label]="'home.regulations.viewMore' | translate">
+        {{ 'home.regulations.viewMore' | translate }}
+      </button>
+    </div>
+
+    <div class="regulations-grid">
+      @for (card of cards; track card) {
+        <article class="regulation-card" [ngClass]="card.surfaceClass">
+          <div class="regulation-card-top">
+            <img class="regulation-file-icon" src="assets/images/regulation-file-type.svg" [attr.aria-label]="'home.regulations.fileTypeAlt' | translate" alt="" />
+            <h3 class="regulation-card-title">{{ card.titleKey | translate }}</h3>
+          </div>
+          <div class="regulation-separator" aria-hidden="true"></div>
+          <div class="regulation-meta">
+            <p class="regulation-meta-row">
+              <span class="regulation-meta-label">{{ 'home.regulations.labels.category' | translate }}</span>
+              <span class="regulation-meta-value">{{ card.categoryValueKey | translate }}</span>
+            </p>
+            <p class="regulation-meta-row">
+              <span class="regulation-meta-label">{{ 'home.regulations.labels.published' | translate }}</span>
+              <span class="regulation-meta-value">{{ card.publishedValueKey | translate }}</span>
+            </p>
+          </div>
+          <div class="regulation-actions">
+            <button
+              type="button"
+              class="regulation-details-btn"
+              (click)="onViewDetails()"
+              [attr.aria-label]="'home.regulations.actions.viewDetails' | translate">
+              <span>{{ 'home.regulations.actions.viewDetails' | translate }}</span>
+              <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              class="regulation-download-btn"
+              (click)="onDownloadPdf()"
+              [attr.aria-label]="'home.regulations.actions.downloadPdf' | translate">
+              <img src="assets/images/regulation-download.svg" alt="" aria-hidden="true" />
+              <span>{{ 'home.regulations.actions.downloadPdf' | translate }}</span>
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,205 @@
+{
+  "applicantInformation": [
+    {
+      "fieldGroupClassName": "request-grid request-grid--three",
+      "fieldGroup": [
+        {
+          "key": "customerName",
+          "type": "custom-input",
+          "className": "request-col request-col--dimmed",
+          "props": {
+            "translate": true,
+            "required": false,
+            "disabled": true,
+            "dimmed": true,
+            "label": "complaintRequestPage.form.applicant.customerName.label",
+            "placeholder": "complaintRequestPage.form.applicant.customerName.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "accountNumber",
+          "type": "custom-input",
+          "className": "request-col request-col--dimmed",
+          "validators": {
+            "validation": ["numbersOnly"]
+          },
+          "props": {
+            "translate": true,
+            "required": false,
+            "disabled": true,
+            "dimmed": true,
+            "label": "complaintRequestPage.form.applicant.accountNumber.label",
+            "placeholder": "complaintRequestPage.form.applicant.accountNumber.placeholder",
+            "type": "tel",
+            "inputmode": "numeric",
+            "pattern": "^\\d+$",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "mobileNumber",
+          "type": "custom-input",
+          "className": "request-col request-col--dimmed",
+          "props": {
+            "translate": true,
+            "required": false,
+            "disabled": true,
+            "dimmed": true,
+            "label": "complaintRequestPage.form.applicant.mobileNumber.label",
+            "placeholder": "complaintRequestPage.form.applicant.mobileNumber.placeholder",
+            "type": "tel",
+            "inputmode": "tel",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "email",
+          "type": "custom-input",
+          "className": "request-col request-col--dimmed",
+          "validators": {
+            "validation": ["emailPattern"]
+          },
+          "props": {
+            "translate": true,
+            "required": false,
+            "disabled": true,
+            "dimmed": true,
+            "label": "complaintRequestPage.form.applicant.email.label",
+            "placeholder": "complaintRequestPage.form.applicant.email.placeholder",
+            "type": "email",
+            "inputmode": "email",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "permanentAddress",
+          "type": "custom-input",
+          "className": "request-col request-col--dimmed",
+          "props": {
+            "translate": true,
+            "required": false,
+            "disabled": true,
+            "dimmed": true,
+            "label": "complaintRequestPage.form.applicant.permanentAddress.label",
+            "placeholder": "complaintRequestPage.form.applicant.permanentAddress.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        }
+      ]
+    }
+  ],
+  "complaintDetails": [
+    {
+      "fieldGroupClassName": "request-grid request-grid--two",
+      "fieldGroup": [
+        {
+          "key": "complaintType",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "disabled": true,
+            "dimmed": true,
+            "label": "complaintRequestPage.form.complaint.complaintType.label",
+            "placeholder": "complaintRequestPage.form.complaint.complaintType.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "complaintSubCategory",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "complaintRequestPage.form.complaint.subCategory.label",
+            "placeholder": "complaintRequestPage.form.complaint.subCategory.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "meterIssue",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "hide": true,
+          "props": {
+            "translate": true,
+            "required": false,
+            "label": "complaintRequestPage.form.complaint.meterIssue.label",
+            "placeholder": "complaintRequestPage.form.complaint.meterIssue.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "waterBilling",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "hide": true,
+          "props": {
+            "translate": true,
+            "required": false,
+            "label": "complaintRequestPage.form.complaint.waterBilling.label",
+            "placeholder": "complaintRequestPage.form.complaint.waterBilling.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "complaintDetails",
+          "type": "custom-textarea",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "complaintRequestPage.form.complaint.complaintDetails.label",
+            "placeholder": "complaintRequestPage.form.complaint.complaintDetails.placeholder",
+            "helperText": "complaintRequestPage.form.complaint.complaintDetails.helper",
+            "maxLength": 300
+          }
+        },
+        {
+          "key": "anotherReason",
+          "type": "custom-textarea",
+          "className": "request-col",
+          "hide": true,
+          "props": {
+            "translate": true,
+            "required": false,
+            "compact": true,
+            "label": "complaintRequestPage.form.complaint.anotherReason.label",
+            "placeholder": "complaintRequestPage.form.complaint.anotherReason.placeholder",
+            "helperText": "complaintRequestPage.form.complaint.anotherReason.helper",
+            "maxLength": 100
+          }
+        }
+      ]
+    }
+  ],
+  "requiredDocuments": [
+    {
+      "fieldGroupClassName": "request-file-grid request-file-grid--single",
+      "fieldGroup": [
+        {
+          "key": "attachment",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "required": false,
+            "label": "complaintRequestPage.form.documents.attachment.label",
+            "chooseLabel": "complaintRequestPage.form.documents.chooseFile",
+            "maxAttachmentSizeLabel": "complaintRequestPage.form.documents.maxAttachmentSize",
+            "noFileSelectedLabel": "complaintRequestPage.form.documents.noFileSelected",
+            "maxFileSize": 5000000
+          }
+        }
+      ]
+    }
+  ]
+}

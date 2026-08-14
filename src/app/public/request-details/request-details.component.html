@@ -1,0 +1,174 @@
+<main class="request-details page-enter">
+  <section class="request-details__breadcrumb">
+    <div class="request-details__wrap">
+      <a [routerLink]="['/', currentLang, 'home']">{{ 'dashboardPage.breadcrumb.home' | translate }}</a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+      @if (isComplaintKind()) {
+        <a [routerLink]="['/', currentLang, 'complaints']">{{ 'header.nav.complaints' | translate }}</a>
+      } @else {
+        <a [routerLink]="['/', currentLang, 'dashboard']">{{ 'dashboardPage.breadcrumb.current' | translate }}</a>
+      }
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+      <span>{{ 'dashboardPage.myRequests.title' | translate }}</span>
+    </div>
+  </section>
+
+  <section class="request-details__hero">
+    <div class="request-details__wrap">
+      <div class="request-details__title-row">
+        <a
+          class="request-details__back"
+          [routerLink]="['/', currentLang, isComplaintKind() ? 'complaints' : 'dashboard']"
+          [attr.aria-label]="'requestDetailsPage.actions.backToDashboard' | translate">
+          <img src="assets/images/back.svg" alt="" aria-hidden="true" />
+        </a>
+        <h1>{{ 'dashboardPage.myRequests.title' | translate }}</h1>
+      </div>
+
+      <h2 class="request-details__subtitle">{{ summarySubtitle() }}</h2>
+
+      @if (isComplaintKind() && complaintDetailResource.isLoading()) {
+        <div class="request-details__loading">
+          <app-skeleton-loader variant="card" [count]="1" />
+        </div>
+      } @else if (isComplaintKind() && complaintDetailResource.error()) {
+        <div class="request-details__state request-details__state--error" role="alert">
+          <p>{{ 'errors.loadFailedDetail' | translate }}</p>
+          <button type="button" class="request-details__retry" (click)="complaintDetailResource.reload()">
+            {{ 'common.retry' | translate }}
+          </button>
+        </div>
+      } @else {
+        <article class="request-details__summary-card">
+          <div class="request-details__summary-copy">
+            <h3>{{ summaryTitle() }}</h3>
+
+            <div class="request-details__status-row">
+              <span class="request-details__ref">#{{ summaryReference() }}</span>
+              @if (isComplaintKind() && statusLabel()) {
+                <span class="request-details__status-chip"
+                      [class]="'request-details__status-chip--' + statusVariant()">
+                  <img [src]="statusIconSrc()" alt="" aria-hidden="true" />
+                  {{ statusLabel() }}
+                </span>
+              } @else if (!isComplaintKind()) {
+                <span class="request-details__status-chip">
+                  <img src="assets/images/inquiry-status-approved.svg" alt="" aria-hidden="true" />
+                  {{ 'dashboardPage.status.approved' | translate }}
+                </span>
+              }
+            </div>
+
+            @if (!isComplaintKind()) {
+              <ul class="request-details__dates" [attr.aria-label]="'requestDetailsPage.summary.datesAriaLabel' | translate">
+                <li>
+                  <img src="assets/images/request-details-start-date.svg" alt="" aria-hidden="true" />
+                  <span class="request-details__date-label">{{ 'dashboardPage.myRequests.table.startDate' | translate }}</span>
+                  <span class="request-details__date-value">{{ 'requestDetailsPage.summary.startDateValue' | translate }}</span>
+                </li>
+                <li>
+                  <img src="assets/images/request-details-end-date.svg" alt="" aria-hidden="true" />
+                  <span class="request-details__date-label">{{ 'dashboardPage.myRequests.table.endDate' | translate }}</span>
+                  <span class="request-details__date-value">{{ 'requestDetailsPage.summary.endDateValue' | translate }}</span>
+                </li>
+              </ul>
+            }
+          </div>
+
+          <div class="request-details__summary-visual" aria-hidden="true">
+            <img src="assets/images/request-details-hero-illustration.svg" alt="" />
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="request-details__content">
+    <div class="request-details__wrap">
+      @if (isComplaintKind()) {
+        <h2 class="request-details__group-title">{{ 'complaintRequestPage.sections.applicantInfo' | translate }}</h2>
+
+        @if (complaintDetailResource.isLoading()) {
+          <app-skeleton-loader variant="card" [count]="2" />
+        } @else if (!complaintDetailResource.error()) {
+          @for (section of complaintSections(); track trackBySection($index, section)) {
+            <article class="request-details__card">
+              <header class="request-details__card-head">
+                <h3>{{ section.titleKey | translate }}</h3>
+                <button type="button"
+                        class="request-details__toggle"
+                        [attr.aria-expanded]="isSectionOpen(section.id)"
+                        [attr.aria-label]="section.titleKey | translate"
+                        (click)="toggleSection(section.id)">
+                  <span [class.is-collapsed]="!isSectionOpen(section.id)"></span>
+                </button>
+              </header>
+              @if (isSectionOpen(section.id)) {
+                <div class="request-details__card-body">
+                  <dl class="request-details__field-grid">
+                    @for (field of section.fields; track trackByLabel($index, field)) {
+                      <div class="request-details__field">
+                        <dt>{{ field.labelKey | translate }}</dt>
+                        <dd>{{ field.value }}</dd>
+                      </div>
+                    }
+                  </dl>
+                </div>
+              }
+            </article>
+          }
+        }
+      } @else {
+        <h2 class="request-details__group-title">{{ 'serviceRequestPage.sections.applicantInfo' | translate }}</h2>
+
+        @for (section of detailSections; track trackBySection($index, section)) {
+          <article class="request-details__card">
+            <header class="request-details__card-head">
+              <h3>{{ section.titleKey | translate }}</h3>
+              <button type="button" class="request-details__toggle" (click)="toggleSection(section.id)">
+                <span [class.is-collapsed]="!isSectionOpen(section.id)"></span>
+              </button>
+            </header>
+            @if (isSectionOpen(section.id)) {
+              <div class="request-details__card-body">
+                <dl class="request-details__field-grid">
+                  @for (field of section.fields; track trackByLabel($index, field)) {
+                    <div class="request-details__field">
+                      <dt>{{ field.labelKey | translate }}</dt>
+                      <dd>{{ field.valueKey | translate }}</dd>
+                    </div>
+                  }
+                </dl>
+              </div>
+            }
+          </article>
+        }
+
+        <article class="request-details__card">
+          <header class="request-details__card-head">
+            <h3>{{ 'serviceRequestPage.cards.requiredDocument' | translate }}</h3>
+            <button type="button" class="request-details__toggle" (click)="toggleSection('documents')">
+              <span [class.is-collapsed]="!isSectionOpen('documents')"></span>
+            </button>
+          </header>
+
+          @if (isSectionOpen('documents')) {
+            <div class="request-details__card-body">
+              <dl class="request-details__document-list">
+                @for (doc of requiredDocuments; track trackByLabel($index, doc)) {
+                  <div class="request-details__document-item">
+                    <dt>{{ doc.labelKey | translate }}</dt>
+                    <dd>
+                      <img src="assets/images/request-details-file-type.svg" alt="" aria-hidden="true" />
+                      <span>{{ doc.fileNameKey | translate }}</span>
+                    </dd>
+                  </div>
+                }
+              </dl>
+            </div>
+          }
+        </article>
+      }
+    </div>
+  </section>
+</main>

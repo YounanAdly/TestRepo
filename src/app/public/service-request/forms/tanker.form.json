@@ -1,0 +1,201 @@
+{
+  "tankerInformation": [
+    {
+      "fieldGroupClassName": "request-grid",
+      "fieldGroup": [
+        {
+          "key": "tankerType",
+          "type": "custom-dropdown",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.tanker.tankerType.label",
+            "placeholder": "serviceRequestPage.form.tanker.tankerType.placeholder",
+            "options": []
+          }
+        },
+        {
+          "key": "tankCapacity",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.tanker.tankCapacity.label",
+            "placeholder": "serviceRequestPage.form.tanker.tankCapacity.placeholder",
+            "type": "number",
+            "inputmode": "decimal",
+            "step": "0.01",
+            "min": "0",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        }
+      ]
+    }
+  ],
+  "vehicleInformation": [
+    {
+      "fieldGroupClassName": "request-grid",
+      "fieldGroup": [
+        {
+          "key": "modelYear",
+          "type": "custom-calendar",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.tanker.vehicle.modelYear.label",
+            "placeholder": "serviceRequestPage.form.tanker.vehicle.modelYear.placeholder",
+            "view": "year",
+            "dateFormat": "yy",
+            "readonlyInput": true
+          }
+        },
+        {
+          "key": "vehicleModel",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.tanker.vehicle.vehicleModel.label",
+            "placeholder": "serviceRequestPage.form.tanker.vehicle.vehicleModel.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "vehicleMake",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.tanker.vehicle.vehicleMake.label",
+            "placeholder": "serviceRequestPage.form.tanker.vehicle.vehicleMake.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "plateNumber",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.tanker.vehicle.plateNumber.label",
+            "placeholder": "serviceRequestPage.form.tanker.vehicle.plateNumber.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        }
+      ]
+    }
+  ],
+  "operatorDetails": [
+    {
+      "fieldGroupClassName": "request-grid",
+      "fieldGroup": [
+        {
+          "key": "operatorName",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.operator.name.label",
+            "placeholder": "serviceRequestPage.form.operator.name.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "tradeLicenseNumber",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.operator.tradeLicenseNumber.label",
+            "placeholder": "serviceRequestPage.form.operator.tradeLicenseNumber.placeholder",
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "operatorPhone",
+          "type": "custom-input",
+          "className": "request-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.operator.phone.label",
+            "placeholder": "serviceRequestPage.form.operator.phone.placeholder",
+            "type": "tel",
+            "inputmode": "tel",
+            "maxLength": 8,
+            "containerClass": "request-input-label",
+            "inputClass": "request-field-input"
+          }
+        },
+        {
+          "key": "operatorAddress",
+          "type": "custom-textarea",
+          "className": "request-col request-col--span2",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.operator.address.label",
+            "placeholder": "serviceRequestPage.form.operator.address.placeholder"
+          }
+        }
+      ]
+    }
+  ],
+  "tankerDocuments": [
+    {
+      "fieldGroupClassName": "request-file-grid",
+      "fieldGroup": [
+        {
+          "key": "mulkiyaFile",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.tanker.documents.mulkiyaFile.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        },
+        {
+          "key": "commercialRegistrationFile",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.tanker.documents.commercialRegistrationFile.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        },
+        {
+          "key": "nationalIdFile",
+          "type": "file",
+          "className": "request-file-col",
+          "props": {
+            "translate": true,
+            "required": true,
+            "label": "serviceRequestPage.form.tanker.documents.nationalIdFile.label",
+            "chooseLabel": "serviceRequestPage.form.documents.chooseFile",
+            "maxFileSize": 5000000
+          }
+        }
+      ]
+    }
+  ]
+}

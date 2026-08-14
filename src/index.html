@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Marafiq</title>
+    <base href="/">
+    <!--
+      Content Security Policy (defense-in-depth against XSS / token exfiltration).
+      `script-src 'unsafe-inline'` is required by Angular SSR hydration; tighten to a nonce
+      once the server can emit one. `connect-src` is locked to self + the Azure API origin
+      so a compromised page cannot exfiltrate the access token to an attacker-controlled host.
+      The following protections cannot be set via <meta> and MUST be added as HTTP response
+      headers at the edge: Strict-Transport-Security, X-Content-Type-Options: nosniff,
+      X-Frame-Options: DENY (or CSP frame-ancestors), Referrer-Policy, Permissions-Policy.
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://app-api-marafiq-we-dev-001.azurewebsites.net; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; worker-src 'self' blob:; manifest-src 'self'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#008c98" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#001a3f" media="(prefers-color-scheme: dark)">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Marafiq">
+    <link rel="icon" type="image/svg+xml" href="assets/images/logoCard.svg">
+    <link rel="apple-touch-icon" href="assets/images/logoCard.svg">
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+</html>

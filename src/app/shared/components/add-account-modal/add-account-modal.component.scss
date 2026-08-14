@@ -1,0 +1,166 @@
+@keyframes addAccountOverlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes addAccountModalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.add-account-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: var(--color-modal-scrim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: addAccountOverlayIn 0.22s ease both;
+}
+
+.add-account-modal {
+  position: relative;
+  width: min(716px, 96vw);
+  max-height: min(92dvh, 92vh);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: var(--color-modal-bg);
+  border-radius: 16px;
+  padding: 70px 45px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: 0 20px 60px var(--color-modal-scrim), 0 0 0 1px var(--color-otp-border);
+  animation: addAccountModalIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) 0.04s both;
+}
+
+.add-account-close {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  top: 28px;
+  inset-inline-end: 32px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: opacity var(--transition-fast), background var(--transition-fast);
+
+  &:hover {
+    opacity: 0.7;
+    background: var(--color-filter-dropdown-bg);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 2px;
+  }
+}
+
+.add-account-close img {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.add-account-title {
+  margin: 0;
+  color: var(--color-teal);
+  font-family: 'AvantGarde Md BT', sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 32px;
+}
+
+.add-account-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.add-account-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  ::ng-deep .create-account-section-header {
+    margin: 12px 0 12px;
+    font-family: 'AvantGarde Md BT', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: var(--color-teal);
+  }
+
+  ::ng-deep formly-field-section-header + formly-field {
+    margin-top: 0 !important;
+  }
+
+  ::ng-deep .create-account-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+  }
+
+  ::ng-deep .create-account-row--single {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  ::ng-deep .create-account-col {
+    min-width: 0;
+  }
+
+  ::ng-deep .create-account-row formly-field.create-account-form-field + formly-field.create-account-form-field {
+    margin-top: 0;
+  }
+
+  @media (max-width: 600px) {
+    ::ng-deep .create-account-row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .add-account-modal {
+    padding: 32px 22px 28px;
+    border-radius: 16px;
+  }
+
+  .add-account-title {
+    font-size: 20px;
+  }
+
+  .add-account-close {
+    top: 14px;
+    inset-inline-end: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .add-account-overlay,
+  .add-account-modal {
+    animation: none;
+  }
+
+  .add-account-close {
+    transition: none;
+  }
+}

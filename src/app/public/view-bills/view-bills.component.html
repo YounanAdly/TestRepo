@@ -1,0 +1,392 @@
+<main id="main-content" class="view-bills-page page-enter">
+  <section class="view-bills-breadcrumb" aria-label="{{ 'viewBills.breadcrumb.current' | translate }}">
+    <div class="view-bills-wrap">
+      <a class="view-bills-breadcrumb__link" [routerLink]="localizedHomeRoute()">
+        {{ 'viewBills.breadcrumb.home' | translate }}
+      </a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" class="view-bills-breadcrumb__sep" />
+      <a class="view-bills-breadcrumb__link" [routerLink]="localizedDashboardRoute()">
+        {{ 'viewBills.breadcrumb.dashboard' | translate }}
+      </a>
+      <img src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" class="view-bills-breadcrumb__sep" />
+      <span class="view-bills-breadcrumb__current">
+        {{ 'viewBills.breadcrumb.current' | translate }}
+      </span>
+    </div>
+  </section>
+
+  <section class="view-bills-hero" aria-labelledby="view-bills-hero-title">
+    <div class="view-bills-wrap view-bills-hero__wrap">
+      <button
+        type="button"
+        class="view-bills-back"
+        (click)="onBack()"
+        [attr.aria-label]="'viewBills.actions.back' | translate">
+        <img src="assets/images/back.svg" alt="" aria-hidden="true" />
+      </button>
+      <div class="view-bills-hero__text">
+        <h1 id="view-bills-hero-title" class="view-bills-hero__title">
+          {{ 'viewBills.hero.title' | translate }}
+        </h1>
+        <p class="view-bills-hero__subtitle">
+          {{ 'viewBills.hero.subtitle' | translate }}
+        </p>
+      </div>
+    </div>
+    <div class="view-bills-wrap">
+      <p class="view-bills-hero__description">
+        {{ 'viewBills.hero.description' | translate }}
+      </p>
+    </div>
+  </section>
+
+  <section class="view-bills-stats" aria-label="{{ 'viewBills.stats.groupLabel' | translate }}">
+    <div class="view-bills-wrap view-bills-stats__grid">
+      @for (card of statCards(); track card.kind) {
+        <article class="bill-stat bill-stat--{{ card.kind }}">
+          <span class="bill-stat__icon" aria-hidden="true">
+            <img
+              [src]="card.iconSrc"
+              alt=""
+              width="40"
+              height="40"
+              loading="lazy"
+              decoding="async" />
+          </span>
+          <div class="bill-stat__body">
+            <span class="bill-stat__label">{{ card.labelKey | translate }}</span>
+            <span class="bill-stat__value">{{ card.value }}</span>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="view-bills-list" aria-labelledby="view-bills-filters-title">
+    <div class="view-bills-wrap">
+      <div class="view-bills-card">
+
+        <div class="view-bills-tabs" role="tablist" [attr.aria-label]="'viewBills.tabs.groupLabel' | translate">
+          <button
+            type="button"
+            role="tab"
+            class="view-bills-tab"
+            [class.is-active]="activeTab() === 'paid'"
+            [attr.aria-selected]="activeTab() === 'paid'"
+            [attr.tabindex]="activeTab() === 'paid' ? 0 : -1"
+            (click)="onTabChange('paid')">
+            {{ 'viewBills.tabs.paid' | translate: { count: paidCount() } }}
+          </button>
+          <button
+            type="button"
+            role="tab"
+            class="view-bills-tab"
+            [class.is-active]="activeTab() === 'pending'"
+            [attr.aria-selected]="activeTab() === 'pending'"
+            [attr.tabindex]="activeTab() === 'pending' ? 0 : -1"
+            (click)="onTabChange('pending')">
+            {{ 'viewBills.tabs.pending' | translate: { count: pendingCount() } }}
+          </button>
+        </div>
+
+        <div class="view-bills-filters">
+          <h2 id="view-bills-filters-title" class="visually-hidden">
+            {{ 'viewBills.filters.title' | translate }}
+          </h2>
+          <div class="view-bills-filters__row" role="group" [attr.aria-label]="'viewBills.filters.groupLabel' | translate">
+            <div class="view-bills-field">
+              <span class="view-bills-field__label">{{ 'viewBills.filters.accountLabel' | translate }}</span>
+              <app-filter-dropdown
+                variant="light"
+                [options]="billingAccountOptions()"
+                [placeholderKey]="accountPlaceholderKey"
+                [selectedValue]="selectedAccountLabel()"
+                [disabled]="isAccountLocked()"
+                (selectionChange)="onAccountChange($event)">
+              </app-filter-dropdown>
+            </div>
+
+            <div class="view-bills-field">
+              <span class="view-bills-field__label">{{ 'viewBills.filters.searchLabel' | translate }}</span>
+              <div class="view-bills-search">
+                <span class="view-bills-search__icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="9" cy="9" r="6.25" stroke="currentColor" stroke-width="1.75" />
+                    <line x1="13.6" y1="13.6" x2="17.25" y2="17.25" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                  </svg>
+                </span>
+                <input
+                  type="search"
+                  class="view-bills-search__input"
+                  [attr.aria-label]="'viewBills.filters.searchPlaceholder' | translate"
+                  [placeholder]="'viewBills.filters.searchPlaceholder' | translate"
+                  [ngModel]="searchTerm()"
+                  (ngModelChange)="onSearchChange($event)" />
+              </div>
+            </div>
+
+            <app-filter-dropdown
+              variant="light"
+              [options]="monthOptions"
+              [placeholderKey]="monthPlaceholderKey"
+              [selectedValue]="selectedMonthLabel()"
+              (selectionChange)="onMonthChange($event)">
+            </app-filter-dropdown>
+
+            <app-filter-dropdown
+              variant="light"
+              [options]="yearOptions"
+              [placeholderKey]="yearPlaceholderKey"
+              [selectedValue]="selectedYearLabel()"
+              (selectionChange)="onYearChange($event)">
+            </app-filter-dropdown>
+
+            <button
+              type="button"
+              class="view-bills-reset"
+              (click)="resetFilters()"
+              [attr.aria-label]="'viewBills.filters.reset' | translate">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path
+                  d="M4 12a8 8 0 1 0 2.34-5.66"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path
+                  d="M4 3.75V8h4.25"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="view-bills-table-shell">
+          @if (isLoading()) {
+            <app-skeleton-loader variant="table-row" [count]="5" />
+          } @else if (hasError()) {
+            <div class="view-bills-error" role="alert">
+              <p>{{ 'errors.loadFailedDetail' | translate }}</p>
+              <button type="button" class="view-bills-retry-btn" (click)="retryFetch()">
+                {{ 'common.retry' | translate }}
+              </button>
+            </div>
+          } @else if (pagedBills().length === 0) {
+            <p class="view-bills-empty">
+              {{ 'viewBills.empty.title' | translate }}
+            </p>
+          } @else if (activeTab() === 'pending') {
+            <table class="view-bills-table view-bills-table--pending">
+              <thead>
+                <tr>
+                  <th scope="col" class="view-bills-table__check-col">
+                    <span class="visually-hidden">
+                      {{ 'viewBills.actions.selectRow' | translate }}
+                    </span>
+                  </th>
+                  <th scope="col">{{ 'viewBills.table.billsNumber' | translate }}</th>
+                  <th scope="col">{{ 'viewBills.table.billDate' | translate }}</th>
+                  <th scope="col">{{ 'viewBills.table.dueDate' | translate }}</th>
+                  <th scope="col">{{ 'viewBills.table.billAccountNumber' | translate }}</th>
+                  <th scope="col">{{ 'viewBills.table.amount' | translate }}</th>
+                  <th scope="col">{{ 'viewBills.table.status' | translate }}</th>
+                  <th scope="col" class="view-bills-table__chevron-col">
+                    <span class="visually-hidden">
+                      {{ 'viewBills.actions.viewDetails' | translate }}
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of pagedBills(); track trackByBill($index, row)) {
+                  <tr class="view-bills-table__row" [class.is-selected]="isBillSelected(row)">
+                    <td class="view-bills-table__check-col">
+                      <label class="view-bills-check">
+                        <input
+                          type="checkbox"
+                          class="view-bills-check__input"
+                          [checked]="isBillSelected(row)"
+                          (change)="toggleBillSelection(row)"
+                          [attr.aria-label]="'viewBills.actions.selectRowAria' | translate: { number: row.billNumber }" />
+                        <span class="view-bills-check__box" aria-hidden="true">
+                          <svg viewBox="0 0 12 10" width="12" height="10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 5.2 4.4 8.6 11 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </span>
+                      </label>
+                    </td>
+                    <td class="view-bills-table__ref">
+                      <button type="button" class="view-bills-ref-link" (click)="onViewBill(row)">
+                        {{ row.billNumber }}
+                      </button>
+                    </td>
+                    <td>{{ row.billDate }}</td>
+                    <td class="view-bills-table__due-date">{{ row.dueDate }}</td>
+                    <td>{{ row.billAccountNumber }}</td>
+                    <td>{{ row.amount }}</td>
+                    <td>
+                      <span class="view-bills-status" [class]="'view-bills-status--' + row.status">
+                        <span class="view-bills-status__dot" aria-hidden="true"></span>
+                        {{ 'viewBills.status.' + row.status | translate }}
+                      </span>
+                    </td>
+                    <td class="view-bills-table__chevron-col">
+                      <button
+                        type="button"
+                        class="view-bills-view-btn"
+                        (click)="onViewBill(row)"
+                        [attr.aria-label]="'viewBills.actions.viewDetails' | translate">
+                        <img
+                          src="assets/images/regulation-arrow.svg"
+                          alt=""
+                          aria-hidden="true"
+                          class="view-bills-view-btn__icon" />
+                      </button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          } @else {
+            <table class="view-bills-table view-bills-table--paid">
+              <thead>
+                <tr>
+                  <th scope="col">{{ 'viewBills.table.billsNumber' | translate }}</th>
+                  <th scope="col">{{ 'viewBills.table.billDate' | translate }}</th>
+                  <th scope="col">{{ 'viewBills.table.billAccountNumber' | translate }}</th>
+                  <th scope="col">{{ 'viewBills.table.amount' | translate }}</th>
+                  <th scope="col">{{ 'viewBills.table.status' | translate }}</th>
+                  <th scope="col">{{ 'viewBills.table.action' | translate }}</th>
+                  <th scope="col" class="view-bills-table__chevron-col">
+                    <span class="visually-hidden">
+                      {{ 'viewBills.actions.viewDetails' | translate }}
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of pagedBills(); track trackByBill($index, row)) {
+                  <tr class="view-bills-table__row">
+                    <td class="view-bills-table__ref">
+                      <button type="button" class="view-bills-ref-link" (click)="onViewBill(row)">
+                        {{ row.billNumber }}
+                      </button>
+                    </td>
+                    <td>{{ row.billDate }}</td>
+                    <td>{{ row.billAccountNumber }}</td>
+                    <td>{{ row.amount }}</td>
+                    <td>
+                      <span class="view-bills-status view-bills-status--paid">
+                        <span class="view-bills-status__dot" aria-hidden="true"></span>
+                        {{ 'viewBills.status.paid' | translate }}
+                      </span>
+                    </td>
+                    <td>
+                      <button
+                        type="button"
+                        class="view-bills-download-btn"
+                        (click)="onDownloadBill(row)"
+                        [attr.aria-label]="'viewBills.actions.downloadAria' | translate: { number: row.billNumber }">
+                        <svg viewBox="0 0 16 16" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                          <path d="M8 2.5v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                          <path d="M5 5.83 8 8.83l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                          <path d="M2.5 11.5h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        </svg>
+                        <span>{{ 'viewBills.actions.download' | translate }}</span>
+                      </button>
+                    </td>
+                    <td class="view-bills-table__chevron-col">
+                      <button
+                        type="button"
+                        class="view-bills-view-btn"
+                        (click)="onViewBill(row)"
+                        [attr.aria-label]="'viewBills.actions.viewDetails' | translate">
+                        <img
+                          src="assets/images/regulation-arrow.svg"
+                          alt=""
+                          aria-hidden="true"
+                          class="view-bills-view-btn__icon" />
+                      </button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          }
+        </div>
+
+        <div class="view-bills-footer">
+          <p class="view-bills-summary">
+            {{ 'viewBills.pagination.showing' | translate: { from: rangeStart(), to: rangeEnd(), total: visibleTotal() } }}
+          </p>
+          <nav class="view-bills-pagination" [attr.aria-label]="'viewBills.pagination.ariaLabel' | translate">
+            <button
+              type="button"
+              class="view-bills-pagination__arrow"
+              [disabled]="currentPage() === 1"
+              (click)="prevPage()"
+              [attr.aria-label]="'viewBills.pagination.prev' | translate">
+              <img class="view-bills-pagination__prev-icon" src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+            </button>
+
+            @for (p of pages(); track trackByPage($index, p)) {
+              <button
+                type="button"
+                class="view-bills-pagination__item"
+                [class.is-active]="p === currentPage()"
+                [attr.aria-current]="p === currentPage() ? 'page' : null"
+                (click)="goToPage(p)">
+                {{ p }}
+              </button>
+            }
+
+            <button
+              type="button"
+              class="view-bills-pagination__arrow"
+              [disabled]="currentPage() === totalPages()"
+              (click)="nextPage()"
+              [attr.aria-label]="'viewBills.pagination.next' | translate">
+              <img class="view-bills-pagination__next-icon" src="assets/images/regulation-arrow.svg" alt="" aria-hidden="true" />
+            </button>
+          </nav>
+        </div>
+
+        @if (activeTab() === 'pending' && selectedCount() > 0) {
+          <div class="view-bills-selection" role="region" [attr.aria-label]="'viewBills.selection.ariaLabel' | translate">
+            <div class="view-bills-selection__body">
+              <span class="view-bills-selection__count">
+                {{ 'viewBills.selection.count' | translate: { count: selectedCount() } }}
+              </span>
+              <span class="view-bills-selection__label">
+                {{ 'viewBills.selection.totalLabel' | translate }}
+              </span>
+              <span class="view-bills-selection__total">{{ selectedTotalDisplay() }}</span>
+            </div>
+            <div class="view-bills-selection__actions">
+              <button
+                type="button"
+                class="view-bills-selection__pay"
+                (click)="onPaySelectedBills()">
+                {{ 'viewBills.selection.payBill' | translate }}
+              </button>
+              <button
+                type="button"
+                class="view-bills-selection__clear"
+                (click)="clearSelection()"
+                [attr.aria-label]="'viewBills.selection.clearAria' | translate">
+                <svg viewBox="0 0 20 20" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M4 6h12M8.5 6V4.5A1.5 1.5 0 0 1 10 3h0a1.5 1.5 0 0 1 1.5 1.5V6M6 6l1 10a1.5 1.5 0 0 0 1.5 1.4h3a1.5 1.5 0 0 0 1.5-1.4l1-10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        }
+
+      </div>
+    </div>
+  </section>
+</main>
+

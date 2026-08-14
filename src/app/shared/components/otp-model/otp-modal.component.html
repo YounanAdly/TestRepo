@@ -1,0 +1,91 @@
+@if (isOpen()) {
+  <div class="otp-overlay">
+    <div
+      class="otp-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="otp-title"
+      cdkTrapFocus
+      cdkTrapFocusAutoCapture>
+      <button
+        class="otp-close"
+        type="button"
+        (click)="onClose()"
+        [attr.aria-label]="'login.otp.close' | translate">
+        <img [src]="closeIconSrc()" alt="" aria-hidden="true">
+      </button>
+      <div class="otp-body">
+        <div class="otp-verification-container">
+          <div class="otp-verification-content">
+            <img class="otp-illustration" [src]="otpIllustrationSrc()" alt="" aria-hidden="true">
+            <div class="otp-text-container">
+              <div class="otp-text-wrapper">
+                <p class="otp-description" id="otp-title">
+                  {{ 'login.otp.messagePrefix' | translate }}
+                  <span>{{ 'login.otp.mobileNumberLabel' | translate }}</span>
+                </p>
+                <p class="otp-number">{{ maskedMobileNumber() }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="otp-code-container">
+            <div class="otp-inputs" (paste)="onOtpPaste($event)">
+              @for (digit of otpDigits; track $index; let i = $index) {
+                <input
+                  #otpInput
+                  class="otp-input"
+                  type="text"
+                  inputmode="numeric"
+                  [attr.autocomplete]="i === 0 ? 'one-time-code' : 'off'"
+                  maxlength="1"
+                  [value]="digit"
+                  [attr.aria-label]="('login.otp.digitLabel' | translate) + ' ' + (i + 1)"
+                  (input)="onOtpInput($event, i)"
+                  (keydown)="onOtpKeydown($event, i)">
+              }
+            </div>
+
+            @if (errorKey()) {
+              <p class="otp-error" role="alert" aria-live="assertive">
+                {{ errorKey() | translate }}
+              </p>
+            }
+
+            @if (expiresAtUtc()) {
+              <div class="otp-meta">
+                @if (remainingSeconds() > 0) {
+                  <p class="otp-timer" aria-live="polite">
+                    {{ 'login.otp.timer' | translate }} <span class="otp-timer-value">{{ remainingDisplay() }}</span>
+                  </p>
+                } @else {
+                  <p class="otp-timer otp-timer--expired" aria-live="polite">
+                    {{ 'login.otp.expired' | translate }}
+                  </p>
+                }
+
+                <button
+                  type="button"
+                  class="otp-resend"
+                  [disabled]="remainingSeconds() > 0 || submitting()"
+                  (click)="onResend()">
+                  {{ 'login.otp.resend' | translate }}
+                </button>
+              </div>
+            }
+
+            <div class="otp-verify-wrap">
+              <app-button
+                type="button"
+                variant="otp-verify"
+                [fullWidth]="true"
+                [disabled]="!isOtpComplete || submitting()"
+                (clicked)="onVerify()">
+                {{ (submitting() ? 'common.submitting' : 'login.otp.verify') | translate }}
+              </app-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,96 @@
+<div class="login-page page-enter">
+
+  <!-- ── Background: flipped image + gradient overlay ── -->
+  <div class="bg-wrap" aria-hidden="true">
+    <div class="bg-flip">
+      <img class="bg-img" [ngSrc]="bgImage" fill priority alt="">
+      <div class="bg-overlay"></div>
+    </div>
+  </div>
+
+  <!-- ── Navigation logo ── -->
+  <header class="nav-header">
+    <a href="#" class="nav-logo-link">
+      <img [src]="logoNav" class="nav-logo-img" [attr.alt]="'home.hero.logoAlt' | translate">
+    </a>
+  </header>
+
+  <!-- ── Main: hero left + card right ── -->
+  <main class="main-content">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-body">
+        <h1 class="hero-title">{{ 'login.content.heroTitleLine1' | translate }}<br>{{ 'login.content.heroTitleLine2' | translate }}</h1>
+        <p class="hero-sub">{{ 'login.content.heroSubtitle' | translate }}</p>
+      </div>
+      <div class="dots">
+        <span class="dot dot-lg"></span>
+        <span class="dot dot-md"></span>
+        <span class="dot dot-sm"></span>
+      </div>
+    </div>
+
+    <!-- Login card -->
+    <div class="card">
+      <div class="card-inner">
+
+        <!-- Logo + welcome -->
+        <div class="card-top">
+          <img class="card-logo" [src]="logoCard" [attr.alt]="'home.hero.logoAlt' | translate">
+          <div class="card-welcome">
+            <h2 class="welcome-h">{{ 'login.content.welcomeTitle' | translate }}</h2>
+            <p class="welcome-p">{{ 'login.content.welcomeSubtitle' | translate }}</p>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="card-form">
+          <h3 class="form-h">{{ 'login.content.formTitle' | translate }}</h3>
+          <form class="form-fields" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <formly-form [form]="loginForm" [fields]="loginFields" [model]="loginModel"></formly-form>
+            <!-- Actions -->
+            <div class="form-actions">
+              <app-button
+                type="submit"
+                variant="login-primary"
+                [fullWidth]="true"
+                [disabled]="submittingPhone() || loginForm.invalid">
+                {{ (submittingPhone() ? 'common.submitting' : 'login.actions.login') | translate }}
+              </app-button>
+
+              <div class="or-row">
+                <span class="or-line or-line-l"></span>
+                <span class="or-label">{{ 'login.actions.or' | translate }}</span>
+                <span class="or-line or-line-r"></span>
+              </div>
+
+              <app-button
+                type="button"
+                variant="login-outline"
+                [fullWidth]="true"
+                (clicked)="onCreateAccount($event)">
+                {{ 'login.actions.createAccount' | translate }}
+              </app-button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <app-otp-modal
+    [isOpen]="isOtpModalOpen()"
+    [otpLength]="otpLength"
+    [maskedMobileNumber]="displayMaskedPhone()"
+    [expiresAtUtc]="expiresAtUtc()"
+    [submitting]="submittingOtp()"
+    [errorKey]="otpErrorKey()"
+    (closed)="closeOtpModal()"
+    (verified)="verifyOtp($event)"
+    (resend)="resendOtp()">
+  </app-otp-modal>
+
+</div>

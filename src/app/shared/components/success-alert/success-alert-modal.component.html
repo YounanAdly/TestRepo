@@ -1,0 +1,32 @@
+@if (isOpen()) {
+  <div class="success-overlay" [ngClass]="'success-overlay--' + variant()">
+    <div
+      class="success-modal"
+      [ngClass]="'success-modal--' + variant()"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="success-title"
+      cdkTrapFocus
+      cdkTrapFocusAutoCapture>
+      <button
+        class="success-close"
+        type="button"
+        (click)="onClose()"
+        [attr.aria-label]="closeLabelKey() | translate">
+        <img [src]="closeIconSrc()" alt="" aria-hidden="true">
+      </button>
+      <img class="success-icon" [src]="iconSrc()" alt="" aria-hidden="true">
+      <h2 class="success-title" id="success-title">{{ titleKey() | translate:titleParams() }}</h2>
+      <p class="success-description">{{ descriptionKey() | translate }}</p>
+      <div class="success-action-wrap">
+        <app-button
+          type="button"
+          variant="otp-verify"
+          [fullWidth]="true"
+          (clicked)="onDone()">
+          {{ doneLabelKey() | translate }}
+        </app-button>
+      </div>
+    </div>
+  </div>
+}
