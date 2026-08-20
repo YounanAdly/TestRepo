@@ -1,6 +1,6 @@
 {
     "HELLO": "مرحبا بالعالم!",
-Add `"HELLasdO": "Hello World!"` to `src/assets/i18n/en.json` or clean up typo additions.
+    "ASDASDASDASD": "مرحبا!",
     "WELCOME": "أهلا بك في تطبيقنا",
     "GOODBYE": "وداعا",
     "numbersOnly": "يسمح بالأرقام فقط",
